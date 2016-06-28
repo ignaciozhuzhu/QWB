@@ -1,0 +1,4 @@
+*.config
+Web.config
+# /Debug/
+obj/
