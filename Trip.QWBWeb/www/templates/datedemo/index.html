@@ -1,0 +1,166 @@
+﻿<!doctype html>
+<html ng-app="plunker">
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.js"></script>
+    <script>
+        angular.module("ngLocale", [], ["$provide", function ($provide) {
+            var PLURAL_CATEGORY = { ZERO: "zero", ONE: "one", TWO: "two", FEW: "few", MANY: "many", OTHER: "other" };
+            $provide.value("$locale", {
+                "DATETIME_FORMATS": {
+                    "AMPMS": [
+                      "AM",
+                      "PM"
+                    ],
+                    "DAY": [
+                      "周日",
+                      "周一",
+                      "周二",
+                      "周三",
+                      "周四",
+                      "周五",
+                      "周六"
+                    ],
+                    "MONTH": [
+                      "1月",
+                      "2月",
+                      "3月",
+                      "4月",
+                      "5月",
+                      "6月",
+                      "7月",
+                      "8月",
+                      "9月",
+                      "10月",
+                      "11月",
+                      "12月"
+                    ],
+                    "SHORTDAY": [
+                      "周日",
+                      "周一",
+                      "周二",
+                      "周三",
+                      "周四",
+                      "周五",
+                      "周六"
+                    ],
+                    "SHORTMONTH": [
+                      "janv.",
+                      "f\u00e9vr.",
+                      "mars",
+                      "avr.",
+                      "mai",
+                      "juin",
+                      "juil.",
+                      "ao\u00fbt",
+                      "sept.",
+                      "oct.",
+                      "nov.",
+                      "d\u00e9c."
+                    ],
+                    "fullDate": "EEEE d MMMM y",
+                    "longDate": "d MMMM y",
+                    "medium": "d MMM y HH:mm:ss",
+                    "mediumDate": "d MMM y",
+                    "mediumTime": "HH:mm:ss",
+                    "short": "dd/MM/yy HH:mm",
+                    "shortDate": "dd/MM/yy",
+                    "shortTime": "HH:mm"
+                },
+                "NUMBER_FORMATS": {
+                    "CURRENCY_SYM": "\u20ac",
+                    "DECIMAL_SEP": ",",
+                    "GROUP_SEP": "\u00a0",
+                    "PATTERNS": [
+                      {
+                          "gSize": 3,
+                          "lgSize": 3,
+                          "macFrac": 0,
+                          "maxFrac": 3,
+                          "minFrac": 0,
+                          "minInt": 1,
+                          "negPre": "-",
+                          "negSuf": "",
+                          "posPre": "",
+                          "posSuf": ""
+                      },
+                      {
+                          "gSize": 3,
+                          "lgSize": 3,
+                          "macFrac": 0,
+                          "maxFrac": 2,
+                          "minFrac": 2,
+                          "minInt": 1,
+                          "negPre": "(",
+                          "negSuf": "\u00a0\u00a4)",
+                          "posPre": "",
+                          "posSuf": "\u00a0\u00a4"
+                      }
+                    ]
+                },
+                "id": "fr-fr",
+                "pluralCat": function (n) { if (n >= 0 && n <= 2 && n != 2) { return PLURAL_CATEGORY.ONE; } return PLURAL_CATEGORY.OTHER; }
+            });
+        }]);
+    </script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
+
+    <script>
+    angular.module('plunker', ['ui.bootstrap']);
+    var DatepickerDemoCtrl = function ($scope, $timeout) {
+    $scope.today = function() {
+    $scope.dt = new Date();
+    };
+    $scope.today();
+
+    $scope.showWeeks = true;
+    $scope.toggleWeeks = function () {
+    $scope.showWeeks = ! $scope.showWeeks;
+    };
+
+    $scope.clear = function () {
+    $scope.dt = null;
+    };
+
+    // Disable weekend selection
+    $scope.disabled = function(date, mode) {
+    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    };
+
+    $scope.toggleMin = function() {
+    $scope.minDate = ( $scope.minDate ) ? null : new Date();
+    };
+    $scope.toggleMin();
+
+    $scope.open = function() {
+    $timeout(function() {
+    $scope.opened = true;
+    });
+    };
+
+    $scope.dateOptions = {
+    'year-format': "'yy'",
+    'starting-day': 1
+    };
+    };
+    </script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+</head>
+<body>
+    <div ng-controller="DatepickerDemoCtrl">
+        <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
+        <div class="well well-small pull-left" ng-model="dt">
+            <datepicker min="minDate" show-weeks="showWeeks"></datepicker>
+        </div>
+        <div class="form-horizontal">
+            <input type="text" datepicker-popup="dd-MMMM-yyyy" ng-model="dt" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" />
+            <button class="btn" ng-click="open()"><i class="icon-calendar"></i></button>
+        </div>
+        <hr />
+        <button class="btn btn-small btn-inverse" ng-click="today()">Today</button>
+        <button class="btn btn-small btn-inverse" ng-click="dt = '2009-08-24'">2009-08-24</button>
+        <button class="btn btn-small btn-success" ng-click="toggleWeeks()" tooltip="For inline datepicker">Toggle Weeks</button>
+        <button class="btn btn-small btn-danger" ng-click="clear()">Clear</button>
+        <button class="btn btn-small" ng-click="toggleMin()" tooltip="After today restriction">Min date</button>
+    </div>
+</body>
+</html>

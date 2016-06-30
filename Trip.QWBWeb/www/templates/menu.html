@@ -1,0 +1,66 @@
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-stable">
+            <ion-nav-back-button>
+            </ion-nav-back-button>
+            <!--<ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+            </ion-nav-buttons>-->
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="none">
+        <!--<ion-header-bar class="bar-stable">
+            <h1 class="title">Left</h1>
+        </ion-header-bar>-->
+        <ion-content>
+            <ion-list>
+                <ion-item menu-close href="#/app/index">
+                    主页
+                </ion-item>
+                <ion-item menu-close href="#/app/linelists">
+                    线路列表
+                </ion-item>
+                <ion-item menu-close href="#/app/indexdate">
+                    日期选择
+                </ion-item>
+                <ion-item menu-close href="#/app/pickresource">
+                    选择资源
+                </ion-item>
+                <ion-item menu-close href="#/app/fillorder">
+                    填写订单
+                </ion-item>
+                <ion-item menu-close href="#/app/payway">
+                    支付方式
+                </ion-item>
+                <ion-item menu-close href="#/app/cancelorder">
+                    取消订单
+                </ion-item>
+                <ion-item menu-close href="#/app/user/register">
+                    注册
+                </ion-item>
+                <ion-item menu-close href="#/app/user/login">
+                    登录
+                </ion-item>
+                <ion-item menu-close href="#/app/user/quickregister">
+                    快速注册
+                </ion-item>
+                <ion-item menu-close href="#/app/user/forgetpwd">
+                    密码找回
+                </ion-item>
+                <ion-item menu-close href="#/app/user/myorder">
+                    我的订单
+                </ion-item>
+                <ion-item menu-close href="#/app/user/orderdetail">
+                    订单详情
+                </ion-item>
+                <ion-item menu-close href="#/app/user/myinfo">
+                    个人中心
+                </ion-item>
+                <ion-item menu-close href="#/app/user/shortregist">
+                    短注册
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

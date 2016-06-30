@@ -1,0 +1,289 @@
+<link href="css/royalslider.css?1" rel="stylesheet">
+<link href="css/rs-minimal-white.css" rel="stylesheet">
+<link href="lib/ionic/css/ionic.css" rel="stylesheet">
+<style>
+    .bar .title.title-left {
+        text-align: center;
+        color: black;
+    }
+</style>
+<ion-view hide-nav-bar="true">
+</ion-view>
+
+<ion-view view-title="锦江旅游">
+    <div class="indexion">
+
+        <ion-header-bar>
+            <div class="indexheader">
+                <div class="bar bar-header bar-stable">
+                    <div>锦江2旅游</div>
+                </div>
+                <div id="bartitle" class="bar bar-subheader bar-stable headertitle">
+                    <form>
+                        <div class="button-bar">
+                            <img src="img/logo.png" class="imgh" />
+                            <input class="background_size inputsc searchtxt borderlefty" style="width:60%" type="search" placeholder="路线/目的地/景点" ng-click="desSelect()">
+                            <div class="divh">
+                                <a href="#/app/user/myinfo"><img src="img/个人中心图标.png" class="imgo" /></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </ion-header-bar>
+
+        <ion-header-bar align-title="left" class="bar-stable">
+            <h1 class="title">锦江旅游</h1>
+        </ion-header-bar>
+
+        <ion-content>
+            <!--城市选择框-->
+            <div id="divcityselect" class="cityselectbox">
+                <div class="grayback">当前定位城市</div>
+                <div class="gay">
+                    <span id="nowPro"></span>
+                </div>
+                <div class="grayback">热门城市</div>
+                <div class="gay">
+                    <span>上海</span>
+                    <span>杭州</span>
+                    <span>北京</span>
+                    <span>成都</span>
+                    <span>重庆</span>
+                </div>
+                <div class="gay">
+                    <span>大连</span>
+                    <span>东莞</span>
+                    <span>厦门</span>
+                    <span>福州</span>
+                    <span>佛山</span>
+                </div>
+                <div class="gay">
+                    <span>赣州</span>
+                    <span>合肥</span>
+                    <span>哈尔滨</span>
+                    <span>邯郸</span>
+                    <span>常州</span>
+                </div>
+                <div class="grayback">A</div>
+                <div class="gay">
+                    <span>鞍山</span>
+                </div>
+                <div class="grayback">B</div>
+                <div class="gay">
+                    <span>北京</span>
+                    <span>蚌埠</span>
+                </div>
+                <div class="grayback">C</div>
+                <div class="gay">
+                    <span>成都</span>
+                    <span>重庆</span>
+                    <span>长沙</span>
+                    <span>长春</span>
+                    <span>常州</span>
+                </div>
+                <div class="gay">
+                    <span>常德</span>
+                    <span>沧州</span>
+                    <span>常熟</span>
+                </div>
+                <div class="grayback">D</div>
+                <div class="gay">
+                    <span>大连</span>
+                    <span>大同</span>
+                    <span>东莞</span>
+                    <span>东营</span>
+                    <span>德阳</span>
+                </div>
+                <div class="grayback">F</div>
+                <div class="gay">
+                    <span>福州</span>
+                    <span>佛山</span>
+                    <span>阜阳</span>
+                </div>
+                <div class="grayback">G</div>
+                <div class="gay">
+                    <span>广州</span>
+                    <span>贵阳</span>
+                    <span>赣州</span>
+                </div>
+                <div class="grayback">H</div>
+                <div class="gay">
+                    <span>杭州</span>
+                    <span>合肥</span>
+                    <span>哈尔滨</span>
+                    <span>呼和浩特</span>
+                    <span>邯郸</span>
+                </div>
+                <div class="gay">
+                    <span>淮南</span>
+                    <span>湖州</span>
+                    <span>黄石</span>
+                </div>
+                <div class="grayback">J</div>
+                <div class="gay">
+                    <span>济南</span>
+                    <span>金华</span>
+                    <span>吉林</span>
+                    <span>锦州</span>
+                    <span>嘉兴</span>
+                </div>
+                <div class="gay">
+                    <span>济宁</span>
+                </div>
+                <div class="grayback">K</div>
+                <div class="gay">
+                    <span>昆明</span>
+                </div>
+                <div class="grayback">N</div>
+                <div class="gay">
+                    <span>南京</span>
+                    <span>宁波</span>
+                    <span>南宁</span>
+                    <span>南昌</span>
+                    <span>南阳</span>
+                </div>
+                <div class="gay">
+                    <span>南通</span>
+                    <span>南充</span>
+                </div>
+                <div class="grayback">Q</div>
+                <div class="gay">
+                    <span>泉州</span>
+                    <span>青岛</span>
+                </div>
+                <div class="grayback">R</div>
+                <div class="gay">
+                    <span>日照</span>
+                </div>
+                <div class="grayback">S</div>
+                <div class="gay">
+                    <span>上海</span>
+                    <span>苏州</span>
+                    <span>深圳</span>
+                    <span>沈阳</span>
+                    <span>石家庄</span>
+                </div>
+                <div class="gay">
+                    <span>绍兴</span>
+                    <span>汕头</span>
+                </div>
+                <div class="grayback">T</div>
+                <div class="gay">
+                    <span>天津</span>
+                    <span>太原</span>
+                    <span>唐山</span>
+                    <span>台州</span>
+                    <span>泰州</span>
+                </div>
+                <div class="grayback">W</div>
+                <div class="gay">
+                    <span>武汉</span>
+                    <span>无锡</span>
+                    <span>温州</span>
+                    <span>芜湖</span>
+                    <span>乌鲁木齐</span>
+                </div>
+                <div class="gay">
+                    <span>潍坊</span>
+                    <span>威海</span>
+                </div>
+                <div class="grayback">X</div>
+                <div class="gay">
+                    <span>西安</span>
+                    <span>厦门</span>
+                    <span>徐州</span>
+                    <span>许昌</span>
+                </div>
+                <div class="grayback">Y</div>
+                <div class="gay">
+                    <span>延安</span>
+                    <span>宜昌</span>
+                    <span>烟台</span>
+                    <span>扬州</span>
+                    <span>银川</span>
+                </div>
+                <div class="gay">
+                    <span>盐城</span>
+                </div>
+                <div class="grayback">Z</div>
+                <div class="gay">
+                    <span>郑州</span>
+                    <span>珠海</span>
+                    <span>中山</span>
+                    <span>漳州</span>
+                    <span>株洲</span>
+                </div>
+                <div class="gay">
+                    <span>淄博</span>
+                    <span>镇江</span>
+                    <span>舟山</span>
+                </div>
+            </div>
+            <!--目的地选择框-->
+            <div id="divdesselect" class="cityselectbox">
+                <div style="margin-top:10px;height:60px;">
+                    <input style="margin:auto;height:37px;width:60%;border:solid 1px #ddd;padding-left:12%;background-image: url(img/放大镜2.png);float:left;border-radius:0;border-bottom-left-radius: 5px;border-top-left-radius: 5px;" class="background_size inputsc searchtxt" type="search" placeholder="路线/目的地/景点">
+                    <input type="button" value="搜索" style="width:24%;height:45px;border-radius:0;border:solid 1px #ddd;border-bottom-right-radius: 5px;border-top-right-radius: 5px;" ng-click="searchlines()">
+                </div>
+                <div style="float:left;width:24%;">
+                    <div ng-repeat="x in area" ng-click="search0Dest($event)" style="border: solid 2px #f5f5f5;margin: -2px;padding: 10%;">
+                        {{x.areaName}}
+                        <div ng-show="false">{{x.Id}}</div>
+                    </div>
+                </div>
+                <div style="float:left;width:72%;margin-left:4%">
+                    <div ng-repeat="x in dest" ng-click="search1Dest($event)" class="searchDest" style="float:left;width:46%;border: solid 2px #f5f5f5;margin: 2%;padding: 2%;">{{x.destName}}<div ng-show="false">{{x.H5Url}}</div></div>
+                </div>
+            </div>
+        </ion-content>
+        <ion-content class="indexbox" id="divcontent">
+            <!--这段轮播图-->
+            <div class="sliderContainer fullWidth clearfix">
+                <div ng-click="indexent()" id="full-width-slider" class="royalSlider heroSlider rsMinW">
+                </div>
+            </div>
+            <div>
+                <div class="linecatebox">
+                    <div class="linecategorys" ng-repeat="x in linecategorys"><div><a href="#/app/linelists/{{x.lineCategory.toLowerCase()}}"><img ng-src={{x.imgUrl}}></a></div><div>{{x.categoryName}}</div></div>
+                </div>
+
+                <div class="categorys2" ng-repeat="x2 in linecategorys2">
+                    <!--框头部-->
+                    <div>
+                        <div class="heightgray1"></div>
+                        <div class="heightgray5"></div>
+                        <div class=morefont><div class="graytitleleft"></div><div>{{x2.categoryName}}</div></div>
+                    </div>
+                    <!--框内容-->
+                    <div class="contentpwp">
+                        <div ng-repeat="boxlist in linecategorys2detail| filter:x2.lineCategory| limitTo:4 ">
+                            <div class="contentpw">
+                                <a ng-click="indexent()" href="#/app/linedetail/{{boxlist.lineId}}"><img class="contentimg" ng-src="{{boxlist.imgUrl}}" /></a>
+                                <div class="contentboxdiv">
+                                    {{ boxlist.lineTitle.length > 9 ? boxlist.lineTitle.substring(0,8)+'...':boxlist.lineTitle}}
+                                </div>
+                                <div>
+                                    <span class="amountbg">¥{{boxlist.originalPrice}}</span><span class="mountfont">起</span>
+                                </div>
+                            </div>
+                        </div>
+                        z
+                    </div>
+                    <!--查看更多-->
+                    <div>
+                        <div class="morehead"></div>
+                        <a class="amore" ng-click="seemore($event)"><div ng-show="false">{{x2.lineCategory}}</div><div class="aligncenter">更多{{x2.categoryName}}<img class="imgmore" src="img/更多.png" /></div></a>
+
+                        <div class="morefoot"></div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div id="teledown"><a href="tel:10101666" class="telea"><img src="img/tele3.png" class="teleimg" /></a></div>
+
+        </ion-content>
+
+    </div>
+</ion-view>

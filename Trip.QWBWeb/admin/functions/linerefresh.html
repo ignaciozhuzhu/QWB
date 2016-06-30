@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <title>同步线路库</title>
+    <meta charset="utf-8" />
+    <style>
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="button" onclick="refresh()">同步线路库</a>
+</body>
+</html>
+<script>
+    function refresh() {
+        $.ajax({
+            url: "../../../ajax/apihandler.ashx?fn=cancelorder",
+            type: "post",
+            success: function (text) {
+                alert(text)
+            }
+        })
+    }
+</script>

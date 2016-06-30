@@ -1,0 +1,637 @@
+﻿/*****************************forgetpwd bg*********************************/
+@charset "utf-8";
+
+.forgetpwd0,.checkpwd0 {
+    width: 100%;
+    height: auto;
+    /*margin: 100px auto;*/
+    overflow: hidden;
+    font-size: 12px;
+    color: #1b1b1b;
+    text-align: left;
+    padding: 50px;
+    /*border: 1px solid #ccc;*/
+    border-radius: 10px;
+}
+
+    .forgetpwd0,.checkpwd0 div {
+        padding: 5px 0;
+        overflow: hidden;
+    }
+
+    .forgetpwd0,.checkpwd0 label {
+        width: 90px;
+        display: block;
+        float: left;
+    }
+
+    .forgetpwd0,.checkpwd0 .infos {
+        width: 95%;
+        height: 44px;
+        line-height: 44px;
+        border: 1px solid #BFBFBF;
+        padding: 0px 10px;
+        border-radius: 4px;
+        float: left;
+    }
+
+    .forgetpwd0,.checkpwd0 .div-phone a.send1 {
+        height: 44px;
+        text-decoration: none;
+        line-height: 44px;
+        padding: 2px;
+        width: 45%;
+        background: #5D93EE;
+        font-family: '宋体';
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+        display: block;
+        float: left;
+        border-radius: 2px;
+        margin-left: 2px;
+        -webkit-transition: all 0.2s linear;
+        -moz-transition: all 0.2s linear;
+        -ms-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear;
+    }
+
+        .forgetpwd0,.checkpwd0 .div-phone a.send1:hover {
+            text-decoration: none;
+            background: #866c1b;
+            -webkit-transition: all 0.2s linear;
+            -moz-transition: all 0.2s linear;
+            -ms-transition: all 0.2s linear;
+            -o-transition: all 0.2s linear;
+            transition: all 0.2s linear;
+        }
+
+    .forgetpwd0,.checkpwd0 .div-phone a.send0 {
+        height: 44px;
+        text-decoration: none;
+        line-height: 44px;
+        padding: 2px;
+        width: 45%;
+        background: #A1A1A1;
+        font-family: '宋体';
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+        display: block;
+        float: left;
+        border-radius: 2px;
+        margin-left: 2px;
+    }
+
+        .forgetpwd0,.checkpwd0 .div-phone a.send0:hover {
+            background: #A1A1A1;
+            font-family: '宋体';
+            color: #fff;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+    .forgetpwd0,.checkpwd0 span.error {
+        height: 24px;
+        line-height: 24px;
+        padding: 2px;
+        width: 100px;
+        color: red;
+        padding-left: 20px;
+        display: block;
+        float: left;
+        margin-left: 10px;
+        font-size: 12px;
+        font-family: '宋体';
+        /*background: url(../images/error.png) no-repeat left center;*/
+    }
+
+    .forgetpwd0,.checkpwd0 #phone {
+        width: 50%;
+    }
+
+    .forgetpwd0,.checkpwd0 .div-conform {
+        padding-right: 153px;
+    }
+
+        .forgetpwd0,.checkpwd0 .div-conform a.conform {
+            width: 136px;
+            height: 4px;
+            display: block;
+            text-align: left;
+            overflow: hidden;
+            /*background: url(../images/btn.jpg) no-repeat;*/
+            float: right;
+            text-indent: -1000px;
+        }
+
+    .forgetpwd0,.checkpwd0 .bottombutton {
+        font-weight: bold;
+        height: 50px;
+        background-color: #ff7200;
+        line-height: 50px;
+        text-align: center;
+        color: white;
+        width: 95%;
+    }
+/*****************************forgetpwd ed*********************************/
+
+/*****************************login bg*********************************/
+    .login {
+        font-size: 12px;
+        padding-top:44px;
+    }
+
+        .login .border1 {
+            border: solid 1px #dcdee1;
+        }
+
+    .loginbox {
+        margin: 10px;
+        border: solid 1px #dcdee1;
+    }
+
+        .loginbox .form-item {
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .loginbox .item-tip {
+            position: absolute;
+            color: #999;
+            top: -3px;
+            left: 12px;
+            transition: all linear .2s;
+            background-color: #fff;
+            padding: 6px 3px;
+            font-size: 12px;
+            margin-left: 10px;
+            z-index: 4;
+        }
+
+        .loginbox .item-tip-focus {
+            top: -29px;
+            font-size: 12px;
+            color: #5188a6;
+        }
+
+        .loginbox .form-input {
+            border-radius: 0;
+            width: 278px;
+            padding: 0px 15px;
+            border: 1px solid #dcdcdc;
+            -webkit-transition: border-color ease-in-out .15s;
+            transition: border-color ease-in-out .15s;
+            font-size: 12px;
+            border: none;
+            border-bottom: solid 1px #dcdee1;
+            width: 100%;
+        }
+
+        .loginbox .sinbottom {
+            border-bottom: 0px;
+        }
+
+        .loginbox .form-input-focus {
+            border-color: #5188a6;
+            outline: 0;
+        }
+
+    .login .bottombutton {
+        font-weight: bold;
+        height: 50px;
+        background-color: #ff7200;
+        line-height: 50px;
+        text-align: center;
+        color: white;
+        width: 100%;
+    }
+    .login input[readonly] {
+        background-color:white;border:0;width:35px;
+    }
+    .login .form-input {
+        
+    }
+
+/*****************************login ed*********************************/
+
+/*****************************myinfo bg*********************************/
+    .myinfo {
+        margin-top: 44px;
+    }
+
+        .myinfo .heightgray {
+            background-color: #e1e1e2;
+            height: 1px;
+        }
+
+        .myinfo .heightgray2 {
+            background-color: #eff0f2;
+            height: 10px;
+        }
+
+        .myinfo .footer {
+            width: 33%;
+            float: left;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: #ff7200;
+            height: 50px;
+            line-height: 50px;
+            color: white;
+            border: 1px solid white;
+        }
+
+        .myinfo .footer2 {
+            margin: 3%;
+            height: 30px;
+            line-height: 30px;
+            padding-left: 10%;
+            color: black;
+        }
+
+    @media screen and (min-width: 320px) {
+        .myinfoion {
+            font-size: 1em;
+        }
+    }
+
+    @media screen and (min-width: 375px) {
+        .myinfoion {
+            font-size: 1.1em;
+        }
+    }
+
+    @media screen and (min-width: 414px) {
+        .myinfoion {
+            font-size: 1.2em;
+        }
+    }
+/*****************************myinfo ed*********************************/
+
+/*****************************myorder bg*********************************/
+    .myorder {
+        font-size: 13px;
+        margin: 0 0px;
+        color: #beb9c0;
+        margin-top:44px;
+    }
+
+    .myorderh {
+        padding-top: 40px;
+        font-size: 13px;
+        margin: 0 2px;
+    }
+
+        .myorderh .header0 {
+            color: #beb9c0;
+            height: 25px;
+            margin: 0px -10px;
+            width: 110%;
+        }
+
+        .myorderh .header0 div {
+             float: left;
+             color: #beb9c0;
+             width: 20%;
+             text-align: center;
+             padding: 10px 0;
+             border-bottom: solid 1px;
+             background-color: white;
+         }
+    .myorder .heightgray {
+        background-color: #cecece;
+        height: 1px;
+    }
+    .myorder .heightgray5 {
+        height: 8px;
+        background-color: #f3f3f3;
+    }
+    .myorder .timeorder {
+        height:36px;
+        line-height:36px;
+        color:#878787;
+        font-size:12px;
+        padding:0 6px;
+    }
+
+    .myorder .timeorder div:nth-child(1) {
+        float: left;
+    }
+    .myorder .timeorder div:nth-child(2) {
+        float: right;
+    }
+    .myorder .detailbox {
+        height: 45px;
+    }
+    .myorder .detailbox div:nth-child(1) {
+            float: left;
+            height:50px;
+            overflow :hidden ;
+            font-size: 15px;
+            line-height: 22px;
+            padding:6px 6px 0 6px;
+            color: black;
+        }
+
+        .myorder .detailbox div:nth-child(2) {
+            float: right;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 25px;
+            color: #ff8201;
+            padding-right:8px;
+        }
+
+    .myorder .clear {
+        clear: both;
+        height: 30px;
+    }
+
+    .myorder .detailbox2 {
+        height: 30px;
+        color:#878787;
+        line-height:30px;
+        padding:0 6px;
+    }
+
+        .myorder .detailbox2 div:nth-child(1) {
+            float: left;
+        }
+
+        .myorder .detailbox2 div:nth-child(2) {
+            float: left;
+            margin-left: 10%;
+        }
+
+        .myorder .detailbox2 div:nth-child(3) {
+            float: right;
+            color: #e69245;
+        }
+        .myorder .detailbox2 div:nth-child(4) {
+            float: right;
+            color: #e69245;
+        }
+
+    .myorder .seebutton {
+        height: 46px;
+    }
+
+    .myorder .orderbutton {
+        float: right;
+        margin:8px;
+        background-color: #ff8201;
+        color: white;
+        padding: 5px;
+        border-radius:2px;
+        width: 25%;
+        text-align: center;
+    }
+
+    .myorder .contentblue {
+        color: #f59609;
+    }
+
+    .myorder .lineblue {
+        border-bottom-color: #f59609;
+    }
+
+    .myorder .fifthCentera {
+        color: #f59609;
+    }
+    .myorderh .title {
+        left:-200px;right:0;
+    }
+    .myorderh .myheadtitle {
+        margin:auto 15%;font-size:16px
+    }
+/*****************************myorder ed*********************************/
+
+/*****************************orderdetail bg*********************************/
+    .orderdetail {
+        font-size: 13px;
+    }
+
+        .orderdetail .heightgray {
+            background-color: #beb9c0;
+            height: 1px;
+        }
+
+        .orderdetail .seebutton {
+            overflow: hidden;
+        }
+
+        .orderdetail .orderbutton {
+            float: right;
+            margin: 5px;
+            background-color: #ff7043;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            width: 25%;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .orderdetail .orderinfobox {
+            margin: 10px;
+            overflow: hidden;
+        }
+
+            .orderdetail .orderinfobox .detailtitle {
+                margin: 5px;
+            }
+
+                .orderdetail .orderinfobox .detailtitle div:nth-child(1) {
+                    background-color: green;
+                    height: 16px;
+                    width: 5px;
+                    float: left;
+                }
+
+                .orderdetail .orderinfobox .detailtitle div:nth-child(2) {
+                    padding-left: 10px;
+                }
+
+            .orderdetail .orderinfobox ul {
+                line-height: 25px;
+                overflow: hidden;
+            }
+
+        .orderdetail .ftdiv {
+            margin: 10px;
+        }
+
+        .orderdetail .lileft {
+            float: left;
+        }
+
+        .orderdetail .liright {
+            float: right;
+            color: #e69245;
+        }
+
+        .orderdetail .height10 {
+            height: 10px;
+        }
+
+        .orderdetail .orderinfobox .detailul {
+            float: left;
+            width: 50%;
+        }
+/*****************************orderdetail ed*********************************/
+
+/*****************************quickregister bg*********************************/
+    .quickregister {
+        font-size: 12px;
+    }
+
+        .quickregister .border1 {
+            border: solid 1px #dcdee1;
+        }
+
+    .quickregisterbox {
+        margin: 10px;
+        border: solid 1px #dcdee1;
+    }
+
+        .quickregisterbox .form-item {
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .quickregisterbox .item-tip {
+            position: absolute;
+            color: #999;
+            top: -3px;
+            left: 12px;
+            transition: all linear .2s;
+            background-color: #fff;
+            padding: 0 3px;
+            font-size: 12px;
+            margin-left: 10px;
+            z-index: 4;
+        }
+
+        .quickregisterbox .item-tip-focus {
+            top: -29px;
+            font-size: 12px;
+            color: #5188a6;
+        }
+
+        .quickregisterbox .form-input {
+            border-radius: 0;
+            width: 278px;
+            padding: 9px 15px;
+            border: 1px solid #dcdcdc;
+            -webkit-transition: border-color ease-in-out .15s;
+            transition: border-color ease-in-out .15s;
+            font-size: 12px;
+            border: none;
+            border-bottom: solid 1px #dcdee1;
+            width: 100%;
+        }
+
+        .quickregisterbox .sinbottom {
+            border-bottom: 0px;
+        }
+
+        .quickregisterbox .form-input-focus {
+            border-color: #5188a6;
+            outline: 0;
+        }
+
+    .quickregister .bottombutton {
+        font-weight: bold;
+        height: 50px;
+        background-color: #ff7200;
+        line-height: 50px;
+        text-align: center;
+        color: white;
+        width: 100%;
+    }
+    
+    .quickregisterbox input[readonly] {
+        background-color:white;border:0;width:35px;
+    }
+    
+/*****************************quickregister ed*********************************/
+
+/*****************************register bg*********************************/
+    .register {
+        font-size: 12px;
+    }
+
+        .register .border1 {
+            border: solid 1px #dcdee1;
+        }
+
+    .registerbox {
+        margin: 10px;
+        border: solid 1px #dcdee1;
+    }
+
+        .registerbox .form-item {
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .registerbox .item-tip {
+            position: absolute;
+            color: #999;
+            top: -3px;
+            left: 12px;
+            transition: all linear .2s;
+            background-color: #fff;
+            padding: 0 3px;
+            font-size: 12px;
+            margin-left: 10px;
+            z-index: 4;
+            border:0;
+            width:35px;
+        }
+
+        .registerbox .item-tip-focus {
+            top: -29px;
+            font-size: 12px;
+            color: #5188a6;
+        }
+
+        .registerbox .form-input {
+            border-radius: 0;
+            width: 278px;
+            padding: 9px 15px;
+            border: 1px solid #dcdcdc;
+            -webkit-transition: border-color ease-in-out .15s;
+            transition: border-color ease-in-out .15s;
+            font-size: 12px;
+            border: none;
+            border-bottom: solid 1px #dcdee1;
+            width: 100%;
+        }
+
+        .registerbox .sinbottom {
+            border-bottom: 0px;
+        }
+
+        .registerbox .form-input-focus {
+            border-color: #5188a6;
+            outline: 0;
+        }
+
+    .register .bottombutton {
+        font-weight: bold;
+        height: 50px;
+        background-color: #ff7200;
+        line-height: 50px;
+        text-align: center;
+        color: white;
+        width: 100%;
+    }
+     input[readonly] .register {
+        background-color:white;border:0;width:35px;
+    }
+    
+/*****************************register ed*********************************/

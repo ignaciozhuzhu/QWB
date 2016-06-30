@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery.extend demo</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+    <div id="log"></div>
+
+    <script type="text/javascript">
+        debugger
+        alert('3')
+        object 
+        var object1 = "{  lineid: 100,  linecategory: 'TRIP',  cherry: 97}";
+        var object2 = "{    lineid:100,    linecategory: 'TRaaIP'}";
+        var object3 = "{  lineid: 200,  linecategory: 'TRIP',  cherry: 97}";
+        var object4 = "{    lineid:200,    linecategory: 'TRaaIPaa'}";
+        var arrayLinemm = new Array(0);
+        var arrayLinemm2 = new Array(0);
+        arrayLinemm.push(object1);
+        arrayLinemm.push(object3);
+
+        arrayLinemm2.push(object2);
+        arrayLinemm2.push(object4);
+
+// Merge object2 into object1
+        $.extend(arrayLinemm, arrayLinemm2);
+
+// Assuming JSON.stringify - not available in IE<8
+        $("#log").append(JSON.stringify(arrayLinemm));
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+
+ol, ul {
+	list-style: none
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+	vertical-align: middle
+}
+q, blockquote {
+	quotes: none
+}
+q:before, q:after, blockquote:before, blockquote:after {
+	content: "";
+	content: none
+}
+a img {
+	border: none
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+	display: block
+}
+.spinner2-sprite, .spinner2 .decrease, .spinner2 .decrease[disabled], .spinner2 .increase, .spinner2 .value, .spinner2 .value.passive {
+	background: url('../images/spinner22.png') no-repeat
+}
+.spinner2 {
+	height: 25px;
+	width: 71px;
+	overflow: hidden;
+*zoom:1;
+	-webkit-box-shadow: 0 3px 3px -4px #aaa;
+	-moz-box-shadow: 0 3px 3px -4px #aaa;
+	box-shadow: 0 3px 3px -4px #aaa;
+    border-radius:0px;
+}
+.spinner2 button, .spinner2 .value {
+	text-align: center;
+	display: block;
+	float: left;
+	height: 100%;
+	line-height: 25px;
+	margin: 0
+}
+.spinner2 button {
+	border: none;
+	width: 23px;
+	color: #e5312a;
+	font: 22px Arial bold;
+	padding: 0;
+	outline: none
+}
+.spinner2 .decrease {
+	background-position: 0 -50px;
+	cursor: pointer;
+	text-indent: -10000px
+}
+.spinner2 .decrease[disabled] {
+	background-position: 0 -75px;
+	cursor: default
+}
+.spinner2 .increase {
+	background-position: 0 0;
+	cursor: pointer;
+	text-indent: -10000px;
+}
+.spinner2 .value {
+	background-position: 0 -100px;
+	width: 24px;
+	height: 27px;
+	border: none;
+	font-family: Arial;
+	color: #ffffff;
+	padding: 0px;
+}
+.spinner2 .value.passive {
+	background-position: 0 -25px;
+	color: #919191;
+}
+.spinner2 .error, .spinner2 .invalid {
+	background: #aa0000
+}
