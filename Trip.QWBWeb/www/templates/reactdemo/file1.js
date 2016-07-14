@@ -1,1 +1,6 @@
-ReactDOM.render(React.createElement("h1", null, "Hello, world!"), document.getElementById('example'));
+var HelloMessage = React.createClass({
+    render: function () {
+        return React.createElement("h1", null, "Hello World！");
+    }
+});
+ReactDOM.render(React.createElement(HelloMessage, null), document.getElementById('example'));

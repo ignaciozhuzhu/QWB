@@ -4,6 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+
 angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
 
 .run(function ($ionicPlatform) {
@@ -53,7 +54,7 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
          }
      })
      .state('app.carlist', {
-         url: '/carlist',
+         url: '/carlist/:cityid',
          views: {
              'menuContent': {
                  templateUrl: 'templates/carlist.html',
@@ -61,8 +62,37 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
              }
          }
      })
+     .state('app.air_booking', {
+         url: '/air_booking',
+         views: {
+             'menuContent': {
+                 templateUrl: 'templates/air_booking.html',
+                 controller: 'air_bookingCtrl'
+             }
+         }
+     })
+        //接送机服务
+     .state('app.air_service', {
+         url: '/air_service',
+         views: {
+             'menuContent': {
+                 templateUrl: 'templates/air_service.html',
+                 controller: 'air_serviceCtrl'
+             }
+         }
+     })
+        //支付订单
+     .state('app.airpay', {
+         url: '/airpay',
+         views: {
+             'menuContent': {
+                 templateUrl: 'templates/airpay.html',
+                 controller: 'airpayCtrl'
+             }
+         }
+     })
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/index');///app/playlists
+    $urlRouterProvider.otherwise('/app/air_booking');///app/playlists
 });
 

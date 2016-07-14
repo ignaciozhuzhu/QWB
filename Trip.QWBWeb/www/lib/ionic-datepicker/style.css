@@ -24,6 +24,9 @@
 
 .boxcarsearch .button {
     font: icon;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    text-shadow:none;
 }
 
 .visible-overflow {
@@ -159,12 +162,17 @@
     font-size: 13px;
 }
 
-.car_serach .button-positive, .car_serach .button-positive.activated {
+.car_serach .button-positive, .car_serach .button-positive.activated, .air_service .button-positive, .air_service .button-positive.activated {
     background-color: #fff;
     color: black;
     width: 90%;
     text-align: left;
 }
+
+.datepicker-modal .row {
+margin-left:-5px
+}
+
 
 .datepicker-modal-buttons {
     display: flex;
@@ -178,7 +186,7 @@
     min-height: 65px;
     font-size: 12px;
     font-weight: 700;
-    margin-top: 20px;
+    margin-top: 65px;
 }
 
     .datepicker-modal-buttons .button {

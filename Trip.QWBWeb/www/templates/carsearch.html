@@ -7,6 +7,7 @@
         font-family: "Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
         font-size: 16px;
     }
+    
 </style>
 <ion-view hide-nav-bar="true">
 </ion-view>
@@ -43,20 +44,19 @@
                 <div class="height8"></div>
                 <div class="car_serach">
                     <span class="car_search_toptitle">开始用车</span>
-
+                    <div></div>
                     <ionic-datepicker date="currentDate" min="minDate" max="maxDate" callback="datePickerCallback">
-                        <button class="button button-block button-positive"> {{ currentDate | date:'yyyy-MM-dd' }} </button>
+                        <button class="button button-block button-positive mybuttondate" style="margin-left:10px"> {{ currentDate | date:'yyyy-MM-dd' }} <span class="weekdayget"></span></button>
                     </ionic-datepicker>
-                </div>
+                    <!--<div class="ion-datetime-picker"></div>-->
+                    </div>
                 <div class="height8"></div>
                 <div class="car_serach">
                     <span class="car_search_toptitle">结束用车</span>
-                    <a class="btn-select car_select" id="btn_select">
-                        <span class="cur-select cur_car_select">2016-06-26 周日 （共1天）</span>
-                        <select id="date" name="date">
-                            <option value="2016-06-26 周日">2016-06-26 周日</option>
-                        </select>
-                    </a>
+                    <div></div>
+                    <ionic-datepicker date="currentDate2" min="minDate2" max="maxDate2" callback="datePickerCallback2">
+                        <button class="button button-block button-positive mybuttondate" style="margin-left:10px"> {{ currentDate2 | date:'yyyy-MM-dd' }} <span class="weekdayget"></span></button>
+                    </ionic-datepicker>
                 </div>
                 <div class="height8"></div>
                 <div class="car_serach">

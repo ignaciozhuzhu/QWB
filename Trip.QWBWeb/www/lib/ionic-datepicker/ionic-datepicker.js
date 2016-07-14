@@ -163,7 +163,7 @@
 
 (function () {
 
-    'use strict';
+    //'use strict';
 
     angular
     .module('ionic-datepicker')
@@ -181,7 +181,6 @@
                 callback: '='
             },
             link: function (scope, element, attrs, controller) {
-
                 var scroll = function (el) {
                     var $$container = $(el), $$element = $(el + ' .datepicker-selected'), offset = $$element.offset().top + $$container.scrollTop() - $$container.offset().top - ($$container.height() / 2);
                     if (offset === 0) return;
@@ -282,8 +281,7 @@
         };
 
         this.createDateList = function (currentDate) {
-
-            var firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDate() , lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate()  , dateList = [];
+            var firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth()+1, 1).getDate() , lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate()  , dateList = [];
 
             for (var i = firstDay; i <= lastDay; i++) {
                 dateList.push(new Date(currentDate.getFullYear(), currentDate.getMonth(), i));

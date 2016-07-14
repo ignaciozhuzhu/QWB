@@ -78,6 +78,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -100,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\qwbApi.cs" />
+    <Compile Include="Model\car_categories.cs" />
+    <Compile Include="Model\carPriceListMod.cs" />
+    <Compile Include="Model\carListMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -108,7 +114,6 @@
   <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="DAL\" />
-    <Folder Include="Model\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

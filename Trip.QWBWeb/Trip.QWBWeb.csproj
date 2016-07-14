@@ -1303,6 +1303,10 @@
     <Content Include="www\lib\md5.js" />
     <Content Include="www\lib\sha1.js" />
     <Content Include="www\lib\xml2json.min.js" />
+    <Content Include="www\templates\airpay.html" />
+    <Content Include="www\templates\air_booking.html" />
+    <Content Include="www\templates\air_service.html" />
+    <Content Include="www\templates\carlist.html" />
     <Content Include="www\templates\carsearch.html" />
     <Content Include="www\templates\index.html" />
     <Content Include="www\templates\menu.html" />

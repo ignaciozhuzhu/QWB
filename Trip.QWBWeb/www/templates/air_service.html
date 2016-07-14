@@ -1,0 +1,192 @@
+﻿
+<head>
+    <style>
+        .air_service hr {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .air_service .car_toptitle {
+            margin: 14px 0 14px 8px;
+            font-size: 16px;
+        }
+
+        .air_service .car_search_wrap {
+            padding: 8px 18px;
+        }
+
+        .air_service input {
+            vertical-align: baseline;
+        }
+
+        .air_service .inputlefttext {
+            width: 30%;
+            text-align-last: justify;
+            display: inline-block;
+        }
+
+        .air_service .inputrightbox {
+            width: 65%;
+            display: inline;
+            padding-top: 0;
+            margin-left: 10px;
+        }
+
+        .air_service .boxremark {
+            height: 80px;
+            border: 1px solid #f2f4f3;
+            width: 90%;
+            border: 1px solid #f2f4f3;
+            margin: 15px;
+            box-shadow: 0 0 8px #808080;
+            -moz-box-shadow: 0 0 8px #808080;
+            -webkit-box-shadow: 0 0 8px #808080;
+        }
+
+        .air_service .colorgray {
+            background-color: #f2f4f3;
+            overflow: hidden;
+        }
+
+        .air_service .bottombutton {
+            width: 100%;
+            height: 55px;
+            line-height: 55px;
+            text-align: center;
+            font-size: 16px;
+            color: white;
+            background-color: #01d4c1;
+        }
+
+        .marginleft10 {
+            margin-left: 10px;
+        }
+
+        .marginleft8 {
+            margin-left: 8px;
+        }
+
+        .mytimepicker {
+            border: 1px solid #bbb;
+            width: 70px;
+            margin-left: -10px;
+            border-radius: 5px;
+            moz-box-shadow: inset 0 1px 4px rgba(0,0,0,.2);
+            -webkit-box-shadow: inset 0 1px 4px rgba(0,0,0,.2);
+            box-shadow: inset 0 1px 4px rgba(0,0,0,.2);
+        }
+    </style>
+    <link rel="stylesheet" href="css/jquery.spinner.css?6" />
+    <link rel="stylesheet" href="css/jquery.spinner2.css?6" />
+
+    <link rel="stylesheet" href="mobiscroll/css/jquery.mobile-1.2.0.min.css" />
+    <link href="mobiscroll/css/mobiscroll.core.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll/css/mobiscroll.jqm.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll/css/mobiscroll.android.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll/css/mobiscroll.android-ics.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll/css/mobiscroll.ios.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll/css/mobiscroll.sense-ui.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll/css/mobiscroll.wp.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll/css/mobiscroll.animation.css" rel="stylesheet" type="text/css" />
+</head>
+<ion-view hide-nav-bar="true">
+</ion-view>
+<ion-view view-title="接机服务" class="air_service">
+    <ion-content>
+        <div class="header">
+            <div id="navigation" class="touchcarousel">
+                <div class="background">
+                    <a href="carsearch.html"><img class="arrow" src="images/arrow2.png" /></a>
+                    <h1 class="n_title">接机服务</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="index_wrap">
+            <div class="colorgray"><p class="car_toptitle"><span>行程详情</span></p></div>
+            <div class="car_search_wrap" style="display:block">
+                <p>降落机场</p>
+                <p>大阪 关西国际机场</p>
+                <div></div>
+                <p>
+                    目的地
+                </p>
+                <p>  日本大阪府大阪市北区织田1丁目1站</p>
+                <hr />
+                <div><span class="inputlefttext">航班号：</span><input style="width:60%;display:inline;padding-top:0;margin-left:10px" type="text" placeholder="请输入航班号"></div>
+                <hr />
+                <div>
+                    <span class="inputlefttext">接机时间：</span>
+                    <ionic-datepicker date="currentDate" min="minDate" max="maxDate" callback="datePickerCallback">
+                        <button class="button button-block button-positive mybuttondate" style="width:45% !important">
+                            {{ currentDate | date:'yyyy-MM-dd' }}<span class="weekdayget"></span>
+                        </button>
+                    </ionic-datepicker>
+
+                    <!--选择时间控件 -->
+                    <div data-role="content" data-theme="d" class="content" style="width:6%; display:inline-block">
+                        <div class="settings" style="display:none">
+                            <div data-role="fieldcontain">
+                                <select name="demo" id="demo">
+                                    <option value="time">Time</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div data-role="fieldcontain" class="demo demo-date demo-datetime demo-time demo-credit">
+                            <input name="test" id="test" class="demo-test-date demo-test-datetime demo-test-time demo-test-credit mytimepicker" placeholder="选择时间" />
+                        </div>
+                    </div>
+
+                </div>
+                <hr />
+            </div>
+
+            <div class="colorgray"><p class="car_toptitle"><span>出行信息</span></p></div>
+            <div class="car_search_wrap" style="display:block">
+                <span class="inputlefttext">出行车型：</span><span class="marginleft10">5座舒适(奥迪A4同等车型)</span>
+                <hr />
+                <div><span class="inputlefttext">服务等级：</span><span class="marginleft10">中文司机</span> </div>
+                <div>
+                    <div style="height:30px">
+                        <span class="inputlefttext">乘坐人数：</span>
+                        <span class="marginleft8">成人</span>
+                        <div id="sp02" style="float:right;margin-right:50px"><input type="text" class="spinner2" /></div>
+                    </div>
+                    <div></div>
+                    <div style="height:30px">
+                        <span class="inputlefttext"></span><span class="marginleft10">儿童</span>
+                        <div id="sp01" style="float:right;margin-right:50px"><input type="text" class="spinner" /></div>
+                    </div>
+                </div>
+                <hr />
+
+                <div><div class="inputlefttext">联系人姓名：</div><input class="inputrightbox" type="text" placeholder="请输入联系人中文姓名"></div>
+                <hr />
+                <div><div class="inputlefttext">护照号：</div><input class="inputrightbox" type="text" placeholder="请输入护照号"></div>
+                <hr />
+                <div><div class="inputlefttext">联系电话：</div><input class="inputrightbox" type="text" placeholder="建议临时开启国外漫游"></div>
+                <hr />
+            </div>
+
+            <div class="colorgray"><p class="car_toptitle"><span>订单备注</span></p></div>
+            <textarea class="boxremark"></textarea>
+
+            <div class="colorgray"><p class="car_toptitle"><span>费用详情</span></p></div>
+            <div class="car_search_wrap" style="display:block">
+                <div>
+                    <span>接机：</span><span style="float:right">JPY 7700.0*1次</span>
+                </div>
+                <div>
+                    <span>夜间服务费：</span><span style="float:right">JPY 1540</span>
+                </div>
+                <hr />
+                <div style="overflow:hidden">
+                    <span>费用合计：</span><span style="float:right;clear:both">JPY 7700</span>
+                    <span style="float:right;clear:both">汇率 0.0651</span>
+                    <span style="float:right;clear:both">RMB 501</span>
+                </div>
+            </div>
+            <div class="bottombutton" ng-click="createorder()">下单支付</div>
+        </div>
+    </ion-content>
+</ion-view>

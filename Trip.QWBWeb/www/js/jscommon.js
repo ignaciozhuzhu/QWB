@@ -382,3 +382,8 @@ function tkdfunc(title,keywords,description) {
     $('[name=keywords]')[0].content = keywords;
     $('[name=description]')[0].content = description;
 }
+
+function getmyweekday(datenow) {
+    var week = "周" + "日一二三四五六".split("")[datenow.getDay()];
+    return week;
+}

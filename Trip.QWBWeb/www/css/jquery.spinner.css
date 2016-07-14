@@ -25,7 +25,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 	display: block
 }
 .spinner-sprite, .spinner .decrease, .spinner .decrease[disabled], .spinner .increase, .spinner .value, .spinner .value.passive {
-	background: url('../images/spinner2.png') no-repeat
+	background: url('../images/spinner3.png') no-repeat
 }
 .spinner {
 	height: 25px;
@@ -48,7 +48,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .spinner button {
 	border: none;
 	width: 23px;
-	color: #e5312a;
+	color: #01d4c1;
 	font: 22px Arial bold;
 	padding: 0;
 	outline: none
