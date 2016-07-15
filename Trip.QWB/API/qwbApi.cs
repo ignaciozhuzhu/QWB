@@ -91,7 +91,7 @@ namespace Trip.QWB
         /// <summary>
         /// 获取接送机价格, carlist 将显示包含价格的全部车型信息.
         /// </summary>
-        public static string getair_bookingsnew(string car_category_id, string pickup_airport_code, string pickup_flight, string pickup_time, string pickup_addr,int locationid)
+        public static string getair_bookingsnew(string car_category_id, string pickup_airport_code, string pickup_flight, string pickup_time, string pickup_addr, int locationid)
         {
             var responseCarList = getCarsList(locationid);
             var resultCarList = JsonConvert.DeserializeObject<carListMod>(responseCarList);
@@ -114,10 +114,11 @@ namespace Trip.QWB
                 var result = JsonConvert.DeserializeObject<carPriceListMod>(response0);
                 result.carid = Convert.ToInt32(car_category_idArray[i]);
                 response0 = new JavaScriptSerializer().Serialize(result);
-                if (result.status == 0 )
+                if (result.status == 0)
                 {
                     //   response += response0 + ",";
-                    for (int j = 0; j < resultCarList.car_categories.Length; j++) {
+                    for (int j = 0; j < resultCarList.car_categories.Length; j++)
+                    {
                         if (resultCarList.car_categories[j].id == result.carid)
                         {
                             resultCarList.car_categories[j].total_price = result.total_price;
@@ -128,11 +129,15 @@ namespace Trip.QWB
                             response += responseCarList + ",";
                         }
                     }
-                    
+
                 }
             }
             response = response.Substring(0, response.Length - 1);
             response = response + "]}";
+            if (response.IndexOf("[") == -1)
+            {
+                response = response.Replace("]", "null");
+            }
             if (response != null)
             {
                 return response;

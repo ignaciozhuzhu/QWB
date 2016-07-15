@@ -5,7 +5,7 @@
         <div class="header">
             <div id="navigation" class="touchcarousel">
                 <div class="background">
-                    <a href="#/app/air_service"><img class="arrow" src="images/arrow2.png" /></a>
+                    <a href="#/app/air_booking"><img class="arrow" src="images/arrow2.png" /></a>
                     <h1 class="n_title">车型推荐</h1>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                                     <span><img class="car_list_ico" src="images/carren.png">{{x.max_seats}}</span>
                                     <span><img class="car_list_ico" src="images/xingli.png">{{x.max_bag}}</span>
                                 </p>
-                                <p class="car_list_price">RMB<span class="price_com">4619</span>起</p>
+                                <p class="car_list_price">RMB<span class="price_com">{{x.total_price}}</span>起</p>
                                 <p class="car_list_btn">选择服务<img class="car_list_ico2" src="images/arrowd.png"></p>
                             </div>
                         </a>
@@ -97,7 +97,7 @@
                                     ·驾驶技能
                                 </p>
                                 <p class="car_service_offer">车内配置<span>纸巾</span><span>雨伞</span><span>车载充电器</span></p>
-                                <p class="car_service_price">总计<span class="price_com">4470.0</span>RMB</p>
+                                <p class="car_service_price">总计<span class="price_com">{{x.total_price}}</span>RMB</p>
                                 <a class="car_service_btn" href="#">下单</a>
                             </div>
                             <div class="car_service_item">

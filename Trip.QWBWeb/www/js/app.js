@@ -54,7 +54,7 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
          }
      })
      .state('app.carlist', {
-         url: '/carlist/:cityid',
+         url: '/carlist/:caridArray/:airportscode/:date/:endaddress/:wcityid',
          views: {
              'menuContent': {
                  templateUrl: 'templates/carlist.html',

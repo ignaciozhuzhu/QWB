@@ -98,19 +98,27 @@ angular.module('starter.controllers', [])
 .controller('carlistCtrl', function ($scope, $http, $ionicScrollDelegate) {
 
     $scope.toogledown = function ($event) {
-        // debugger
         var toggoleid = $event.target.parentElement.parentElement.parentElement.nextSibling.nextSibling;
         $(toggoleid).slideToggle();
         $(".collapse").css({ visibility: "visible" });
         $ionicScrollDelegate.resize();
     }
-
-    var locationid = getpbyurl(1);
-    var nghttp = "../../ajax/apihandler.ashx?fn=getcarslist&locationid=" + locationid + "";
+    var caridArray = decodeURI(getpbyurl(5));
+    var airportscode = decodeURI(getpbyurl(4));
+    var date = decodeURI(getpbyurl(3));
+    var endaddress = decodeURI(getpbyurl(2));
+    var wcityid = decodeURI(getpbyurl(1));
+    var nghttp = "../../ajax/apihandler.ashx?fn=getair_bookingsnew&car_category_id=" + caridArray + "&pickup_airport_code=" + airportscode + "&pickup_flight=&pickup_time=" + date + "&pickup_addr=" + endaddress + "&locationid=" + wcityid + "";
+    //loading层
+    var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
     $http.get(nghttp).success(function (response) {
-        debugger
-        $scope.car_categories = response.car_categories;
-    });
+        //debugger
+        layer.close(mylayeruiwait);
+        if (response.list == null)
+            layermyui('暂无数据');
+        else
+            $scope.car_categories = response.list;
+    })
 })
 //接送机搜索--------------------------------------------------------------------------------------------------------------
 .controller('air_bookingCtrl', function ($scope, $http) {
@@ -127,26 +135,71 @@ angular.module('starter.controllers', [])
         $scope.zones = response.zones;
     });
 
-    //用车区域改变监听
+    //用车地域改变监听
+    var getareax;
     $scope.change = function (x) {
+        getareax = x;
         for (var i = 0; i < responseche.zones.length; i++) {
-            if (responseche.zones[i].id == x)
+            if (responseche.zones[i].id == x) {
+
+                for (var j = 0; j < responseche.zones[i].areas.length; j++) {
+                    if (responseche.zones[i].areas[j].is_hot == false)
+                        responseche.zones[i].areas[j].is_hot = "a";
+                    for (var k = 0; k < responseche.zones[i].areas[j].cities.length; k++) {
+                        if (responseche.zones[i].areas[j].cities[k].is_hot == false)
+                            responseche.zones[i].areas[j].cities[k].is_hot = "b";
+                    }
+                }
                 $scope.areas = responseche.zones[i].areas;
+            }
         }
         $scope.model = { wcity: "", wcityid: 0 };
         $scope.model2 = { airports: "", airportsid: 0, airportscode: "" };
         $scope.model3 = { endaddress: "" };
         $("#inputendaddress")[0].value = "";
+
+        displaynonecountry();
+    }
+    //输入降落城市框监听
+    $scope.changecity = function () {
+        displaynonecountry();
     }
 
-    //降落城市改变监听
+    //显示或隐藏城市的国家
+    var displaynonecountry = function () {
+        setTimeout(function () {
+            //隐藏没有热门城市的国家
+            var mylen = $(".mycitynameclass").length;
+            for (var i = 0; i < mylen; i++) {
+                if (!$(".mycitynameclass")[i].nextElementSibling) {
+                    $(".mycitynameclass")[i].className = "displaynonecity";
+                    i--;
+                    mylen--;
+                }
+            }
+            //显示回有热门城市的国家
+            var mylen = $(".displaynonecity").length;
+            for (var i = 0; i < mylen; i++) {
+                if ($(".displaynonecity")[i].nextElementSibling) {
+                    $(".displaynonecity")[i].className = "mycitynameclass";
+                    i--;
+                    mylen--;
+                }
+            }
+        }, 200);
+    }
+
+    //降落城市改变监听(点击事件)
     $scope.selectcity = function ($event) {
         $scope.model = { wcity: $event.target.innerText, wcityid: $event.target.children[0].innerText };
         cityselectfun();
         $scope.model2 = { airports: "", airportsid: 0, airportscode: "" };
         $scope.model3 = { endaddress: "" };
         $("#inputendaddress")[0].value = "";
+
+        displaynonecountry();
     }
+
     $scope.caridArray = "";
     var cityselectfun = function () {
         //var caridArray = "";
@@ -164,7 +217,7 @@ angular.module('starter.controllers', [])
         })
     }
     //cities 组件ed
-    
+
 
     //选择机场的点击动作
     $scope.selectairport = function ($event) {
@@ -209,19 +262,12 @@ angular.module('starter.controllers', [])
     };
     //datepicker 组件ed
 
-    
+
     //立即搜索
     $scope.search = function () {
-      //  debugger
+        //  debugger
         var date = $("ionic-datepicker")[0].innerText;
-        var nghttp = "../../ajax/apihandler.ashx?fn=getair_bookingsnew&car_category_id=" + $scope.caridArray + "&pickup_airport_code=" + $scope.model2.airportscode + "&pickup_flight=&pickup_time=" + date + "&pickup_addr=" + $scope.model3.endaddress + "&locationid=" + $scope.model.wcityid + "";
-        $http.get(nghttp).success(function (response) {
-            debugger
-            $scope.carlist = response.list;
-        })
-
-      //  var cityid = $("#inputcityid")[0].value;
-     //   window.location.href = "#/app/carlist/" + cityid + "";
+        window.location.href = "#/app/carlist/" + $scope.caridArray + "/" + $scope.model2.airportscode + "/" + date + "/" + $scope.model3.endaddress + "/" + $scope.model.wcityid + "";
     }
 
 })
