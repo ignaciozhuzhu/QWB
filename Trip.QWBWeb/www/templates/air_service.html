@@ -71,9 +71,10 @@
             width: 70px;
             margin-left: -10px;
             border-radius: 5px;
-            moz-box-shadow: inset 0 1px 4px rgba(0,0,0,.2);
+            border:none;
+            /*moz-box-shadow: inset 0 1px 4px rgba(0,0,0,.2);
             -webkit-box-shadow: inset 0 1px 4px rgba(0,0,0,.2);
-            box-shadow: inset 0 1px 4px rgba(0,0,0,.2);
+            box-shadow: inset 0 1px 4px rgba(0,0,0,.2);*/
         }
     </style>
     <link rel="stylesheet" href="css/jquery.spinner.css?6" />
@@ -96,7 +97,7 @@
         <div class="header">
             <div id="navigation" class="touchcarousel">
                 <div class="background">
-                    <a href="carsearch.html"><img class="arrow" src="images/arrow2.png" /></a>
+                    <a href="#/air_booking"><img class="arrow" src="images/arrow2.png" /></a>
                     <h1 class="n_title">接机服务</h1>
                 </div>
             </div>
@@ -106,14 +107,14 @@
             <div class="colorgray"><p class="car_toptitle"><span>行程详情</span></p></div>
             <div class="car_search_wrap" style="display:block">
                 <p>降落机场</p>
-                <p>大阪 关西国际机场</p>
-                <div></div>
+                <p style="margin-left:0">{{airportname}}</p>
+                <div style="height:5px"></div>
                 <p>
                     目的地
                 </p>
-                <p>  日本大阪府大阪市北区织田1丁目1站</p>
+                <p style="margin-left:0">{{endaddress}}</p>
                 <hr />
-                <div><span class="inputlefttext">航班号：</span><input style="width:60%;display:inline;padding-top:0;margin-left:10px" type="text" placeholder="请输入航班号"></div>
+                <div><span class="inputlefttext">航班号：</span><input id="pickupFlightNo" style="width:60%;display:inline;padding-top:0;margin-left:10px" type="text" placeholder="请输入航班号"></div>
                 <hr />
                 <div>
                     <span class="inputlefttext">接机时间：</span>
@@ -133,19 +134,20 @@
                             </div>
                         </div>
                         <div data-role="fieldcontain" class="demo demo-date demo-datetime demo-time demo-credit">
-                            <input name="test" id="test" class="demo-test-date demo-test-datetime demo-test-time demo-test-credit mytimepicker" placeholder="选择时间" />
+                            <input name="test" id="pickupTime" onchange="timechange()" class="demo-test-date demo-test-datetime demo-test-time demo-test-credit mytimepicker" placeholder="选择时间" />
                         </div>
                     </div>
 
                 </div>
                 <hr />
+                <img id="nighttipsimg" src="images/夜间服务费.png" style="display:none">
             </div>
 
             <div class="colorgray"><p class="car_toptitle"><span>出行信息</span></p></div>
             <div class="car_search_wrap" style="display:block">
-                <span class="inputlefttext">出行车型：</span><span class="marginleft10">5座舒适(奥迪A4同等车型)</span>
+                <span class="inputlefttext">出行车型：</span><span class="marginleft10">{{car_name}}({{car_brand}}同等车型)</span>
                 <hr />
-                <div><span class="inputlefttext">服务等级：</span><span class="marginleft10">中文司机</span> </div>
+                <div><span class="inputlefttext">服务等级：</span><span class="marginleft10">{{driver_category_name}}</span> </div>
                 <div>
                     <div style="height:30px">
                         <span class="inputlefttext">乘坐人数：</span>
@@ -160,11 +162,11 @@
                 </div>
                 <hr />
 
-                <div><div class="inputlefttext">联系人姓名：</div><input class="inputrightbox" type="text" placeholder="请输入联系人中文姓名"></div>
+                <div><div class="inputlefttext">联系人姓名：</div><input id="contactName" class="inputrightbox" type="text" placeholder="请输入联系人中文姓名"></div>
                 <hr />
-                <div><div class="inputlefttext">护照号：</div><input class="inputrightbox" type="text" placeholder="请输入护照号"></div>
+                <div><div class="inputlefttext">护照号：</div><input id="contactPassport" class="inputrightbox" type="text" placeholder="请输入护照号"></div>
                 <hr />
-                <div><div class="inputlefttext">联系电话：</div><input class="inputrightbox" type="text" placeholder="建议临时开启国外漫游"></div>
+                <div><div class="inputlefttext">联系电话：</div><input id="contactPhone" class="inputrightbox" type="text" placeholder="建议临时开启国外漫游"></div>
                 <hr />
             </div>
 
@@ -174,16 +176,16 @@
             <div class="colorgray"><p class="car_toptitle"><span>费用详情</span></p></div>
             <div class="car_search_wrap" style="display:block">
                 <div>
-                    <span>接机：</span><span style="float:right">JPY 7700.0*1次</span>
+                    <span>接机：</span><span style="float:right">¥ {{pickprice}}*1次</span>
                 </div>
                 <div>
-                    <span>夜间服务费：</span><span style="float:right">JPY 1540</span>
+                    <span>夜间服务费：</span><span id="nighttipcost" style="float:right">0</span><span style="float:right">¥ </span> 
                 </div>
                 <hr />
                 <div style="overflow:hidden">
-                    <span>费用合计：</span><span style="float:right;clear:both">JPY 7700</span>
-                    <span style="float:right;clear:both">汇率 0.0651</span>
-                    <span style="float:right;clear:both">RMB 501</span>
+                    <span>费用合计：</span><span id="totalcost" style="float:right">{{pickprice}}</span><span style="float:right">¥ </span> 
+                    <!--<span style="float:right;clear:both">汇率 0.0651</span>
+                    <span style="float:right;clear:both">RMB 501</span>-->
                 </div>
             </div>
             <div class="bottombutton" ng-click="createorder()">下单支付</div>

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Web;
+using System.Web.Security;
 using System.Web.SessionState;
 using Trip.QWB;
 
@@ -107,6 +108,19 @@ namespace Trip.QWBWeb.ajax
             HttpContext.Current.Response.Write(Trip.QWB.qwbApi.getair_bookingsnew(car_category_id, pickup_airport_code, pickup_flight, pickup_time, pickup_addr, locationid));
         }
 
+        /// <summary>
+        /// 创建接送机订单(拓谷)
+        /// </summary>
+        public void createordertg()
+        {
+            string json = "";
+            try
+            {
+                json = HttpContext.Current.Request["json"];
+            }
+            catch { }
+            HttpContext.Current.Response.Write(Trip.QWB.qwbApi.createordertg(json));
+        }
 
         public bool IsReusable
         {

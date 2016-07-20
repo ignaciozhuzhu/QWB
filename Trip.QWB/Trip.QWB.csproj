@@ -115,6 +115,12 @@
     <Folder Include="Common\" />
     <Folder Include="DAL\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\zs\trip\Trip.Api\Trip.Api.csproj">
+      <Project>{5f80d010-17c3-426d-a7a1-3a496b5a45d0}</Project>
+      <Name>Trip.Api</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

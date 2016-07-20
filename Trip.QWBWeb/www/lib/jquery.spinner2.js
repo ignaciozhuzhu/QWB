@@ -44,6 +44,8 @@
                 var value = getValue()
                 if (value <= options.min) decreaseButton.attr('disabled', 'disabled')
                 else decreaseButton.removeAttr('disabled')
+                if (value >= options.max) increaseButton.attr('disabled', 'disabled')
+                else increaseButton.removeAttr('disabled')
                 field.toggleClass('invalid', isInvalid(value)).toggleClass('passive', value === 0)
 
                 if (isInvalid(value)) {
@@ -58,7 +60,7 @@
                 return value
             }
 
-            function isInvalid(value) { return isNaN(+value) || value < options.min; }
+            function isInvalid(value) { return isNaN(+value) || value < options.min || value > options.max; }
 
             function getValue(field) {
                 field = field || textField;

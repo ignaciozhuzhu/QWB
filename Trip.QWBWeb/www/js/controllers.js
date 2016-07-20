@@ -43,6 +43,15 @@ angular.module('starter.controllers', [])
         }, 1000);
     };
 })
+    //封面
+.controller('indexCtrl', function ($scope, $http) {
+    $scope.bzyc = function () {
+        window.location.href = " #/app/carsearch";
+    }
+    $scope.jsj = function () {
+        window.location.href = " #/app/air_booking";
+    }
+})
     //标准车--------------------------------------------------------------------------------------------------------------
 .controller('carsearchCtrl', function ($scope, $http) {
     //cities 组件bg
@@ -94,34 +103,31 @@ angular.module('starter.controllers', [])
     //datepicker 组件ed
 })
 
-//车型推荐列表--------------------------------------------------------------------------------------------------------------
-.controller('carlistCtrl', function ($scope, $http, $ionicScrollDelegate) {
-
-    $scope.toogledown = function ($event) {
-        var toggoleid = $event.target.parentElement.parentElement.parentElement.nextSibling.nextSibling;
-        $(toggoleid).slideToggle();
-        $(".collapse").css({ visibility: "visible" });
-        $ionicScrollDelegate.resize();
-    }
-    var caridArray = decodeURI(getpbyurl(5));
-    var airportscode = decodeURI(getpbyurl(4));
-    var date = decodeURI(getpbyurl(3));
-    var endaddress = decodeURI(getpbyurl(2));
-    var wcityid = decodeURI(getpbyurl(1));
-    var nghttp = "../../ajax/apihandler.ashx?fn=getair_bookingsnew&car_category_id=" + caridArray + "&pickup_airport_code=" + airportscode + "&pickup_flight=&pickup_time=" + date + "&pickup_addr=" + endaddress + "&locationid=" + wcityid + "";
-    //loading层
-    var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
-    $http.get(nghttp).success(function (response) {
-        //debugger
-        layer.close(mylayeruiwait);
-        if (response.list == null)
-            layermyui('暂无数据');
-        else
-            $scope.car_categories = response.list;
-    })
-})
 //接送机搜索--------------------------------------------------------------------------------------------------------------
-.controller('air_bookingCtrl', function ($scope, $http) {
+.controller('air_bookingCtrl', function ($scope, $http, $ionicScrollDelegate) {
+
+    //防止菜鸟客户看不到城市选择框
+    $scope.clickCity = function () {
+        $ionicScrollDelegate.scrollTo(0, 250);
+    }
+
+    $scope.pick = function () {
+        $(".pickcity")[0].innerText = "降落城市";
+        $(".pickairport")[0].innerText = "降落机场";
+        $(".pickdate")[0].innerText = "接机日期";
+        $(".pickaddress")[0].innerText = "送达地点";
+        document.getElementById("new1").style.color = "#01d4c1";
+        document.getElementById("new2").style.color = "#b1b1b1";
+    }
+    $scope.send = function () {
+        $(".pickcity")[0].innerText = "送达城市";
+        $(".pickairport")[0].innerText = "送达机场";
+        $(".pickdate")[0].innerText = "上车日期";
+        $(".pickaddress")[0].innerText = "上车地点";
+        document.getElementById("new1").style.color = "#b1b1b1";
+        document.getElementById("new2").style.color = "#01d4c1";
+    }
+
 
     //$scope.model 是降落城市
     //$scope.model2 是降落机场
@@ -154,7 +160,7 @@ angular.module('starter.controllers', [])
             }
         }
         $scope.model = { wcity: "", wcityid: 0 };
-        $scope.model2 = { airports: "", airportsid: 0, airportscode: "" };
+        $scope.model2 = { airports: "", airportsid: 0, airportscode: "", airportname: "" };
         $scope.model3 = { endaddress: "" };
         $("#inputendaddress")[0].value = "";
 
@@ -192,8 +198,9 @@ angular.module('starter.controllers', [])
     //降落城市改变监听(点击事件)
     $scope.selectcity = function ($event) {
         $scope.model = { wcity: $event.target.innerText, wcityid: $event.target.children[0].innerText };
+        $scope.caridArray = "";
         cityselectfun();
-        $scope.model2 = { airports: "", airportsid: 0, airportscode: "" };
+        $scope.model2 = { airports: "", airportsid: 0, airportscode: "", airportname: "" };
         $scope.model3 = { endaddress: "" };
         $("#inputendaddress")[0].value = "";
 
@@ -221,7 +228,7 @@ angular.module('starter.controllers', [])
 
     //选择机场的点击动作
     $scope.selectairport = function ($event) {
-        $scope.model2 = { airports: $event.target.innerText, airportsid: $event.target.children[0].innerText, airportscode: $event.target.children[1].innerText };
+        $scope.model2 = { airports: $event.target.innerText, airportsid: $event.target.children[0].innerText, airportscode: $event.target.children[1].innerText, airportname: $event.target.children[2].innerText };
     }
 
     //送达地点 bg
@@ -267,17 +274,73 @@ angular.module('starter.controllers', [])
     $scope.search = function () {
         //  debugger
         var date = $("ionic-datepicker")[0].innerText;
-        window.location.href = "#/app/carlist/" + $scope.caridArray + "/" + $scope.model2.airportscode + "/" + date + "/" + $scope.model3.endaddress + "/" + $scope.model.wcityid + "";
+        window.location.href = "#/app/carlist/" + $scope.model2.airportname + "/" + $scope.caridArray + "/" + $scope.model2.airportscode + "/" + date + "/" + $scope.model3.endaddress + "/" + $scope.model.wcityid + "";
     }
 
 })
+
+//车型推荐列表--------------------------------------------------------------------------------------------------------------
+.controller('carlistCtrl', function ($scope, $http, $ionicScrollDelegate) {
+
+    $scope.toogledown = function ($event) {
+        var toggoleid = $event.target.parentElement.parentElement.parentElement.nextSibling.nextSibling;
+        $(toggoleid).slideToggle();
+        $(".collapse").css({ visibility: "visible" });
+        $ionicScrollDelegate.resize();
+    }
+    var airportname = decodeURI(getpbyurl(6));
+    var caridArray = decodeURI(getpbyurl(5));
+    var airportscode = decodeURI(getpbyurl(4));
+    var date = decodeURI(getpbyurl(3));
+    var endaddress = decodeURI(getpbyurl(2));
+    var wcityid = decodeURI(getpbyurl(1));
+    var nghttp = "../../ajax/apihandler.ashx?fn=getair_bookingsnew&car_category_id=" + caridArray + "&pickup_airport_code=" + airportscode + "&pickup_flight=&pickup_time=" + date + "&pickup_addr=" + endaddress + "&locationid=" + wcityid + "";
+    //loading层
+    var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
+    $http.get(nghttp).success(function (response) {
+        //debugger
+        layer.close(mylayeruiwait);
+        if (response.list == null)
+            layermyui('暂无数据');
+        else {
+            $scope.car_categories = response.list;
+        }
+    })
+    $scope.ordernow = function ($event) {
+        var targ = $event.target.previousElementSibling;
+        var id = targ.innerText;
+        var total_price = targ.previousElementSibling.innerText;
+        var driver_category_name = targ.previousElementSibling.previousElementSibling.innerText;
+        var name = targ.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
+        var brand = targ.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
+        window.location.href = "#/app/air_service/" + airportname + "/" + brand + "/" + name + "/" + driver_category_name + "/" + id + "/" + total_price + "/" + airportscode + "/" + date + "/" + endaddress + "";
+    }
+})
+
 //接机服务--------------------------------------------------------------------------------------------------------------
 .controller('air_serviceCtrl', function ($scope, $http) {
+    var endaddress = decodeURI(getpbyurl(1));
+    var date = decodeURI(getpbyurl(2));
+    var airportscode = getpbyurl(3);
+    var pickprice = getpbyurl(4);
+    var carid = getpbyurl(5);
+    var driver_category_name = decodeURI(getpbyurl(6));
+    var car_name = decodeURI(getpbyurl(7));
+    var car_brand = decodeURI(getpbyurl(8));
+    var airportname = decodeURI(getpbyurl(9));
+
+    $scope.driver_category_name = driver_category_name;
+    $scope.car_name = car_name;
+    $scope.car_brand = car_brand;
+    $scope.airportname = airportname;
+    $scope.endaddress = endaddress;
+    $scope.pickprice = pickprice;
+
     $scope.$on("$ionicView.loaded", function () {
         //  debugger
-        $('.spinner').spinner({});
-        $('.spinner2').spinner2({});
-
+        $('.spinner').spinner({ max: 9 });
+        $('.spinner2').spinner2({ max: 9 });
+        //选择时间需要用的
         $(function () {
             var curr = new Date().getFullYear();
             var opt = {
@@ -332,11 +395,13 @@ angular.module('starter.controllers', [])
         });
     })
 
-    //datepicker 组件bg
-    $scope.currentDate = new Date();
+    //datepicker 组件bg----------------------------------------------
+    var date2Date = parserDate(date);
+    //alert(date2Date)
+    $scope.currentDate = date2Date;
     $scope.minDate = new Date();
     $scope.maxDate = new Date(2017, 1, 1);
-    $(".weekdayget")[0].innerText = getmyweekday(new Date());
+    $(".weekdayget")[0].innerText = getmyweekday(date2Date);
 
     $scope.datePickerCallback = function (val) {
         if (!val) {
@@ -346,18 +411,68 @@ angular.module('starter.controllers', [])
             $(".weekdayget")[0].innerText = getmyweekday(val);
         }
     };
-    //datepicker 组件ed
+    //datepicker 组件ed----------------------------------------------
 
-    var locationid = getpbyurl(1);
-    var nghttp = "../../ajax/apihandler.ashx?fn=getcarslist&locationid=" + locationid + "";
-    $http.get(nghttp).success(function (response) {
-        //debugger
-        $scope.car_categories = response.car_categories;
-    });
 
 
     $scope.createorder = function () {
-        window.location.href = "#/app/carlist/1";
+        var json = "";
+        var api_url = "http://test.haihuilai.com/apis/qwb/v1/air_bookings/create";
+        var shop_id = getCookie('shopid4QWB');
+        var source_guide_id = "";
+        var guide_id = "";
+        var customer_id = getCookie('custid4QWB');
+        //订单信息
+        var car_category_id = carid;
+        //接机
+        var pickup_airport_code = airportscode;
+        var pickup_flight = $("#pickupFlightNo")[0].value;
+        var pitime = $("#pickupTime")[0].value;
+        var pickup_time = $("ionic-datepicker")[0].innerText.substr(0, $("ionic-datepicker")[0].innerText.length - 4);
+        if (pitime)
+            pickup_time += " " + pitime;
+        var pickup_addr = endaddress;
+        //送机
+        //var drop_off_airport_code = "";
+        //var drop_off_flight = "";
+        //var drop_off_time = "";
+        //var drop_off_addr = "";
+        var adults = $(".spinner2")[0].children[1].value;
+        var kids = $(".spinner")[0].children[1].value;
+
+        //儿童年龄必填post,前台数据传递暂默认.
+        var kids_age = "[";
+        for (var i = 1; i <= kids; i++) {
+            kids_age += "10,";
+        }
+        kids_age = kids_age.substr(0, kids_age.length - 1);
+        kids_age = kids_age + "]";
+
+        var order_no = "DDH00001";
+        var contactName = $("#contactName")[0].value;
+        var contactPassport = $("#contactPassport")[0].value;
+        var contactPhone = $("#contactPhone")[0].value;
+        var traveller = "{\"name\":\"" + contactName + "\",\"passport\":\"" + contactPassport + "\",\"mobile\":\"" + contactPhone + "\"}";
+
+        var key = "qwb_1467082083";
+        var sign = "3b1b7113028cc5eeefa5cc61f4872827";
+
+        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + ",\"customer_id\":" + customer_id + ",\"order\":{\"car_category_id\":" + car_category_id + ",\"pickup_airport_code\":\"" + pickup_airport_code + "\",\"pickup_flight\":\"" + pickup_flight + "\",\"pickup_time\":\"" + pickup_time + "\",\"pickup_addr\":\"" + pickup_addr + "\",\"adults\":" + adults + ",\"order_no\":\"" + order_no + "\",\"traveller\":" + traveller + ",\"key\":\"" + key + "\",\"sign\":\"" + sign + "\"}}";
+        var nghttp = "../../ajax/apihandler.ashx?fn=createordertg&json=" + json + "";
+        var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
+        $http.get(nghttp).success(function (response) {
+            layer.close(mylayeruiwait);
+            if (response.code == 0) {
+                var orderid = response.data.order_no;
+                var vendor_order_no = response.data.vendor_order_no;
+                window.location.href = "#/app/airpay/" + orderid + "";
+            }
+            else {
+                layermyui('下单失败!' + response.message);
+                return;
+            }
+        });
+
     }
 
 })
@@ -365,19 +480,39 @@ angular.module('starter.controllers', [])
 //支付订单--------------------------------------------------------------------------------------------------------------
 .controller('airpayCtrl', function ($scope, $http) {
 
-    var locationid = getpbyurl(1);
-    var nghttp = "../../ajax/apihandler.ashx?fn=getcarslist&locationid=" + locationid + "";
-    $http.get(nghttp).success(function (response) {
-        //debugger
-        // $scope.car_categories = response.car_categories;
-    });
+    var orderid = getpbyurl(1);
+    $scope.orderid = orderid;
+    // var nghttp = "../../ajax/apihandler.ashx?fn=getcarslist&locationid=" + locationid + "";
+    //  $http.get(nghttp).success(function (response) {
+    //debugger
+    // $scope.car_categories = response.car_categories;
+    //   });
 
 })
 
 
-//***************************以下公用方法***************************
+//***************************以下公用方法*******************************************************************
 
+//air_service.html
+var timechange = function () {
+    var pickupTime = $("#pickupTime")[0].value;
+    pickupTime = pickupTime.substr(0, 2);
+    if (pickupTime.substr(0, 1) == 0)
+        pickupTime = pickupTime.substr(1, 1);
+    //22点以后,7点以前 加收夜间服务费
+    if (pickupTime >= 22 || pickupTime < 7) {
+        var nighttipcost = 100;
+        $("#nighttipsimg").css("display", "block");
+        $("#nighttipcost").empty().append(nighttipcost);
+        var total = parseInt($("#totalcost")[0].innerText) + nighttipcost;
+        $("#totalcost").empty().append(total);
+    }
+    else {
+        $("#nighttipsimg").css("display", "none");
+    }
+}
 
+//air_booking.html
 function secBoard(n) {
     for (i = 1; i < 3; i++) {
         document.getElementById("new" + i + "").style.color = "#b1b1b1";
@@ -388,22 +523,13 @@ function secBoard(n) {
         document.getElementById("tbx" + n + "").style.display = "block";
     }
 }
-
-//线路查询传参,前台点击事件
-function searchLines() {
-    var searchParam;
-    if ($(".searchtxt")[1].placeholder !== "")
-        searchParam = $(".searchtxt")[1].placeholder;
-    else
-        searchParam = $(".searchtxt")[1].value;
-    window.location.href = '#/app/linelists?search=' + searchParam;
-}
-
+//air_booking.html
 function myfocus(ob) {
     //debugger
     $(ob.parentNode.nextElementSibling).css('display', 'block');
     // $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
 }
+//air_booking.html
 function myblur(ob) {
     //  $("#secondcities").css('display', 'none');
     $(ob.parentNode.nextElementSibling).css('display', 'none');

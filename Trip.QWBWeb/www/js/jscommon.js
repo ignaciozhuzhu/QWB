@@ -11,6 +11,14 @@
     return ""
 }
 
+function getCookie2(name) {
+    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+    if (arr = document.cookie.match(reg))
+        return unescape(arr[2]);
+    else
+        return null;
+}
+
 function setCookie(c_name, value, expiredays) {
     var exdate = new Date()
     exdate.setDate(exdate.getDate() + expiredays)
@@ -79,6 +87,21 @@ function FormatDateTimeDiff(difftime) {
     return d.getHours() + ':' + (d.getMinutes() < 10 ? ('0' + d.getMinutes()) : d.getMinutes());
 }
 
+//转换为date格式
+var parserDate = function (date) {
+    date = date.trim();
+    var year = date.substring(0, 4);
+    var month = date.substring(5, 7);
+    var dd = date.substring(8, 10);
+    date = year + "/" + month + "/" + dd
+    date = (date + ' 00:00:00').toString();
+    var t = Date.parse(date);
+    if (!isNaN(t)) {
+        return new Date(Date.parse(date.replace(/-/g, "/")));
+    } else {
+        return new Date();
+    }
+};
 
 //获取当前地
 function getPro() {
@@ -309,31 +332,19 @@ function isIdCardNo(str) {
     return reg.test(str.toUpperCase());
 }
 
-//获取链接参数
+//获取链接参数,倒序排列
 function getpbyurl(typei) {
     function subs(href) {
         return href.substring(0, href.lastIndexOf('/'));
     }
-    var localhref = location.href;
-    var geturl = localhref;
-    switch (typei) {
-        case 1:
-            break;
-        case 2:
+    var geturl = location.href;
+
+    if (typei == 1)
+    { }
+    else {
+        for (var i = 0; i < typei - 1; i++) {
             geturl = subs(geturl);
-            break;
-        case 3:
-            geturl = subs(subs(geturl));
-            break;
-        case 4:
-            geturl = subs(subs(subs(geturl)));
-            break;
-        case 5:
-            geturl = subs(subs(subs(subs(geturl))));
-            break;
-        case 6:
-            geturl = subs(subs(subs(subs(subs(geturl)))));
-            break;
+        }
     }
     return geturl.substring(geturl.lastIndexOf('/') + 1, geturl.length);
 }
@@ -377,7 +388,7 @@ function replaceCategory(lineCategory) {
 }
 
 //tdk seo
-function tkdfunc(title,keywords,description) {
+function tkdfunc(title, keywords, description) {
     $("title")[0].innerText = title;
     $('[name=keywords]')[0].content = keywords;
     $('[name=description]')[0].content = description;

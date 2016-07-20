@@ -8,29 +8,41 @@
         font-size: 16px;
     }
     
+    .nav_link ul li {
+        border-top: none;
+    }
+
+    .nav_link {
+        overflow: hidden;
+    }
+
+    .displaynonecity {
+        display: none;
+    }
 </style>
 <ion-view hide-nav-bar="true">
 </ion-view>
 <ion-view view-title="标准用车">
-    <ion-content class="boxcarsearch">
+    <ion-content class="boxcarsearch stable-bg2">
         <div class="header headtall">
             <div id="navigation" class="touchcarousel navtall">
-                <div class="background">
-                    <a href="#/app/carsearch"><img class="arrow" src="images/arrow2.png" /></a>
-                    <h1 class="n_title">标准用车</h1>
+                <div class="background backgroundblack">
+                    <a href="#/app/index2"><img class="arrow" src="images/arrow2w.png" /></a>
+                    <h1 class="n_title whitefont">标准用车</h1>
                 </div>
             </div>
             <div class="nav_link" id="new">
                 <ul>
-                    <li id="new1" style="cursor:pointer;background:none repeat #fff;color:#01d4c1;" onclick="secBoard(1)">
+                    <li id="new1" style="cursor:pointer;background:none repeat #f2f4f3;color:#01d4c1;" onclick="secBoard(1)">
                         <p class="car_btn car_btn_left">单地用车</p>
                     </li>
-                    <li id="new2" style="cursor:pointer;background:none repeat #fff;color:#b1b1b1;" onclick="secBoard(2)">
+                    <li id="new2" style="cursor:pointer;background:none repeat #f2f4f3;color:#b1b1b1;" onclick="secBoard(2)">
                         <p class="car_btn">多地用车</p>
                     </li>
                 </ul>
             </div>
         </div>
+
         <div class="index_wrap tall_wrap">
             <div id="tbx1" class="car_search_wrap" style="display:block">
                 <p class="car_toptitle"><span>用车信息</span></p>

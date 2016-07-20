@@ -35,11 +35,11 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
           controller: 'AppCtrl'
       })
         //主页------------------------------------------------
-      .state('app.index', {
-          url: '/index',
+      .state('app.index2', {
+          url: '/index2',
           views: {
               'menuContent': {
-                  templateUrl: 'templates/index.html',
+                  templateUrl: 'templates/index2.html',
                   controller: 'indexCtrl'
               }
           }
@@ -54,7 +54,7 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
          }
      })
      .state('app.carlist', {
-         url: '/carlist/:caridArray/:airportscode/:date/:endaddress/:wcityid',
+         url: '/carlist/:airportname/:caridArray/:airportscode/:date/:endaddress/:wcityid',
          views: {
              'menuContent': {
                  templateUrl: 'templates/carlist.html',
@@ -73,7 +73,7 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
      })
         //接送机服务
      .state('app.air_service', {
-         url: '/air_service',
+         url: '/air_service/:airportname/:brand/:car_name/:driver_category_name/:carid/:pickprice/:airportscode/:date/:endaddress',
          views: {
              'menuContent': {
                  templateUrl: 'templates/air_service.html',
@@ -83,7 +83,7 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
      })
         //支付订单
      .state('app.airpay', {
-         url: '/airpay',
+         url: '/airpay/:orderid',
          views: {
              'menuContent': {
                  templateUrl: 'templates/airpay.html',

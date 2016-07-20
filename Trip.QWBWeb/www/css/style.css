@@ -414,6 +414,9 @@ body > aside {
         text-align: center;
         margin: 0 auto;
     }
+#navigation .backgroundblack {
+    background-color: #000;
+}
 
 .ticket_nav {
     background-color: #fff;
@@ -479,6 +482,9 @@ body > aside {
     line-height: 48px;
     color: #5b5b5d;
     margin-right: 44px;
+}
+.whitefont {
+    color: #fff;
 }
 
 .back_title {
@@ -6387,7 +6393,7 @@ input[type="checkbox"] {
     width: 40% !important;
     margin: 0;
     height: 20px;
-    font-weight: 500;
+    font-weight: 400;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
     vertical-align: middle;

@@ -20,35 +20,117 @@
         display: none;
     }
 </style>
-<!--<link rel="stylesheet" href="lib/ionic-timepicker/style.css" />-->
 <ion-view hide-nav-bar="true">
 </ion-view>
 <ion-view view-title="接送机">
     <ion-content class="boxcarsearch stable-bg2">
         <div class="header headtall">
             <div id="navigation" class="touchcarousel navtall">
-                <div class="background">
-                    <a href="#/app/carsearch"><img class="arrow" src="images/arrow2.png" /></a>
-                    <h1 class="n_title">接送机</h1>
+                <div class="background backgroundblack">
+                    <a href="#/app/index2"><img class="arrow" src="images/arrow2w.png" /></a>
+                    <h1 class="n_title whitefont">接送机</h1>
                 </div>
             </div>
-            <div class="nav_link" id="new">
+            <div class="nav_link">
                 <ul>
-                    <li id="new1" style="cursor:pointer;background:none repeat #f2f4f3;color:#01d4c1;" onclick="secBoard(1)">
+                    <li id="new1" style="cursor:pointer;background:none repeat #f2f4f3;color:#01d4c1;" ng-click="pick()">
+                        <!--onclick="secBoard(1)"-->
                         <p class="car_btn car_btn_left">接机</p>
                     </li>
-                    <li id="new2" style="cursor:pointer;background:none repeat #f2f4f3;color:#b1b1b1;" onclick="secBoard(2)">
+                    <li id="new2" style="cursor:pointer;background:none repeat #f2f4f3;color:#b1b1b1;" ng-click="send()">
+                        <!--onclick="secBoard(2)"-->
                         <p class="car_btn">送机</p>
                     </li>
                 </ul>
             </div>
         </div>
+
+        <!--接机 -->
         <div class="index_wrap tall_wrap">
             <div id="tbx1" class="car_search_wrap" style="display:block;background-color:#f2f4f3">
                 <p class="car_toptitle"><span>用车信息</span></p>
                 <div class="car_serach">
                     <div class="car_search_toptitle">用车地域</div>
-                    <select id="date" name="date" ng-change="change(x)" ng-model="x">
+                    <select name="date" ng-change="change(x)" ng-model="x">
+                        <option value="">请选择</option>
+                        <option value="{{x.id}}" ng-repeat="x in zones">{{x.name}}</option>
+                    </select>
+                </div>
+                <div class="height8"></div>
+                <div class="car_serach">
+                    <span class="car_search_toptitle pickcity">降落城市</span>
+
+                    <a class="btn-select car_select">
+                        <input id="inputcity" class="cur-select cur_car_select" ng-click="clickCity()" onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model.wcity" ng-change=changecity(model.wcity)>
+                        <div ng-hide="true" id="inputcityid" ng-model="model.wcityid"></div>
+                    </a>
+
+                    <div id="secondcities" style="display:none;margin:0 3%;max-height:310px;overflow:hidden">
+                        <hr />
+                        <p style="font-weight:bold;">热门城市列表 可输入城市中文</p>
+                        <div style="color:#9B9B9B;font-size:14px;max-height:70px;overflow:hidden" ng-repeat="x in areas">
+                            <div class="mycitynameclass">{{x.name}}</div>
+                            <span ng-click="selectcity($event)" style="color:black;margin:0 3% 0 0" ng-repeat="xx in x.cities|filter:model.wcity|filter:x.is_hot">{{xx.name}}<span ng-show="false">{{xx.id}}</span></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="height8"></div>
+                <div class="car_serach">
+                    <span class="car_search_toptitle pickairport">降落机场</span>
+
+                    <a class="btn-select car_select">
+                        <input id="inputairports" class="cur-select cur_car_select" onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model2.airports">
+                        <div ng-hide="true" id="inputairportsid" ng-model="model2.airportsid"></div>
+                        <div ng-hide="true" ng-model="model2.airportscode"></div>
+                    </a>
+
+                    <div id="secondcities" style="display:none;margin:0 3%;max-height:310px;overflow:hidden">
+                        <div style="color:black;font-size:14px;max-height:70px;overflow:hidden" ng-repeat="x in airports">
+                            <span ng-click="selectairport($event)">{{x.name}}-{{x.code}}<span ng-show="false">{{x.id}}</span><span ng-show="false">{{x.code}}</span><span ng-show="false">{{x.name}}</span></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="height8"></div>
+                <div class="car_serach">
+                    <span class="car_search_toptitle pickdate">接机日期</span>
+                    <div></div>
+                    <ionic-datepicker date="currentDate" min="minDate" max="maxDate" callback="datePickerCallback">
+                        <button class="button button-block button-positive mybuttondate" style="margin-left:10px"> {{ currentDate | date:'yyyy-MM-dd' }} </button>
+                    </ionic-datepicker><span class="weekdayget"></span>
+
+                </div>
+                <div class="height8"></div>
+                <div class="car_serach">
+
+                    <span class="car_search_toptitle pickaddress">送达地点</span>
+
+                    <a class="btn-select car_select">
+                        <input id="inputendaddress" class="cur-select cur_car_select" onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model3.endaddress" ng-change="changeaddress(model3.endaddress)">
+                    </a>
+
+                    <div id="endaddress" style="display:none;margin:0 3%;max-height:310px;overflow:hidden">
+                        <div style="color:black;font-size:14px;max-height:70px;overflow:hidden" ng-repeat="x in endaddress">
+                            <span ng-click="selectaddress2($event)" style="color:black;margin:0 3% 0 0">{{x.data}}</span>
+                        </div>
+                    </div>
+
+                </div>
+                <input class="button_green button_car" type="submit" ng-click="search()" value="立即搜索" name="button" />
+                <img src="images/footer.png">
+            </div>
+        </div>
+
+        <!--送机 -->
+        <!--<div class="index_wrap tall_wrap">
+            <div id="tbx2" class="car_search_wrap" style="display:none;background-color:#f2f4f3">
+                <p class="car_toptitle"><span>用车信息</span></p>
+                <div class="car_serach">
+                    <div class="car_search_toptitle">用车地域</div>
+                    <select name="date" ng-change="change(x)" ng-model="x">
                         <option value="">请选择</option>
                         <option value="{{x.id}}" ng-repeat="x in zones">{{x.name}}</option>
                     </select>
@@ -57,8 +139,8 @@
                 <div class="car_serach">
                     <span class="car_search_toptitle">降落城市</span>
 
-                    <a class="btn-select car_select" id="btn_select">
-                        <input id="inputcity" class="cur-select cur_car_select" onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model.wcity" ng-change=changecity(model.wcity)>
+                    <a class="btn-select car_select">
+                        <input id="inputcity" class="cur-select cur_car_select" ng-click="clickCity()" onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model.wcity" ng-change=changecity(model.wcity)>
                         <div ng-hide="true" id="inputcityid" ng-model="model.wcityid"></div>
                     </a>
 
@@ -66,7 +148,7 @@
                         <hr />
                         <p style="font-weight:bold;">热门城市列表 可输入城市中文</p>
                         <div style="color:#9B9B9B;font-size:14px;max-height:70px;overflow:hidden" ng-repeat="x in areas">
-                            <div class="mycitynameclass">{{x.name}}</div>    <!--ng-hide="model.wcity"-->
+                            <div class="mycitynameclass">{{x.name}}</div>
                             <span ng-click="selectcity($event)" style="color:black;margin:0 3% 0 0" ng-repeat="xx in x.cities|filter:model.wcity|filter:x.is_hot">{{xx.name}}<span ng-show="false">{{xx.id}}</span></span>
                         </div>
                     </div>
@@ -77,7 +159,7 @@
                 <div class="car_serach">
                     <span class="car_search_toptitle">降落机场</span>
 
-                    <a class="btn-select car_select" id="btn_select">
+                    <a class="btn-select car_select">
                         <input id="inputairports" class="cur-select cur_car_select" onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model2.airports">
                         <div ng-hide="true" id="inputairportsid" ng-model="model2.airportsid"></div>
                         <div ng-hide="true" ng-model="model2.airportscode"></div>
@@ -85,7 +167,7 @@
 
                     <div id="secondcities" style="display:none;margin:0 3%;max-height:310px;overflow:hidden">
                         <div style="color:black;font-size:14px;max-height:70px;overflow:hidden" ng-repeat="x in airports">
-                            <span ng-click="selectairport($event)">{{x.name}}-{{x.code}}<span ng-show="false">{{x.id}}</span><span ng-show="false">{{x.code}}</span></span>
+                            <span ng-click="selectairport($event)">{{x.name}}-{{x.code}}<span ng-show="false">{{x.id}}</span><span ng-show="false">{{x.code}}</span><span ng-show="false">{{x.name}}</span></span>
                         </div>
                     </div>
 
@@ -105,7 +187,7 @@
 
                     <span class="car_search_toptitle">送达地点</span>
 
-                    <a class="btn-select car_select" id="btn_select">
+                    <a class="btn-select car_select">
                         <input id="inputendaddress" class="cur-select cur_car_select" onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model3.endaddress" ng-change="changeaddress(model3.endaddress)">
                     </a>
 
@@ -116,98 +198,10 @@
                     </div>
 
                 </div>
-                <input id="button" class="button_green button_car" type="submit" ng-click="search()" value="立即搜索" name="button" />
+                <input class="button_green button_car" type="submit" ng-click="search()" value="立即搜索" name="button" />
                 <img src="images/footer.png">
             </div>
 
-            <div id="tbx2" class="car_search_wrap" style="display:none">
-                <p class="car_toptitle"><span>用车信息</span></p>
-                <div class="car_serach">
-                    <span class="car_search_toptitle">用车地域</span>
-                    <a class="btn-select car_select" id="btn_select">
-                        <span class="cur-select cur_car_select">欧洲大陆</span>
-                        <select id="date" name="date">
-                            <option value="日本">日本</option>
-                            <option value="中国-港台">中国-港台</option>
-                            <option value="欧洲大陆">欧洲大陆</option>
-                            <option value="韩国">韩国</option>
-                            <option value="欧洲非大陆">欧洲非大陆</option>
-                            <option value="北美地区">北美地区</option>
-                            <option value="大洋洲">大洋洲</option>
-                            <option value="亚洲大陆">亚洲大陆</option>
-                            <option value="印尼">印尼</option>
-                        </select>
-                    </a>
-                </div>
-                <div class="height8"></div>
-                <div class="car_serach">
-                    <span class="car_search_toptitle">开始日期</span>
-                    <a class="btn-select car_select" id="btn_select">
-                        <span class="cur-select cur_car_select">2016-06-29</span>
-                        <select id="date" name="date">
-                            <option value="2016-06-29">2016-06-29</option>
-                        </select>
-                    </a>
-                </div>
-                <div class="height8"></div>
-                <div class="car_serach">
-                    <span class="car_search_toptitle">开始城市</span>
-                    <a class="btn-select car_select" id="btn_select">
-                        <span class="cur-select cur_car_select">柏林</span>
-                        <select id="date" name="date">
-                            <option value="柏林">柏林</option>
-                            <option value="中国-港台">中国-港台</option>
-                            <option value="欧洲大陆">欧洲大陆</option>
-                            <option value="韩国">韩国</option>
-                            <option value="欧洲非大陆">欧洲非大陆</option>
-                            <option value="北美地区">北美地区</option>
-                            <option value="大洋洲">大洋洲</option>
-                            <option value="亚洲大陆">亚洲大陆</option>
-                            <option value="印尼">印尼</option>
-                        </select>
-                    </a>
-                </div>
-                <div class="height8"></div>
-                <div class="car_toptitle"><span>行程路线（当天结束城市）</span></div>
-                <div class="car_serach">
-                    <span class="car_search_left">DAY 1</span>
-                    <span class="car_search_toptitle left_move">2016-06-29</span>
-                    <a class="btn-select car_select_left" id="btn_select">
-                        <span class="cur-select cur_car_select">柏林</span>
-                        <select id="date" name="date">
-                            <option value="柏林">柏林</option>
-                        </select>
-                    </a>
-                </div>
-                <div class="height8"></div>
-                <div class="car_serach">
-                    <span class="car_search_left">DAY 2</span>
-                    <span class="car_search_toptitle left_move">2016-06-30</span>
-                    <a class="btn-select car_select_left" id="btn_select">
-                        <span class="cur-select cur_car_select">柏林</span>
-                        <select id="date" name="date">
-                            <option value="柏林">柏林</option>
-                        </select>
-                    </a>
-                </div>
-                <div class="height8"></div>
-                <div class="car_serach">
-                    <span class="car_search_left">DAY 3</span>
-                    <span class="car_search_toptitle left_move">2016-07-01</span>
-                    <a class="btn-select car_select_left" id="btn_select">
-                        <span class="cur-select cur_car_select">柏林</span>
-                        <select id="date" name="date">
-                            <option value="柏林">柏林</option>
-                        </select>
-                    </a>
-                </div>
-                <div class="height8"></div>
-                <input id="button" class="button_green button_car" type="submit" onclick="window.open('#')" value="+ 添加日程" name="button" />
-                <hr class="hr_car">
-                <input id="button" class="button_green button_car" type="submit" onclick="window.open('carlist.html')" value="立即搜索" name="button" />
-            </div>
-
-
-        </div>
+        </div>-->
     </ion-content>
 </ion-view>
