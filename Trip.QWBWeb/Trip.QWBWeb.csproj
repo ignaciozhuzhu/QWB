@@ -1262,6 +1262,11 @@
     <Content Include="www\lib\angular-1.4.6.min.js" />
     <Content Include="www\js\app.js" />
     <Content Include="www\js\controllers.js" />
+    <Content Include="www\lib\ionic-datepicker\ionic-datepicker.js" />
+    <Content Include="www\lib\ionic-datepicker\ionic-datepicker.min.js" />
+    <Content Include="www\lib\ionic-datepicker\style.css" />
+    <Content Include="www\lib\ionic-datepicker\style.min.css" />
+    <Content Include="www\lib\ionic-datepicker\templates.min.js" />
     <Content Include="www\lib\jquery-1.8.3.min.js" />
     <Content Include="www\lib\jquery.royalslider.min.js" />
     <Content Include="www\lib\jquery.spinner.js" />
@@ -1306,10 +1311,12 @@
     <Content Include="www\lib\xml2json.min.js" />
     <Content Include="www\templates\airpay.html" />
     <Content Include="www\templates\air_booking.html" />
+    <Content Include="www\templates\car_service.html" />
     <Content Include="www\templates\air_service.html" />
     <Content Include="www\templates\carlist.html" />
     <Content Include="www\templates\carsearch.html" />
     <Content Include="www\templates\index.html" />
+    <Content Include="www\templates\index2.html" />
     <Content Include="www\templates\menu.html" />
     <Content Include="admin\master\Header.Master" />
     <Content Include="ajax\apihandler.ashx" />

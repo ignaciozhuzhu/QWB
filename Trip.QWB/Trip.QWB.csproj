@@ -97,12 +97,17 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Trip.Api, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\zs\trip\Trip.Api\bin\Trip.Api.dll</HintPath>
+    </Reference>
     <Reference Include="trip.Core">
       <HintPath>lib\trip.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\qwbApi.cs" />
+    <Compile Include="Common\BuildResponses.cs" />
     <Compile Include="Model\car_categories.cs" />
     <Compile Include="Model\carPriceListMod.cs" />
     <Compile Include="Model\carListMod.cs" />
@@ -112,14 +117,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Common\" />
     <Folder Include="DAL\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\..\zs\trip\Trip.Api\Trip.Api.csproj">
-      <Project>{5f80d010-17c3-426d-a7a1-3a496b5a45d0}</Project>
-      <Name>Trip.Api</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

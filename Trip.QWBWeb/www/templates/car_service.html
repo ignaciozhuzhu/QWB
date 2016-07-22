@@ -1,0 +1,188 @@
+﻿
+<head>
+    <style>
+        .back-button {
+            text-align: left;
+            margin: -1px 5px;
+        }
+
+        .car_service .index_wrap {
+            top: 0;
+        }
+
+        .car_service hr {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .car_service .car_toptitle {
+            margin: 14px 0 14px 8px;
+            font-size: 16px;
+        }
+
+        .car_service .car_search_wrap {
+            padding: 8px 18px;
+        }
+
+        .car_service input {
+            vertical-align: baseline;
+        }
+
+        .car_service .inputlefttext {
+            width: 30%;
+            text-align-last: justify;
+            display: inline-block;
+        }
+
+        .car_service .inputrightbox {
+            width: 65%;
+            display: inline;
+            padding-top: 0;
+            margin-left: 10px;
+        }
+
+        .car_service .boxremark {
+            height: 80px;
+            border: 1px solid #f2f4f3;
+            width: 90%;
+            margin: 15px;
+            box-shadow: 0 0 8px #808080;
+            -moz-box-shadow: 0 0 8px #808080;
+            -webkit-box-shadow: 0 0 8px #808080;
+        }
+
+        .car_service .colorgray {
+            background-color: #f2f4f3;
+            overflow: hidden;
+        }
+
+        .car_service .bottombutton {
+            width: 100%;
+            height: 55px;
+            line-height: 55px;
+            text-align: center;
+            font-size: 16px;
+            color: white;
+            background-color: #01d4c1;
+        }
+
+        .marginleft10 {
+            margin-left: 10px;
+        }
+
+        .marginleft8 {
+            margin-left: 8px;
+        }
+
+        .mytimepicker {
+            border: 1px solid #bbb;
+            width: 70px;
+            margin-left: -10px;
+            border-radius: 5px;
+            border: none;
+            /*moz-box-shadow: inset 0 1px 4px rgba(0,0,0,.2);
+            -webkit-box-shadow: inset 0 1px 4px rgba(0,0,0,.2);
+            box-shadow: inset 0 1px 4px rgba(0,0,0,.2);*/
+        }
+
+        .boxpriceslt {
+            background: #f2f4f3;
+            padding: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="css/jquery.spinner.css?6" />
+    <link rel="stylesheet" href="css/jquery.spinner2.css?6" />
+
+    <link rel="stylesheet" href="mobiscroll/css/jquery.mobile-1.2.0.min.css" />
+    <link href="mobiscroll/css/mobiscroll.core.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll/css/mobiscroll.jqm.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll/css/mobiscroll.android.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll/css/mobiscroll.android-ics.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll/css/mobiscroll.ios.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll/css/mobiscroll.sense-ui.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll/css/mobiscroll.wp.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll/css/mobiscroll.animation.css" rel="stylesheet" type="text/css" />
+</head>
+<ion-view hide-nav-bar="false">
+</ion-view>
+<ion-view view-title="用车服务" class="car_service">
+    <ion-content>
+        <!--<div class="header">
+            <div id="navigation" class="touchcarousel">
+                <div class="background">
+                    <a href="#/carlist2/{{cityid}}"><img class="arrow" src="images/arrow2.png" /></a>
+                    <h1 class="n_title">用车服务</h1>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="index_wrap">
+            <div class="colorgray"><p class="car_toptitle"><span>行程详情</span></p></div>
+
+            <div class="car_search_wrap" style="display:block">
+                <p>行程日期</p>
+                <p style="margin-left:0">{{date1}}至{{date2}}(共{{daysdiff}}天)</p>
+                <div style="height:5px"></div>
+                <p>
+                    用车城市
+                </p>
+                <p style="margin-left:0">{{cityname}}</p>
+            </div>
+
+            <div class="colorgray"><p class="car_toptitle"><span>出行信息</span></p></div>
+            <div class="car_search_wrap" style="display:block">
+                <span class="inputlefttext" ng-click="aaa()">出行车型：</span><span class="marginleft10">{{car_name}}({{car_brand}}同等车型)</span>
+                <hr />
+                <div><span class="inputlefttext">服务等级：</span><span class="marginleft10">{{driver_category_name}}</span> </div>
+                <div>
+                    <div style="height:30px">
+                        <span class="inputlefttext">乘坐人数：</span>
+                        <span class="marginleft8">成人</span>
+                        <div id="sp02" style="float:right;margin-right:50px"><input type="text" class="spinner2" /></div>
+                    </div>
+                    <div></div>
+                    <div style="height:30px">
+                        <span class="inputlefttext"></span><span class="marginleft10">儿童</span>
+                        <div id="sp01" style="float:right;margin-right:50px"><input type="text" class="spinner" /></div>
+                    </div>
+                </div>
+                <hr />
+
+                <div><div class="inputlefttext">联系人姓名：</div><input id="contactName" class="inputrightbox" type="text" placeholder="请输入联系人中文姓名"></div>
+                <hr />
+                <div><div class="inputlefttext">护照号：</div><input id="contactPassport" class="inputrightbox" type="text" placeholder="请输入护照号"></div>
+                <hr />
+                <div><div class="inputlefttext">联系电话：</div><input id="contactPhone" class="inputrightbox" type="text" placeholder="建议临时开启国外漫游"></div>
+                <hr />
+            </div>
+
+            <div class="colorgray"><p class="car_toptitle"><span>订单备注</span></p></div>
+            <textarea class="boxremark"></textarea>
+
+            <div class="colorgray"><p class="car_toptitle"><span>费用详情</span></p></div>
+            <div class="car_search_wrap" style="display:block">
+                <div style="margin:0 0 5px">
+                    <span>{{cityname}}：</span><span style="float:right">¥ {{price}}*{{daysdiff}}天</span>
+                </div>
+                <div class="boxpriceslt">
+                    <div>
+                        <span>导游小费</span><span style="float:right">¥ {{tips}}</span>
+                    </div>
+                    <div>
+                        <span>导游餐补</span><span style="float:right">¥ {{food_fee}}</span>
+                    </div>
+                    <div>
+                        <span>导游住补</span><span style="float:right">¥ {{room_fee}}</span>
+                    </div>
+                </div>
+                <hr />
+                <div style="overflow:hidden">
+                    <span>费用合计：</span><span id="totalcost" style="float:right">{{total_price}}</span><span style="float:right">¥ </span>
+                    <!--<span style="float:right;clear:both">汇率 0.0651</span>
+                    <span style="float:right;clear:both">RMB 501</span>-->
+                </div>
+            </div>
+            <div class="bottombutton" ng-click="createorder()">下单支付</div>
+        </div>
+    </ion-content>
+</ion-view>

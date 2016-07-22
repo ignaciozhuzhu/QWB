@@ -162,7 +162,9 @@
     font-size: 13px;
 }
 
-.car_serach .button-positive, .car_serach .button-positive.activated, .air_service .button-positive, .air_service .button-positive.activated {
+.car_serach .button-positive, .car_serach .button-positive.activated,
+ .air_service .button-positive, .air_service .button-positive.activated,
+ .car_service .button-positive, .car_service .button-positive.activated  {
     background-color: #fff;
     color: black;
     width: 90%;

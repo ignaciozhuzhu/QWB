@@ -469,6 +469,14 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Trip.Service.OrderExtensions.AgentCancelable(Trip.Repository.Entities.OrderViewEntity,System.Int32)">
+            <summary>
+            下家社不能取消已提交到上家社且已确认的订单
+            </summary>
+            <param name="order"></param>
+            <param name="shopId"></param>
+            <returns></returns>
+        </member>
         <member name="M:Trip.Service.OrderExtensions.IsFromAgentOrder(Trip.Repository.Entities.ProductPlanEnterEntity,System.Int32)">
             <summary>
             判断是否是来自代理社的订单
@@ -499,6 +507,11 @@
             </summary>
             <param name="length"></param>
             <returns></returns>
+        </member>
+        <member name="M:Trip.Service.OrderPaymentService.PayedOnline(Trip.Repository.Entities.ProductPlanEnterEntity,Trip.Repository.Entities.ShopEntity,Trip.Repository.Request.OnlinePayContextInfo)">
+            <summary>
+            在线支付
+            </summary>
         </member>
         <member name="M:Trip.Service.PickupService.GetPickupAreaById(System.Int32)">
             <summary>
@@ -544,18 +557,11 @@
             <summary>
             添加可售站点
             </summary>
-            <param name="shopId"></param>
-            <param name="type"></param>
-            <param name="point"></param>
         </member>
         <member name="M:Trip.Service.SalesPointService.EditSalesPoint(System.Int32,System.Int32,System.String,System.String)">
             <summary>
             更新可售站点
             </summary>
-            <param name="shopId"></param>
-            <param name="id"></param>
-            <param name="type"></param>
-            <param name="point"></param>
         </member>
         <member name="M:Trip.Service.ProductPickupService.GetProductPickupAreasByProductId(System.Int32)">
             <summary>
@@ -897,6 +903,31 @@
             分类 树形列表
             </summary>
         </member>
+        <member name="M:Trip.Service.CommonDataService.Get(System.Int32)">
+            <summary>
+            根据编号获取常用数据
+            </summary>
+        </member>
+        <member name="M:Trip.Service.CommonDataService.Add(Trip.Repository.Entities.CommonDataEntity)">
+            <summary>
+            添加常用数据
+            </summary>
+        </member>
+        <member name="M:Trip.Service.CommonDataService.Edit(Trip.Repository.Entities.CommonDataEntity)">
+            <summary>
+            编辑常用数据
+            </summary>
+        </member>
+        <member name="M:Trip.Service.CommonDataService.Delete(Trip.Repository.Entities.CommonDataEntity)">
+            <summary>
+            删除常用数据
+            </summary>
+        </member>
+        <member name="M:Trip.Service.CommonDataService.GetAllByType(Trip.Repository.Entities.CommonDataType,System.Nullable{System.Int32})">
+            <summary>
+            指定类别的所有常用数据
+            </summary>
+        </member>
         <member name="M:Trip.Service.CommonDataService.GetPaged(System.Nullable{System.Int32},System.Int32,System.Int32,System.Boolean)">
             <summary>
             分页获取
@@ -906,9 +937,6 @@
             <summary>
             回馈单库存控制
             </summary>
-            <param name="shopId"></param>
-            <param name="type"></param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Service.CustomerService.InsertCustomer(Trip.Repository.Entities.CustomerEntity)">
             <summary>
@@ -1013,25 +1041,16 @@
             <summary>
             获取所有线路供应商
             </summary>
-            <param name="shopId"></param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Service.LineSupplierService.CreateLineSupplier(System.Int32,System.String,System.String)">
             <summary>
             添加供应商信息
             </summary>
-            <param name="shopId"></param>
-            <param name="name"></param>
-            <param name="contact"></param>
         </member>
         <member name="M:Trip.Service.LineSupplierService.EditLineSupplier(System.Int32,System.Int32,System.String,System.String)">
             <summary>
             更新供应商信息
             </summary>
-            <param name="shopId"></param>
-            <param name="id"></param>
-            <param name="name"></param>
-            <param name="contact"></param>
         </member>
         <member name="M:Trip.Service.MemberManageService.UpdateMember(Trip.Repository.Entities.MemberEntity)">
             <summary>
@@ -1084,32 +1103,22 @@
             <summary>
             获取1块的已报名数量
             </summary>
-            <param name="shopId"></param>
-            <param name="productId"></param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Service.OrderService.SetPrizeCode(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             设置中奖码
             </summary>
-            <param name="shopId"></param>
-            <param name="productId"></param>
-            <param name="id"></param>
-            <param name="planQty"></param>
         </member>
         <member name="M:Trip.Service.OrderService.GetTicketOrderQty(System.Int32,System.Int32,System.Nullable{System.Int32},System.DateTime,System.String,System.Nullable{Trip.Repository.Entities.ProductPlanEnterPayStatus})">
             <summary>
             获取身份证号在出行日期的订单数量
             </summary>
-            <param name="shopId"></param>
-            <param name="productId"></param>
-            <param name="ticketPlanId"></param>
-            <param name="travelDate"></param>
-            <param name="identity"></param>
-            <param name="payStatus"></param>
-            <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Trip.Service.OrderService.GetList(Trip.Repository.Entities.OrderType,Trip.Repository.Entities.ProductPlanEnterState)" -->
+        <member name="M:Trip.Service.OrderService.GetOrders(Trip.Repository.Entities.OrderType,Trip.Repository.Entities.ProductPlanEnterState)">
+            <summary>
+            根据订单类型，订单状态获取订单
+            </summary>
+        </member>
         <member name="M:Trip.Service.OrderService.GetOrdersByMobile(System.Int32,System.String)">
             <summary>
             根据手机号获取订单
@@ -1146,34 +1155,6 @@
             <param name="vendorOrderNo">第三方订单编号</param>
             <returns>订单信息</returns>
         </member>
-        <member name="M:Trip.Service.OrderService.Get(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            获取会员指定产品的订单
-            </summary>
-            <param name="shopId">店铺编号</param>
-            <param name="orderCustomerId">会员编号</param>
-            <param name="productId">产品编号</param>
-            <returns>订单列表</returns>
-        </member>
-        <member name="M:Trip.Service.OrderService.DeleteOrder(Trip.Repository.Entities.ProductPlanEnterEntity)">
-            <summary>
-            删除订单
-            </summary>
-        </member>
-        <member name="M:Trip.Service.OrderService.DeleteAgentOrder(Trip.Repository.Entities.ProductPlanEnterEntity)">
-            <summary>
-            删除来自代理社的订单
-            </summary>
-            <param name="order"></param>
-        </member>
-        <member name="M:Trip.Service.OrderService.GetAllTourNotifyEnters(System.Int32,System.Int32)">
-            <summary>
-            获取所有需要推送的订单，即该订单有关联的会员
-            </summary>
-            <param name="shopId">店铺编号</param>
-            <param name="planId">开班编号</param>
-            <returns>订单列表</returns>
-        </member>
         <member name="M:Trip.Service.OrderService.GetOrderByOrderNo(System.Int32,System.String)">
             <summary>
             根据单号获取
@@ -1190,6 +1171,32 @@
             <param name="payOrderNo">支付订单号</param>
             <returns>订单</returns>
         </member>
+        <member name="M:Trip.Service.OrderService.Get(System.Int32,System.Int32)">
+            <summary>
+            根据编号获取订单
+            </summary>
+            <param name="shopId">店铺编号</param>
+            <param name="id">订单编号</param>
+            <returns>订单</returns>
+        </member>
+        <member name="M:Trip.Service.OrderService.DeleteOrder(Trip.Repository.Entities.ProductPlanEnterEntity)">
+            <summary>
+            删除订单
+            </summary>
+        </member>
+        <member name="M:Trip.Service.OrderService.DeleteAgentOrder(Trip.Repository.Entities.ProductPlanEnterEntity)">
+            <summary>
+            删除来自代理社的订单
+            </summary>
+        </member>
+        <member name="M:Trip.Service.OrderService.GetAllTourNotifyEnters(System.Int32,System.Int32)">
+            <summary>
+            获取所有需要推送的订单，即该订单有关联的会员
+            </summary>
+            <param name="shopId">店铺编号</param>
+            <param name="planId">开班编号</param>
+            <returns>订单列表</returns>
+        </member>
         <member name="M:Trip.Service.OrderService.IsExist(System.Int32,System.String)">
             <summary>
             给定 订单号是否存在
@@ -1203,37 +1210,32 @@
             获取订单价格项
             </summary>
         </member>
-        <member name="M:Trip.Service.OrderService.Get(System.Int32,System.Int32)">
-            <summary>
-            根据编号获取订单
-            </summary>
-            <param name="shopId">店铺编号</param>
-            <param name="id">订单编号</param>
-            <returns>订单</returns>
-        </member>
-        <member name="M:Trip.Service.OrderService.GetAllByOrderCustomerId(System.Int32,System.Int32)">
+        <member name="M:Trip.Service.OrderService.GetOrdersByCustomer(System.Int32,System.Int32,System.Nullable{System.Int32})">
             <summary>
             获取会员订单
             </summary>
             <param name="shopId">店铺编号</param>
             <param name="orderCustomerId">会员编号</param>
+            <param name="productId">产品编号</param>
             <returns>订单列表</returns>
         </member>
-        <member name="M:Trip.Service.OrderService.GetAllByOrderGuideId(System.Int32,System.Int32)">
+        <member name="M:Trip.Service.OrderService.GetOrdersByOrderGuide(System.Int32,System.Int32)">
             <summary>
             获取微名片代下单
             </summary>
-            <param name="shopId"></param>
-            <param name="orderGuideId"></param>
-            <returns></returns>
         </member>
-        <member name="M:Trip.Service.OrderService.GetAllByGid(System.Int32,System.Int32)">
+        <member name="M:Trip.Service.OrderService.GetOrdersBySourceGuide(System.Int32,System.Int32)">
             <summary>
-            获取微名片订单
+            获取来源微名片订单
             </summary>
-            <param name="shopId">店铺编号</param>
-            <param name="gid">微名片编号</param>
-            <returns>订单列表</returns>
+        </member>
+        <member name="M:Trip.Service.OrderService.GetGuideAllOrders(System.Int32,System.Int32)">
+            <summary>
+            获取微名片的所有相关订单（包括来源微名片与代下单）
+            </summary>
+            <param name="shopId"></param>
+            <param name="GuideId"></param>
+            <returns></returns>
         </member>
         <member name="M:Trip.Service.OrderService.GetOrders(Trip.Repository.Request.GetOrdersRequest)">
             <summary>

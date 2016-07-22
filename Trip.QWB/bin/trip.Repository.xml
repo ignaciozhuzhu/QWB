@@ -314,6 +314,46 @@
             修改时间
             </summary>
         </member>
+        <member name="T:Trip.Repository.Entities.DepartmentEntity">
+            <summary>
+            A class which represents the Department table.
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.DepartmentEntity.Id">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.DepartmentEntity.Name">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.DepartmentEntity.ParentId">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.DepartmentEntity.Created">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.DepartmentEntity.Updated">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.DepartmentEntity.ShopId">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.DepartmentEntity.Deleted">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
         <member name="T:Trip.Repository.Entities.GuideExtEntity">
             <summary>
             A class which represents the GuideExt table.
@@ -1049,6 +1089,16 @@
             车型id
             </summary>
         </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiAirportTransferOrderExt.car_category_name">
+            <summary>
+            车型名称
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiAirportTransferOrderExt.driver_category_name">
+            <summary>
+            导游类型名称
+            </summary>
+        </member>
         <member name="P:Trip.Repository.Entities.QuWanBeiAirportTransferOrderExt.pickup_airport_code">
             <summary>
             接机机场三字码
@@ -1091,7 +1141,7 @@
         </member>
         <member name="P:Trip.Repository.Entities.QuWanBeiAirportTransferOrderExt.kids_age">
             <summary>
-            童年龄, 当有儿童数时必须, 例: [1,2,3]
+            儿童年龄, 当有儿童数时必须, 例: [1,2,3]
             </summary>
         </member>
         <member name="P:Trip.Repository.Entities.QuWanBeiAirportTransferOrderExt.pickup_price">
@@ -1104,19 +1154,14 @@
             送机价格
             </summary>
         </member>
-        <member name="P:Trip.Repository.Entities.QuWanBeiAirportTransferOrderExt.car_category_name">
-            <summary>
-            车型名称
-            </summary>
-        </member>
-        <member name="P:Trip.Repository.Entities.QuWanBeiAirportTransferOrderExt.driver_category_name">
-            <summary>
-            导游类型名称
-            </summary>
-        </member>
         <member name="T:Trip.Repository.Entities.OrderViewEntity">
             <summary>
             A class which represents the OrderView view.
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.OrderViewEntity.QuWanBeiAirportTransferInfo">
+            <summary>
+            去玩呗 接送机订单详情
             </summary>
         </member>
         <member name="P:Trip.Repository.Entities.OrderViewEntity.AirTicketInfo">
@@ -1480,6 +1525,16 @@
             </summary>
         </member>
         <member name="P:Trip.Repository.Entities.OrderViewEntity.ShopMobile">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.OrderViewEntity.SourceFrom">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.OrderViewEntity.OrderGuideId">
             <summary>
             程序猿大战产品汪去了，没时间写注释
             </summary>
@@ -1919,6 +1974,11 @@
             程序猿大战产品汪去了，没时间写注释
             </summary>
         </member>
+        <member name="P:Trip.Repository.Entities.ProductLibDetailViewEntity.OriginId">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
         <member name="P:Trip.Repository.Entities.ProductLibDetailViewEntity.PlanDates">
             <summary>
             程序猿大战产品汪去了，没时间写注释
@@ -1967,6 +2027,16 @@
         <member name="T:Trip.Repository.Entities.ProductLibraryViewEntity">
             <summary>
             A class which represents the ProductLibraryView view.
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.ProductLibraryViewEntity.MinPrice">
+            <summary>
+            最低价格（用于排序及筛选）
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.ProductLibraryViewEntity.PlanDatesView">
+            <summary>
+            团期展示
             </summary>
         </member>
         <member name="P:Trip.Repository.Entities.ProductLibraryViewEntity.Id">
@@ -2069,6 +2139,11 @@
             程序猿大战产品汪去了，没时间写注释
             </summary>
         </member>
+        <member name="P:Trip.Repository.Entities.ProductLibraryViewEntity.OriginShopId">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
         <member name="P:Trip.Repository.Entities.ProductLibraryViewEntity.TravelPattern">
             <summary>
             程序猿大战产品汪去了，没时间写注释
@@ -2110,6 +2185,26 @@
             </summary>
         </member>
         <member name="P:Trip.Repository.Entities.ProductLibraryViewEntity.IsOffLine">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.ProductLibraryViewEntity.AgentedProductId">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.ProductLibraryViewEntity.SupplierName">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.ProductLibraryViewEntity.MaxAgentProfit">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.ProductLibraryViewEntity.Tags">
             <summary>
             程序猿大战产品汪去了，没时间写注释
             </summary>
@@ -4154,9 +4249,24 @@
             程序猿大战产品汪去了，没时间写注释
             </summary>
         </member>
+        <member name="P:Trip.Repository.Entities.ProductPlanEnterEntity.SourceBy">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.ProductPlanEnterEntity.SourceFrom">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
         <member name="P:Trip.Repository.Entities.ProductPlanEnterEntity.AdultNum">
             <summary>
             成人数量
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.ProductPlanEnterEntity.QuWanBeiAirportTransferInfo">
+            <summary>
+            去玩呗 接送机订单详情
             </summary>
         </member>
         <member name="P:Trip.Repository.Entities.ProductPlanEnterEntity.AirTicketInfo">
@@ -6714,46 +6824,6 @@
             程序猿大战产品汪去了，没时间写注释
             </summary>
         </member>
-        <member name="T:Trip.Repository.Entities.DepartmentEntity">
-            <summary>
-            A class which represents the Department table.
-            </summary>
-        </member>
-        <member name="P:Trip.Repository.Entities.DepartmentEntity.Id">
-            <summary>
-            程序猿大战产品汪去了，没时间写注释
-            </summary>
-        </member>
-        <member name="P:Trip.Repository.Entities.DepartmentEntity.Name">
-            <summary>
-            程序猿大战产品汪去了，没时间写注释
-            </summary>
-        </member>
-        <member name="P:Trip.Repository.Entities.DepartmentEntity.ParentId">
-            <summary>
-            程序猿大战产品汪去了，没时间写注释
-            </summary>
-        </member>
-        <member name="P:Trip.Repository.Entities.DepartmentEntity.Created">
-            <summary>
-            程序猿大战产品汪去了，没时间写注释
-            </summary>
-        </member>
-        <member name="P:Trip.Repository.Entities.DepartmentEntity.Updated">
-            <summary>
-            程序猿大战产品汪去了，没时间写注释
-            </summary>
-        </member>
-        <member name="P:Trip.Repository.Entities.DepartmentEntity.ShopId">
-            <summary>
-            程序猿大战产品汪去了，没时间写注释
-            </summary>
-        </member>
-        <member name="P:Trip.Repository.Entities.DepartmentEntity.Deleted">
-            <summary>
-            程序猿大战产品汪去了，没时间写注释
-            </summary>
-        </member>
         <member name="T:Trip.Repository.Entities.MemberViewEntity">
             <summary>
             A class which represents the MemberView view.
@@ -8252,6 +8322,11 @@
             <param name="newOrderVal">新的排序值</param>
             <param name="originOrderVal">旧的排序值</param>
         </member>
+        <member name="M:Trip.Repository.Interfaces.ICommonDataRepository.Get(System.Int32)">
+            <summary>
+            根据编号获取常用数据
+            </summary>
+        </member>
         <member name="M:Trip.Repository.Interfaces.ICommonDataRepository.GetPaged(System.Nullable{System.Int32},System.Int32,System.Int32,System.Boolean,System.Nullable{Trip.Repository.Entities.CommonDataType})">
             <summary>
             分页获取
@@ -8492,32 +8567,18 @@
             <summary>
             获取1块的已报名数量
             </summary>
-            <param name="shopId"></param>
-            <param name="productId"></param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Repository.Interfaces.IOrderRepository.SetPrizeCode(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             设置中奖码
             </summary>
-            <param name="shopId"></param>
-            <param name="productId"></param>
-            <param name="id"></param>
-            <param name="planQty"></param>
         </member>
         <member name="M:Trip.Repository.Interfaces.IOrderRepository.GetTicketOrderQty(System.Int32,System.Int32,System.Nullable{System.Int32},System.DateTime,System.String,System.Nullable{Trip.Repository.Entities.ProductPlanEnterPayStatus})">
             <summary>
             获取身份证号在出行日期的订单数量
             </summary>
-            <param name="shopId"></param>
-            <param name="productId"></param>
-            <param name="ticketPlanId"></param>
-            <param name="travelDate"></param>
-            <param name="identity"></param>
-            <param name="payStatus">支付状态</param>
-            <returns></returns>
         </member>
-        <member name="M:Trip.Repository.Interfaces.IOrderRepository.GetList(Trip.Repository.Entities.OrderType,Trip.Repository.Entities.ProductPlanEnterState)">
+        <member name="M:Trip.Repository.Interfaces.IOrderRepository.GetOrders(Trip.Repository.Entities.OrderType,Trip.Repository.Entities.ProductPlanEnterState)">
             <summary>
             根据订单类型，订单状态获取订单
             </summary>
@@ -8603,38 +8664,31 @@
             获取订单价格项
             </summary>
         </member>
-        <member name="M:Trip.Repository.Interfaces.IOrderRepository.GetAllByOrderCustomerId(System.Int32,System.Int32)">
+        <member name="M:Trip.Repository.Interfaces.IOrderRepository.GetOrdersByCustomer(System.Int32,System.Int32,System.Nullable{System.Int32})">
             <summary>
             获取会员订单
             </summary>
-            <param name="shopId">店铺编号</param>
-            <param name="orderCustomerId">会员编号</param>
-            <returns>订单列表</returns>
         </member>
-        <member name="M:Trip.Repository.Interfaces.IOrderRepository.GetAllByOrderGuideId(System.Int32,System.Int32)">
+        <member name="M:Trip.Repository.Interfaces.IOrderRepository.GetOrdersByOrderGuide(System.Int32,System.Int32)">
             <summary>
             获取微名片代下单
             </summary>
-            <param name="shopId"></param>
-            <param name="orderGuideId"></param>
-            <returns></returns>
         </member>
-        <member name="M:Trip.Repository.Interfaces.IOrderRepository.GetAllByGid(System.Int32,System.Int32)">
+        <member name="M:Trip.Repository.Interfaces.IOrderRepository.GetOrdersBySourceGuide(System.Int32,System.Int32)">
             <summary>
             获取微名片订单
             </summary>
             <param name="shopId">店铺编号</param>
-            <param name="gid">微名片编号</param>
+            <param name="sourceGuideId">微名片编号</param>
             <returns>订单列表</returns>
         </member>
-        <member name="M:Trip.Repository.Interfaces.IOrderRepository.Get(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Trip.Repository.Interfaces.IOrderRepository.GetGuideAllOrders(System.Int32,System.Int32)">
             <summary>
-            获取会员指定产品的订单
+            获取微名片的所有相关订单（包括来源微名片与代下单）
             </summary>
-            <param name="shopId">店铺编号</param>
-            <param name="orderCustomerId">会员编号</param>
-            <param name="productId">产品编号</param>
-            <returns>订单列表</returns>
+            <param name="shopId"></param>
+            <param name="GuideId"></param>
+            <returns></returns>
         </member>
         <member name="M:Trip.Repository.Interfaces.IProductPickupRepository.GetProductPickupAreasByProductId(System.Int32)">
             <summary>
@@ -9203,6 +9257,11 @@
             目的地
             </summary>
         </member>
+        <member name="T:Trip.Repository.Request.GetPagedShopViewCountRequest">
+            <summary>
+            店铺浏览统计
+            </summary>
+        </member>
         <member name="M:Trip.Repository.SqlServer.ActivityRecordRepository.Get(System.Int32,System.Nullable{System.Int32})">
             <summary>
             获取获奖记录
@@ -9383,6 +9442,11 @@
             <param name="moveCatalogId">需要排序的分类编号</param>
             <param name="newOrderVal">新的排序值</param>
             <param name="originalOrderVal">旧的排序值</param>
+        </member>
+        <member name="M:Trip.Repository.SqlServer.CommonDataRepository.Get(System.Int32)">
+            <summary>
+            根据编号获取常用数据
+            </summary>
         </member>
         <member name="M:Trip.Repository.SqlServer.CommonDataRepository.GetPaged(System.Nullable{System.Int32},System.Int32,System.Int32,System.Boolean,System.Nullable{Trip.Repository.Entities.CommonDataType})">
             <summary>
@@ -9609,40 +9673,22 @@
             <summary>
             设置中奖码
             </summary>
-            <param name="shopId"></param>
-            <param name="productId"></param>
-            <param name="id"></param>
-            <param name="planQty"></param>
         </member>
         <member name="M:Trip.Repository.SqlServer.OrderRepository.Get1KuaiTicketOrderQty(System.Int32,System.Int32)">
             <summary>
             获取1块的有效报名数量
             </summary>
-            <param name="shopId"></param>
-            <param name="productId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Trip.Repository.SqlServer.OrderRepository.GetReal1KuaiTicketOrderQty(System.Int32,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="shopId"></param>
-            <param name="productId"></param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Repository.SqlServer.OrderRepository.GetTicketOrderQty(System.Int32,System.Int32,System.Nullable{System.Int32},System.DateTime,System.String,System.Nullable{Trip.Repository.Entities.ProductPlanEnterPayStatus})">
             <summary>
             获取身份证号在出行日期的订单数量
             </summary>
-            <param name="shopId"></param>
-            <param name="productId"></param>
-            <param name="ticketPlanId"></param>
-            <param name="travelDate"></param>
-            <param name="identity"></param>
-            <param name="payStatus">支付状态</param>
-            <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Trip.Repository.SqlServer.OrderRepository.GetList(Trip.Repository.Entities.OrderType,Trip.Repository.Entities.ProductPlanEnterState)" -->
+        <member name="M:Trip.Repository.SqlServer.OrderRepository.GetOrders(Trip.Repository.Entities.OrderType,Trip.Repository.Entities.ProductPlanEnterState)">
+            <summary>
+            根据订单类型，订单状态获取订单
+            </summary>
+        </member>
         <member name="M:Trip.Repository.SqlServer.OrderRepository.GetOrdersByMobile(System.Int32,System.String)">
             <summary>
             根据手机号获取订单
@@ -9679,15 +9725,6 @@
             <param name="vendorOrderNo">第三方订单编号</param>
             <returns>订单信息</returns>
         </member>
-        <member name="M:Trip.Repository.SqlServer.OrderRepository.Get(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            获取会员指定产品的订单
-            </summary>
-            <param name="shopId">店铺编号</param>
-            <param name="orderCustomerId">会员编号</param>
-            <param name="productId">产品编号</param>
-            <returns>订单列表</returns>
-        </member>
         <member name="M:Trip.Repository.SqlServer.OrderRepository.GetOrders(Trip.Repository.Request.GetOrdersRequest)">
             <summary>
             分页获取订单
@@ -9714,7 +9751,7 @@
             获取订单价格详情
             </summary>
         </member>
-        <member name="M:Trip.Repository.SqlServer.OrderRepository.GetAllByGid(System.Int32,System.Int32)">
+        <member name="M:Trip.Repository.SqlServer.OrderRepository.GetOrdersBySourceGuide(System.Int32,System.Int32)">
             <summary>
             获取微名片订单
             </summary>
@@ -9722,15 +9759,20 @@
             <param name="gid">微名片编号</param>
             <returns>订单列表</returns>
         </member>
-        <member name="M:Trip.Repository.SqlServer.OrderRepository.GetAllByOrderCustomerId(System.Int32,System.Int32)">
+        <member name="M:Trip.Repository.SqlServer.OrderRepository.GetGuideAllOrders(System.Int32,System.Int32)">
+            <summary>
+            获取微名片的所有相关订单（包括来源微名片与代下单）
+            </summary>
+            <param name="shopId"></param>
+            <param name="GuideId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Trip.Repository.SqlServer.OrderRepository.GetOrdersByCustomer(System.Int32,System.Int32,System.Nullable{System.Int32})">
             <summary>
             获取会员订单
             </summary>
-            <param name="shopId">店铺编号</param>
-            <param name="orderCustomerId">会员编号</param>
-            <returns>订单列表</returns>
         </member>
-        <member name="M:Trip.Repository.SqlServer.OrderRepository.GetAllByOrderGuideId(System.Int32,System.Int32)">
+        <member name="M:Trip.Repository.SqlServer.OrderRepository.GetOrdersByOrderGuide(System.Int32,System.Int32)">
             <summary>
             获取微名片代下单
             </summary>
@@ -10030,7 +10072,7 @@
             </summary>
             <param name="clp">线路分类库</param>
         </member>
-        <member name="M:Trip.Repository.SqlServer.ProductRepository.GenerateOrConditionList(System.Collections.Generic.IList{System.Int32})">
+        <member name="M:Trip.Repository.SqlServer.ProductRepository.GenerateDaysSearch``1(System.Collections.Generic.IList{System.Int32})">
             <summary>
             线路库组装天数查询
             </summary>
@@ -10067,6 +10109,15 @@
             <param name="query"></param>
             <param name="filter"></param>
             <param name="ShopIdList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Trip.Repository.SqlServer.ProductRepository.FilterProduct(System.Collections.Generic.IEnumerable{Trip.Repository.Entities.ProductLibraryViewEntity},Trip.Repository.Entities.ProductFilter,System.Int32)">
+            <summary>
+            TODO:前台线路库改为异步获取线路列表，同后台线路库共用方法  筛选线路
+            </summary>
+            <param name="products"></param>
+            <param name="filter"></param>
+            <param name="shopId"></param>
             <returns></returns>
         </member>
         <member name="M:Trip.Repository.SqlServer.ProductTagRepository.GetList(System.Int32)">

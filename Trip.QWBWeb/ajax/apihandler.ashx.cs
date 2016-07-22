@@ -24,7 +24,7 @@ namespace Trip.QWBWeb.ajax
             }
             catch (Exception e)
             {
-                HttpContext.Current.Response.Write("接口出错!");
+                HttpContext.Current.Response.Write(e.InnerException.Message);
             }
         }
 
@@ -54,6 +54,8 @@ namespace Trip.QWBWeb.ajax
             catch { }
             HttpContext.Current.Response.Write(Trip.QWB.qwbApi.getCarsList(locationid));
         }
+
+        //以下接送机--------------------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
         /// 获取机场列表
@@ -120,6 +122,74 @@ namespace Trip.QWBWeb.ajax
             }
             catch { }
             HttpContext.Current.Response.Write(Trip.QWB.qwbApi.createordertg(json));
+        }
+
+        //以下标准车--------------------------------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 获取标准车价格(列表)
+        /// </summary>
+        public void getbookingsnew()
+        {
+            string car_category_id = "";
+            string pickup_time1 = "";
+            string pickup_time2 = "";
+            int locationid = 0;
+            try
+            {
+                car_category_id = HttpContext.Current.Request["car_category_id"];
+                pickup_time1 = HttpContext.Current.Request["pickup_time1"];
+                pickup_time2 = HttpContext.Current.Request["pickup_time2"];
+                locationid = Convert.ToInt32(HttpContext.Current.Request["locationid"]);
+            }
+            catch { }
+            HttpContext.Current.Response.Write(Trip.QWB.qwbApi.getbookingsnew(car_category_id, pickup_time1, pickup_time2, locationid));
+        }
+
+        /// <summary>
+        /// 获取标准车价格(单车)
+        /// </summary>
+        public void getbookingsnewp1()
+        {
+            string from_date = "";
+            int from_location_id = 0;
+            string to_date = "";
+            int car_category_id = 0;
+            int driver_category_id = 0;
+            int adults = 0;
+            int kids = 0;
+            int[] kids_age = new int[5]; ;
+            try
+            {
+                from_date = HttpContext.Current.Request["from_date"];
+                from_location_id = Convert.ToInt32(HttpContext.Current.Request["from_location_id"]);
+                to_date = HttpContext.Current.Request["to_date"];
+                car_category_id = Convert.ToInt32(HttpContext.Current.Request["car_category_id"]);
+                driver_category_id = Convert.ToInt32(HttpContext.Current.Request["driver_category_id"]);
+                adults = Convert.ToInt32(HttpContext.Current.Request["adults"]);
+                kids = Convert.ToInt32(HttpContext.Current.Request["kids"]);
+                if (kids > 0)
+                {
+                    kids_age = new int[kids];
+                    kids_age[0] = Convert.ToInt32(HttpContext.Current.Request["kids_age"]);
+                }
+            }
+            catch { }
+            HttpContext.Current.Response.Write(Trip.QWB.qwbApi.getbookingsnewP1(from_date, from_location_id, to_date, car_category_id, driver_category_id, adults, kids, kids_age));
+        }
+
+        /// <summary>
+        /// 创建标准用车订单(一地用车拓谷)
+        /// </summary>
+        public void createcarordertg()
+        {
+            string json = "";
+            try
+            {
+                json = HttpContext.Current.Request["json"];
+            }
+            catch { }
+            HttpContext.Current.Response.Write(Trip.QWB.qwbApi.createcarordertg(json));
         }
 
         public bool IsReusable

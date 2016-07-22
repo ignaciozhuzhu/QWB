@@ -20,6 +20,7 @@ namespace Trip.QWB.Model
         private string _group;
         private decimal? _total_price;
         private decimal? _pickup_price;
+        private decimal?[] _pickup_pricearr;
         private decimal? _drop_off_price;
         private string _driver_category_name;
 
@@ -94,6 +95,11 @@ namespace Trip.QWB.Model
         {
             set { _pickup_price = value; }
             get { return _pickup_price; }
+        }
+        public decimal?[] pickup_pricearr
+        {
+            set { _pickup_pricearr = value; }
+            get { return _pickup_pricearr; }
         }
         /// <summary>
         /// 送机价格

@@ -53,12 +53,23 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
              }
          }
      })
+      //接送机车的列表
      .state('app.carlist', {
          url: '/carlist/:airportname/:caridArray/:airportscode/:date/:endaddress/:wcityid',
          views: {
              'menuContent': {
                  templateUrl: 'templates/carlist.html',
                  controller: 'carlistCtrl'
+             }
+         }
+     })
+      //标准用车的列表
+     .state('app.carlist2', {
+         url: '/carlist2/:cityname/:caridArray/:date1/:date2/:wcityid',
+         views: {
+             'menuContent': {
+                 templateUrl: 'templates/carlist.html',
+                 controller: 'carlist2Ctrl'
              }
          }
      })
@@ -81,6 +92,16 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
              }
          }
      })
+        //标准车服务(单地用车)
+     .state('app.car_service', {
+         url: '/car_service/:driver_category_id/:cityname/:cityid/:brand/:car_name/:driver_category_name/:carid/:date1/:date2',
+         views: {
+             'menuContent': {
+                 templateUrl: 'templates/car_service.html',
+                 controller: 'car_serviceCtrl'
+             }
+         }
+     })
         //支付订单
      .state('app.airpay', {
          url: '/airpay/:orderid',
@@ -93,6 +114,6 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
      })
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/air_booking');///app/playlists
+    $urlRouterProvider.otherwise('/app/index2');///app/playlists
 });
 
