@@ -1,6 +1,14 @@
 ﻿
 <head>
     <style>
+        .back-button {
+            text-align: left;
+            margin: -1px 5px;
+        }
+        
+        .air_service .index_wrap {
+            top: 0;
+        }
         .air_service hr {
             margin-top: 10px;
             margin-bottom: 10px;
@@ -76,6 +84,16 @@
             -webkit-box-shadow: inset 0 1px 4px rgba(0,0,0,.2);
             box-shadow: inset 0 1px 4px rgba(0,0,0,.2);*/
         }
+        
+        ion-header-bar {
+        background-color:black !important;
+        }
+        .bar.bar-stable .title {
+        color:white !important;
+        }
+        .bar-stable .button.button-clear {
+        color:white !important;
+        }
     </style>
     <link rel="stylesheet" href="css/jquery.spinner.css?6" />
     <link rel="stylesheet" href="css/jquery.spinner2.css?6" />
@@ -90,26 +108,26 @@
     <link href="mobiscroll/css/mobiscroll.wp.css" rel="stylesheet" type="text/css" />
     <link href="mobiscroll/css/mobiscroll.animation.css" rel="stylesheet" type="text/css" />
 </head>
-<ion-view hide-nav-bar="true">
+<ion-view hide-nav-bar="false">
 </ion-view>
 <ion-view view-title="接机服务" class="air_service">
     <ion-content>
-        <div class="header">
+        <!--<div class="header">
             <div id="navigation" class="touchcarousel">
                 <div class="background">
                     <a href="#/air_booking"><img class="arrow" src="images/arrow2.png" /></a>
-                    <h1 class="n_title">接机服务</h1>
+                    <h1 class="n_title">接送机服务</h1>
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <div class="index_wrap">
             <div class="colorgray"><p class="car_toptitle"><span>行程详情</span></p></div>
             <div class="car_search_wrap" style="display:block">
-                <p>降落机场</p>
+                <p class="pickosendplane">降落机场</p>
                 <p style="margin-left:0">{{airportname}}</p>
                 <div style="height:5px"></div>
-                <p>
+                <p class="pickosendaddress">
                     目的地
                 </p>
                 <p style="margin-left:0">{{endaddress}}</p>
@@ -117,7 +135,7 @@
                 <div><span class="inputlefttext">航班号：</span><input id="pickupFlightNo" style="width:60%;display:inline;padding-top:0;margin-left:10px" type="text" placeholder="请输入航班号"></div>
                 <hr />
                 <div>
-                    <span class="inputlefttext">接机时间：</span>
+                    <span class="inputlefttext">接送时间：</span>
                     <ionic-datepicker date="currentDate" min="minDate" max="maxDate" callback="datePickerCallback">
                         <button class="button button-block button-positive mybuttondate" style="width:45% !important">
                             {{ currentDate | date:'yyyy-MM-dd' }}<span class="weekdayget"></span>
@@ -171,12 +189,12 @@
             </div>
 
             <div class="colorgray"><p class="car_toptitle"><span>订单备注</span></p></div>
-            <textarea class="boxremark"></textarea>
+            <textarea id="memo" class="boxremark"></textarea>
 
             <div class="colorgray"><p class="car_toptitle"><span>费用详情</span></p></div>
             <div class="car_search_wrap" style="display:block">
                 <div>
-                    <span>接机：</span><span style="float:right">¥ {{pickprice}}*1次</span>
+                    <span>接送机：</span><span style="float:right">¥ {{pickprice}}*1次</span>
                 </div>
                 <div>
                     <span>夜间服务费：</span><span id="nighttipcost" style="float:right">0</span><span style="float:right">¥ </span> 

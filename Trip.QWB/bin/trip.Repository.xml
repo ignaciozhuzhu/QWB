@@ -354,6 +354,16 @@
             程序猿大战产品汪去了，没时间写注释
             </summary>
         </member>
+        <member name="P:Trip.Repository.Entities.DepartmentEntity.StoreAddress">
+            <summary>
+            门店地址
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.DepartmentEntity.Introduction">
+            <summary>
+            简介
+            </summary>
+        </member>
         <member name="T:Trip.Repository.Entities.GuideExtEntity">
             <summary>
             A class which represents the GuideExt table.
@@ -1154,9 +1164,119 @@
             送机价格
             </summary>
         </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.from_date">
+            <summary>
+            开始日期, 格式YYYY-MM-DD,如: 2016-01-11
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.from_location_id">
+            <summary>
+            开始城市id, city的id
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.to_date">
+            <summary>
+            结束日期, 格式YYYY-MM-DD,如: 2016-01-11
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.car_category_id">
+            <summary>
+            车型id
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.car_category_name">
+            <summary>
+            车型名称
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.driver_category_id">
+            <summary>
+            导游级别id
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.driver_category_name">
+            <summary>
+            导游类型名称
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.pickup_airport_code">
+            <summary>
+            接机机场三字码
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.pickup_flight">
+            <summary>
+            接机航班号
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.pickup_time">
+            <summary>
+            接机时间 'YYYY-MM-DD hh:mm', 如: "2015-01-11 12:20"
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.drop_off_airport_code">
+            <summary>
+            送机机场三字码
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.drop_off_flight">
+            <summary>
+            送机航班号
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.drop_off_time">
+            <summary>
+            送机时间 'YYYY-MM-DD hh:mm', 如: "2015-01-11 12:20"
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.kids_age">
+            <summary>
+            儿童年龄, 当有儿童数时必须, 例: [1,2,3]
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.travel_items">
+            <summary>
+            行程信息
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.price">
+            <summary>
+            基础价格
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.food_fee">
+            <summary>
+            导游餐补, RMB元
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.room_fee">
+            <summary>
+            导游住补, RMB元
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.tips">
+            <summary>
+            导游小费, RMB元
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.TravelItem.location_id">
+            <summary>
+            行程城市id
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.TravelItem.days">
+            <summary>
+            停留时间
+            </summary>
+        </member>
         <member name="T:Trip.Repository.Entities.OrderViewEntity">
             <summary>
             A class which represents the OrderView view.
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.OrderViewEntity.QuWanBeiCarInfo">
+            <summary>
+            去玩呗 用车订单详情
             </summary>
         </member>
         <member name="P:Trip.Repository.Entities.OrderViewEntity.QuWanBeiAirportTransferInfo">
@@ -1539,6 +1659,11 @@
             程序猿大战产品汪去了，没时间写注释
             </summary>
         </member>
+        <member name="P:Trip.Repository.Entities.OrderViewEntity.BelongsToShopId">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
         <member name="P:Trip.Repository.Entities.OrderViewEntity.ContactGuideId">
             <summary>
             程序猿大战产品汪去了，没时间写注释
@@ -1560,6 +1685,36 @@
             </summary>
         </member>
         <member name="P:Trip.Repository.Entities.OrderViewEntity.GuideDepartmentName">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.OrderViewEntity.ContactGuideName">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.OrderViewEntity.ContactGuideMobile">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.OrderViewEntity.ContactGuideQQ">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.OrderViewEntity.ProductShopIsB2BPlatform">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.OrderViewEntity.ProductShopB2BPlatformContact">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.OrderViewEntity.ProductShopName">
             <summary>
             程序猿大战产品汪去了，没时间写注释
             </summary>
@@ -4259,9 +4414,19 @@
             程序猿大战产品汪去了，没时间写注释
             </summary>
         </member>
+        <member name="P:Trip.Repository.Entities.ProductPlanEnterEntity.BelongsToShopId">
+            <summary>
+            平台微店所属B2B平台社Id
+            </summary>
+        </member>
         <member name="P:Trip.Repository.Entities.ProductPlanEnterEntity.AdultNum">
             <summary>
             成人数量
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.ProductPlanEnterEntity.QuWanBeiCarInfo">
+            <summary>
+            去玩呗 用车订单详情
             </summary>
         </member>
         <member name="P:Trip.Repository.Entities.ProductPlanEnterEntity.QuWanBeiAirportTransferInfo">

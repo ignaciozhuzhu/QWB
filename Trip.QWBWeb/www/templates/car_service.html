@@ -66,15 +66,15 @@
             background-color: #01d4c1;
         }
 
-        .marginleft10 {
+        .car_service .marginleft10 {
             margin-left: 10px;
         }
 
-        .marginleft8 {
+        .car_service .marginleft8 {
             margin-left: 8px;
         }
 
-        .mytimepicker {
+        .car_service .mytimepicker {
             border: 1px solid #bbb;
             width: 70px;
             margin-left: -10px;
@@ -85,9 +85,18 @@
             box-shadow: inset 0 1px 4px rgba(0,0,0,.2);*/
         }
 
-        .boxpriceslt {
+        .car_service .boxpriceslt {
             background: #f2f4f3;
             padding: 10px;
+        }
+        ion-header-bar {
+        background-color:black !important;
+        }
+        .bar.bar-stable .title {
+        color:white !important;
+        }
+        .bar-stable .button.button-clear {
+        color:white !important;
         }
     </style>
     <link rel="stylesheet" href="css/jquery.spinner.css?6" />
@@ -105,6 +114,7 @@
 </head>
 <ion-view hide-nav-bar="false">
 </ion-view>
+
 <ion-view view-title="用车服务" class="car_service">
     <ion-content>
         <!--<div class="header">
@@ -124,14 +134,14 @@
                 <p style="margin-left:0">{{date1}}至{{date2}}(共{{daysdiff}}天)</p>
                 <div style="height:5px"></div>
                 <p>
-                    用车城市
+                    出发城市
                 </p>
                 <p style="margin-left:0">{{cityname}}</p>
             </div>
 
             <div class="colorgray"><p class="car_toptitle"><span>出行信息</span></p></div>
             <div class="car_search_wrap" style="display:block">
-                <span class="inputlefttext" ng-click="aaa()">出行车型：</span><span class="marginleft10">{{car_name}}({{car_brand}}同等车型)</span>
+                <span class="inputlefttext">出行车型：</span><span class="marginleft10">{{car_name}}({{car_brand}}同等车型)</span>
                 <hr />
                 <div><span class="inputlefttext">服务等级：</span><span class="marginleft10">{{driver_category_name}}</span> </div>
                 <div>
@@ -177,7 +187,7 @@
                 </div>
                 <hr />
                 <div style="overflow:hidden">
-                    <span>费用合计：</span><span id="totalcost" style="float:right">{{total_price}}</span><span style="float:right">¥ </span>
+                    <span>费用合计：</span><span id="totalcost" style="float:right"> {{total_price}}</span><span style="float:right">¥ </span>
                     <!--<span style="float:right;clear:both">汇率 0.0651</span>
                     <span style="float:right;clear:both">RMB 501</span>-->
                 </div>

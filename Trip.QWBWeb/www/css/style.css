@@ -5518,13 +5518,13 @@ body > aside {
 }
 /* 境外用车 */
 .car_search_wrap {
-    padding: 8px;
+    padding: 1px 8px;
 }
 
 .car_serach {
     background-color: #fff;
     border: 1px solid #dbdbdb;
-    padding: 10px 0;
+    padding: 7px 0;
     position: relative;
 }
 
@@ -5650,7 +5650,7 @@ body > aside {
 
 .car_toptitle {
     border-left: 4px solid #ff6f65;
-    margin: 10px 0 12px 0;
+    margin: 10px 0;
     line-height: 14px;
     font-size: 15px;
 }

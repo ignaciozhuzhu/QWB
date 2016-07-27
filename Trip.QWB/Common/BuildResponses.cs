@@ -17,7 +17,7 @@ namespace Trip.QWB.Common
 
         public static string buildCarlistResponse(string car_category_id, int locationid, string strparam2, string geturl)
         {
-            var responseCarList = qwbApi.getCarsList(locationid);
+            var responseCarList = qwbApi.getCarsList(Convert.ToInt32(locationid));
             var resultCarList = JsonConvert.DeserializeObject<carListMod>(responseCarList);
 
             var response = "{\"list\": [";

@@ -55,7 +55,7 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
      })
       //接送机车的列表
      .state('app.carlist', {
-         url: '/carlist/:airportname/:caridArray/:airportscode/:date/:endaddress/:wcityid',
+         url: '/carlist/:pickosend/:airportname/:caridArray/:airportscode/:date/:endaddress/:wcityid',
          views: {
              'menuContent': {
                  templateUrl: 'templates/carlist.html',
@@ -65,6 +65,7 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
      })
       //标准用车的列表
      .state('app.carlist2', {
+         //cache: false,
          url: '/carlist2/:cityname/:caridArray/:date1/:date2/:wcityid',
          views: {
              'menuContent': {
@@ -84,7 +85,7 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
      })
         //接送机服务
      .state('app.air_service', {
-         url: '/air_service/:airportname/:brand/:car_name/:driver_category_name/:carid/:pickprice/:airportscode/:date/:endaddress',
+         url: '/air_service/:pickosend/:airportname/:brand/:car_name/:driver_category_name/:carid/:pickprice/:airportscode/:date/:endaddress',
          views: {
              'menuContent': {
                  templateUrl: 'templates/air_service.html',

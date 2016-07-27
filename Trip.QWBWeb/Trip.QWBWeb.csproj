@@ -1315,6 +1315,8 @@
     <Content Include="www\templates\air_service.html" />
     <Content Include="www\templates\carlist.html" />
     <Content Include="www\templates\carsearch.html" />
+    <Content Include="www\templates\directivedemo\angular-1.4.6.min.js" />
+    <Content Include="www\templates\directivedemo\index.html" />
     <Content Include="www\templates\index.html" />
     <Content Include="www\templates\index2.html" />
     <Content Include="www\templates\menu.html" />

@@ -8,22 +8,55 @@
         font-size: 16px;
     }
 
-    .nav_link ul li {
+    .carsearch .nav_link ul li {
         border-top: none;
     }
 
-    .nav_link {
+    .carsearch .nav_link {
         overflow: hidden;
     }
 
-    .displaynonecity {
+    .carsearch .displaynonecity {
         display: none;
     }
+
+    .carsearch .displayblock {
+        display: block !important;
+    }
+
+    .carsearch.pane, .carsearch .pane {
+        background-color: #f2f4f3;
+    }
+
+    carlinedetailpday {
+        display: none;
+    }
+
+    .citydistancetip {
+        margin-left: 5%;
+        font-size: 1.3rem;
+        color: gray;
+    }
+
+    .carsearch .displaynone {
+        display: none;
+    }
+
+    /* Chrome浏览器 */
+    ::-webkit-input-placeholder {
+        padding-left: 4%;
+    }
+
+    /* 火狐浏览器 */
+    ::-moz-placeholder {
+        padding-left: 4%;
+    }
+
 </style>
 <ion-view hide-nav-bar="true">
 </ion-view>
-<ion-view view-title="标准用车">
-    <ion-content class="boxcarsearch stable-bg2">
+<ion-view view-title="标准用车" class="carsearch">
+    <ion-content class="stable-bg2">
         <div class="header headtall">
             <div id="navigation" class="touchcarousel navtall">
                 <div class="background backgroundblack">
@@ -54,7 +87,7 @@
                     </select>
                 </div>
                 <div class="height8"></div>
-                <div class="car_serach">
+                <div class="car_serach" style="padding:4px 0">
                     <span class="car_search_toptitle">开始用车</span>
                     <div></div>
                     <ionic-datepicker date="currentDate" min="minDate" max="maxDate" callback="datePickerCallback">
@@ -63,7 +96,7 @@
 
                 </div>
                 <div class="height8"></div>
-                <div class="car_serach">
+                <div class="car_serach endcartime" style="padding:4px 0">
                     <span class="car_search_toptitle">结束用车</span>
                     <div></div>
                     <ionic-datepicker date="currentDate2" min="minDate2" max="maxDate2" callback="datePickerCallback2">
@@ -71,15 +104,16 @@
                     </ionic-datepicker><span class="weekdayget"></span>
                 </div>
                 <div class="height8"></div>
+
                 <div class="car_serach">
                     <span class="car_search_toptitle">用车城市</span>
-                    
+
                     <a class="btn-select car_select">
-                        <input id="inputcity" class="cur-select cur_car_select" ng-click="clickCity()" onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model.wcity" ng-change=changecity(model.wcity)>
-                        <div ng-hide="true" id="inputcityid" ng-model="model.wcityid"></div>
+                        <input class="cur-select cur_car_select" ng-click="clickCity()" onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model.wcity" ng-change=changecity(model.wcity)>
+                        <div ng-hide="true" ng-model="model.wcityid"></div>
                     </a>
 
-                    <div id="secondcities" style="display:none;margin:0 3%;max-height:310px;overflow:hidden">
+                    <div style="display:none;margin:0 3%;max-height:310px;overflow:hidden">
                         <hr />
                         <p style="font-weight:bold;">热门城市列表 可输入城市中文</p>
                         <div style="color:#9B9B9B;font-size:14px;max-height:70px;overflow:hidden" ng-repeat="x in areas">
@@ -89,98 +123,31 @@
                     </div>
 
                 </div>
+
+                <div class="carline" style="display:none">
+                    <p class="car_toptitle"><span>行程路线(当天结束城市)</span></p>
+                    <div class="carlinedetail" style="display:block">
+                        <carlinedetailpday myindex="1"></carlinedetailpday>
+                        <carlinedetailpday myindex="2"></carlinedetailpday>
+                        <carlinedetailpday myindex="3"></carlinedetailpday>
+                        <carlinedetailpday myindex="4"></carlinedetailpday>
+                        <carlinedetailpday myindex="5"></carlinedetailpday>
+                        <carlinedetailpday myindex="6"></carlinedetailpday>
+                        <carlinedetailpday myindex="7"></carlinedetailpday>
+                        <carlinedetailpday myindex="8"></carlinedetailpday>
+                        <carlinedetailpday myindex="9"></carlinedetailpday>
+                        <carlinedetailpday myindex="10"></carlinedetailpday>
+                    </div>
+                </div>
+
+                <input id="buttonadddate" class="button_green button_car displaynone" type="submit" ng-click="adddate()" value="＋ 添加日程" name="button">
+
                 <div class="height8"></div>
                 <hr class="hr_car">
                 <input id="button" class="button_green button_car" type="submit" ng-click="search()" value="立即搜索" name="button">
-            </div>
-            <div id="tbx2" class="car_search_wrap" style="display:none">
-                <p class="car_toptitle"><span>用车信息</span></p>
-                <div class="car_serach">
-                    <span class="car_search_toptitle">用车地域</span>
-                    <a class="btn-select car_select" id="btn_select">
-                        <span class="cur-select cur_car_select">欧洲大陆</span>
-                        <select id="date" name="date">
-                            <option value="日本">日本</option>
-                            <option value="中国-港台">中国-港台</option>
-                            <option value="欧洲大陆">欧洲大陆</option>
-                            <option value="韩国">韩国</option>
-                            <option value="欧洲非大陆">欧洲非大陆</option>
-                            <option value="北美地区">北美地区</option>
-                            <option value="大洋洲">大洋洲</option>
-                            <option value="亚洲大陆">亚洲大陆</option>
-                            <option value="印尼">印尼</option>
-                        </select>
-                    </a>
-                </div>
-                <div class="height8"></div>
-                <div class="car_serach">
-                    <span class="car_search_toptitle">开始日期</span>
-                    <a class="btn-select car_select" id="btn_select">
-                        <span class="cur-select cur_car_select">2016-06-29</span>
-                        <select id="date" name="date">
-                            <option value="2016-06-29">2016-06-29</option>
-                        </select>
-                    </a>
-                </div>
-                <div class="height8"></div>
-                <div class="car_serach">
-                    <span class="car_search_toptitle">开始城市</span>
-                    <a class="btn-select car_select" id="btn_select">
-                        <span class="cur-select cur_car_select">柏林</span>
-                        <select id="date" name="date">
-                            <option value="柏林">柏林</option>
-                            <option value="中国-港台">中国-港台</option>
-                            <option value="欧洲大陆">欧洲大陆</option>
-                            <option value="韩国">韩国</option>
-                            <option value="欧洲非大陆">欧洲非大陆</option>
-                            <option value="北美地区">北美地区</option>
-                            <option value="大洋洲">大洋洲</option>
-                            <option value="亚洲大陆">亚洲大陆</option>
-                            <option value="印尼">印尼</option>
-                        </select>
-                    </a>
-                </div>
-                <div class="height8"></div>
-                <div class="car_toptitle"><span>行程路线（当天结束城市）</span></div>
-                <div class="car_serach">
-                    <span class="car_search_left">DAY 1</span>
-                    <span class="car_search_toptitle left_move">2016-06-29</span>
-                    <a class="btn-select car_select_left" id="btn_select">
-                        <span class="cur-select cur_car_select">柏林</span>
-                        <select id="date" name="date">
-                            <option value="柏林">柏林</option>
-                        </select>
-                    </a>
-                </div>
-                <div class="height8"></div>
-                <div class="car_serach">
-                    <span class="car_search_left">DAY 2</span>
-                    <span class="car_search_toptitle left_move">2016-06-30</span>
-                    <a class="btn-select car_select_left" id="btn_select">
-                        <span class="cur-select cur_car_select">柏林</span>
-                        <select id="date" name="date">
-                            <option value="柏林">柏林</option>
-                        </select>
-                    </a>
-                </div>
-                <div class="height8"></div>
-                <div class="car_serach">
-                    <span class="car_search_left">DAY 3</span>
-                    <span class="car_search_toptitle left_move">2016-07-01</span>
-                    <a class="btn-select car_select_left" id="btn_select">
-                        <span class="cur-select cur_car_select">柏林</span>
-                        <select id="date" name="date">
-                            <option value="柏林">柏林</option>
-                        </select>
-                    </a>
-                </div>
-                <div class="height8"></div>
-                <input id="button" class="button_green button_car" type="submit" onclick="window.open('#')" value="+ 添加日程" name="button" />
-                <hr class="hr_car">
-                <input id="button" class="button_green button_car" type="submit" onclick="window.open('carlist.html')" value="立即搜索" name="button" />
-            </div>
 
-
+                <div style="height:50px"></div>
+            </div>
         </div>
     </ion-content>
 </ion-view>

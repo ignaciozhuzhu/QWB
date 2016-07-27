@@ -103,6 +103,16 @@ var parserDate = function (date) {
     }
 };
 
+//两个YY-MM-DD格式的日期相减得到的相差日期函数 ,这是加一天的
+function diffDateBy2days(date1, date2) {
+    return parseInt(((new Date(date2.replace(/-/g, "/"))).getTime() - (new Date(date1.replace(/-/g, "/"))).getTime()) / (1000 * 60 * 60 * 24)) + 1;
+}
+//两个YY-MM-DD格式的日期相减得到的相差日期函数 ,这是自定义加不加,默认不加
+function diffDateBy2days2(date1, date2, addday) {
+    var addday = arguments[2] ? arguments[2] : 0;//设置参数addday的默认值为0
+    return parseInt(((new Date(date2.replace(/-/g, "/"))).getTime() - (new Date(date1.replace(/-/g, "/"))).getTime()) / (1000 * 60 * 60 * 24)) + addday;
+}
+
 //获取当前地
 function getPro() {
     var url = 'http://chaxun.1616.net/s.php?type=ip&output=json&callback=?&_=' + Math.random();

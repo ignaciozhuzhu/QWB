@@ -133,14 +133,15 @@ namespace Trip.QWBWeb.ajax
         {
             string car_category_id = "";
             string pickup_time1 = "";
+            //多地用车的时候把日期存到pickup_time1,用|分隔开.
             string pickup_time2 = "";
-            int locationid = 0;
+            string locationid = "";
             try
             {
                 car_category_id = HttpContext.Current.Request["car_category_id"];
                 pickup_time1 = HttpContext.Current.Request["pickup_time1"];
                 pickup_time2 = HttpContext.Current.Request["pickup_time2"];
-                locationid = Convert.ToInt32(HttpContext.Current.Request["locationid"]);
+                locationid = HttpContext.Current.Request["locationid"];
             }
             catch { }
             HttpContext.Current.Response.Write(Trip.QWB.qwbApi.getbookingsnew(car_category_id, pickup_time1, pickup_time2, locationid));
@@ -152,7 +153,7 @@ namespace Trip.QWBWeb.ajax
         public void getbookingsnewp1()
         {
             string from_date = "";
-            int from_location_id = 0;
+            string from_location_id = "";
             string to_date = "";
             int car_category_id = 0;
             int driver_category_id = 0;
@@ -162,7 +163,7 @@ namespace Trip.QWBWeb.ajax
             try
             {
                 from_date = HttpContext.Current.Request["from_date"];
-                from_location_id = Convert.ToInt32(HttpContext.Current.Request["from_location_id"]);
+                from_location_id = HttpContext.Current.Request["from_location_id"];
                 to_date = HttpContext.Current.Request["to_date"];
                 car_category_id = Convert.ToInt32(HttpContext.Current.Request["car_category_id"]);
                 driver_category_id = Convert.ToInt32(HttpContext.Current.Request["driver_category_id"]);
@@ -174,7 +175,7 @@ namespace Trip.QWBWeb.ajax
                     kids_age[0] = Convert.ToInt32(HttpContext.Current.Request["kids_age"]);
                 }
             }
-            catch { }
+            catch (Exception e) { }
             HttpContext.Current.Response.Write(Trip.QWB.qwbApi.getbookingsnewP1(from_date, from_location_id, to_date, car_category_id, driver_category_id, adults, kids, kids_age));
         }
 
@@ -190,6 +191,22 @@ namespace Trip.QWBWeb.ajax
             }
             catch { }
             HttpContext.Current.Response.Write(Trip.QWB.qwbApi.createcarordertg(json));
+        }
+
+        /// <summary>
+        /// 获取城市间距离
+        /// </summary>
+        public void getdistances()
+        {
+            int from_location_id = 0;
+            int to_location_id = 0;
+            try
+            {
+                from_location_id = Convert.ToInt32( HttpContext.Current.Request["from_location_id"]);
+                to_location_id = Convert.ToInt32(HttpContext.Current.Request["to_location_id"]);
+            }
+            catch { }
+            HttpContext.Current.Response.Write(Trip.QWB.qwbApi.getdistances(from_location_id, to_location_id));
         }
 
         public bool IsReusable

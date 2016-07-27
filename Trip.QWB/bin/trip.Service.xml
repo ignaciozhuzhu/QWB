@@ -501,6 +501,14 @@
             <param name="shopId"></param>
             <returns></returns>
         </member>
+        <member name="M:Trip.Service.OrderExtensions.IsFromMicroShop(Trip.Repository.Entities.OrderViewEntity,System.Int32)">
+            <summary>
+            是否来自平台微店的订单
+            </summary>
+            <param name="order"></param>
+            <param name="shopId"></param>
+            <returns></returns>
+        </member>
         <member name="M:Trip.Service.OrderExtensions.BuildRandomStr(System.Int32)">
             <summary>
             取随机数
@@ -1480,6 +1488,13 @@
             <summary>
             小小号，线路，文章，分类，返回归属旅行社的店铺编号
             </summary>
+        </member>
+        <member name="M:Trip.Service.ShopExtensions.GetB2BPlatformShopId(Trip.Repository.Entities.ShopEntity)">
+            <summary>
+            获取平台微店所属的B2B平台社ID
+            </summary>
+            <param name="shop"></param>
+            <returns></returns>
         </member>
         <member name="M:Trip.Service.ShopService.GetB2BPlatformShops">
             <summary>
