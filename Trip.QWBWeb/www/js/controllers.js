@@ -82,7 +82,8 @@ angular.module('starter.controllers', [])
 })
 
     //标准车--------------------------------------------------------------------------------------------------------------
-.controller('carsearchCtrl', function ($scope, $http) {
+.controller('carsearchCtrl', function ($scope, $http, $ionicScrollDelegate) {
+
     var soloovarious = "";
     //单地用车标签
     $scope.solo = function () {
@@ -104,6 +105,7 @@ angular.module('starter.controllers', [])
     }
 
     $scope.clickCity = function ($event) {
+        $ionicScrollDelegate.scrollTo(0, 200);
         var indexposition = $event.target.outerHTML.indexOf("model[");
         var myindex = $event.target.outerHTML.substring(indexposition + 6, indexposition + 7);
         $(".carsearch .citydistancetip")[myindex - 1].className = "citydistancetip displaynone";
@@ -124,25 +126,24 @@ angular.module('starter.controllers', [])
     var nghttp = "../../ajax/apihandler.ashx?fn=getcitieslist";
     var responseche;
     $http.get(nghttp).success(function (response) {
+        for (var i = 0; i < response.zones.length; i++) {
+            for (var j = 0; j < response.zones[i].areas.length; j++) {
+                if (response.zones[i].areas[j].is_hot == false)
+                    response.zones[i].areas[j].is_hot = "a";
+                for (var k = 0; k < response.zones[i].areas[j].cities.length; k++) {
+                    if (response.zones[i].areas[j].cities[k].is_hot == false)
+                        response.zones[i].areas[j].cities[k].is_hot = "b";
+                }
+            }
+        }
         responseche = response;
         $scope.zones = response.zones;
     });
 
     //用车地域改变监听
-    var getareax;
     $scope.change = function (x) {
-        getareax = x;
         for (var i = 0; i < responseche.zones.length; i++) {
             if (responseche.zones[i].id == x) {
-
-                for (var j = 0; j < responseche.zones[i].areas.length; j++) {
-                    if (responseche.zones[i].areas[j].is_hot == false)
-                        responseche.zones[i].areas[j].is_hot = "a";
-                    for (var k = 0; k < responseche.zones[i].areas[j].cities.length; k++) {
-                        if (responseche.zones[i].areas[j].cities[k].is_hot == false)
-                            responseche.zones[i].areas[j].cities[k].is_hot = "b";
-                    }
-                }
                 $scope.areas = responseche.zones[i].areas;
             }
         }
@@ -184,6 +185,11 @@ angular.module('starter.controllers', [])
         $scope.caridArray = "";
         cityselectfun();
         displaynonecountry();
+
+        //清空距离提示
+        for (var i = 0; i < 10; i++) {
+            $(".carsearch .citydistancetip")[i].innerText = "";
+        }
     }
     //动态控件的城市点击事件
     $scope.selectcity2 = function ($event) {
@@ -310,6 +316,16 @@ angular.module('starter.controllers', [])
             date2 = $("ionic-datepicker")[1].innerText.trim();
             cityid = $scope.model.wcityid;
         }
+
+        if (!$scope.model.wcity) {
+            layermyui('请选择城市');
+            return;
+        }
+        if (date1 > date2 && soloovarious == 1) {
+            layermyui('开始时间不能晚于结束时间');
+            return;
+        }
+
         window.location.href = "#/app/carlist2/" + $scope.model.wcity + "/" + $scope.caridArray + "/" + date1 + "/" + date2 + "/" + cityid + "";
     }
 })
@@ -320,7 +336,7 @@ angular.module('starter.controllers', [])
     var pickosend = 1;
     //防止菜鸟客户看不到城市选择框
     $scope.clickCity = function () {
-        // $ionicScrollDelegate.scrollTo(0, 250);
+        $ionicScrollDelegate.scrollTo(0, 250);
     }
 
     $scope.pick = function () {
@@ -333,8 +349,8 @@ angular.module('starter.controllers', [])
         pickosend = 1;
     }
     $scope.send = function () {
-        $(".air_booking .pickcity")[0].innerText = "送达城市";
-        $(".air_booking .pickairport")[0].innerText = "送达机场";
+        $(".air_booking .pickcity")[0].innerText = "出发城市";
+        $(".air_booking .pickairport")[0].innerText = "出发机场";
         $(".air_booking .pickdate")[0].innerText = "上车日期";
         $(".air_booking .pickaddress")[0].innerText = "上车地点";
         $(".air_booking #new1").css("color", "#b1b1b1");
@@ -350,25 +366,24 @@ angular.module('starter.controllers', [])
     var nghttp = "../../ajax/apihandler.ashx?fn=getcitieslist";
     var responseche;
     $http.get(nghttp).success(function (response) {
+        for (var i = 0; i < response.zones.length; i++) {
+            for (var j = 0; j < response.zones[i].areas.length; j++) {
+                if (response.zones[i].areas[j].is_hot == false)
+                    response.zones[i].areas[j].is_hot = "a";
+                for (var k = 0; k < response.zones[i].areas[j].cities.length; k++) {
+                    if (response.zones[i].areas[j].cities[k].is_hot == false)
+                        response.zones[i].areas[j].cities[k].is_hot = "b";
+                }
+            }
+        }
         responseche = response;
         $scope.zones = response.zones;
     });
 
     //用车地域改变监听
-    var getareax;
     $scope.change = function (x) {
-        getareax = x;
         for (var i = 0; i < responseche.zones.length; i++) {
             if (responseche.zones[i].id == x) {
-
-                for (var j = 0; j < responseche.zones[i].areas.length; j++) {
-                    if (responseche.zones[i].areas[j].is_hot == false)
-                        responseche.zones[i].areas[j].is_hot = "a";
-                    for (var k = 0; k < responseche.zones[i].areas[j].cities.length; k++) {
-                        if (responseche.zones[i].areas[j].cities[k].is_hot == false)
-                            responseche.zones[i].areas[j].cities[k].is_hot = "b";
-                    }
-                }
                 $scope.areas = responseche.zones[i].areas;
             }
         }
@@ -379,6 +394,7 @@ angular.module('starter.controllers', [])
 
         displaynonecountry();
     }
+
     //输入降落城市框监听
     $scope.changecity = function () {
         displaynonecountry();
@@ -425,15 +441,21 @@ angular.module('starter.controllers', [])
         //var caridArray = "";
         var nghttp = "../../ajax/apihandler.ashx?fn=getairports&city_id=" + $scope.model.wcityid + "";
         $http.get(nghttp).success(function (response) {
-            $scope.airports = response.airports;
-            var nghttp = "../../ajax/apihandler.ashx?fn=getcarslist&locationid=" + $scope.model.wcityid + "";
-            $http.get(nghttp).success(function (response) {
-                //将车型id遍历存入 caridArray 字符串中
-                for (var i = 0; i < response.car_categories.length; i++) {
-                    $scope.caridArray += response.car_categories[i].id + "|";
-                }
-                $scope.caridArray = $scope.caridArray.substr(0, $scope.caridArray.length - 1);
-            })
+            if (response.airports.length > 0) {
+
+                $scope.airports = response.airports;
+                var nghttp = "../../ajax/apihandler.ashx?fn=getcarslist&locationid=" + $scope.model.wcityid + "";
+                $http.get(nghttp).success(function (response) {
+                    //将车型id遍历存入 caridArray 字符串中
+                    for (var i = 0; i < response.car_categories.length; i++) {
+                        $scope.caridArray += response.car_categories[i].id + "|";
+                    }
+                    $scope.caridArray = $scope.caridArray.substr(0, $scope.caridArray.length - 1);
+                })
+            }
+            else {
+                layermyui('该城市未开通机场');
+            }
         })
     }
     //cities 组件ed
@@ -489,8 +511,18 @@ angular.module('starter.controllers', [])
 
     //立即搜索
     $scope.search = function () {
+        if (!$scope.model2.airports) {
+            layermyui('请选择机场');
+            return;
+        }
+        if (!$scope.model3.endaddress) {
+            layermyui('请选择地点');
+            return;
+        }
+
         var date = $("ionic-datepicker")[0].innerText;
         window.location.href = "#/app/carlist/" + pickosend + "/" + $scope.model2.airportname + "/" + $scope.caridArray + "/" + $scope.model2.airportscode + "/" + date + "/" + $scope.model3.endaddress + "/" + $scope.model.wcityid + "";
+
     }
 
 })
@@ -510,8 +542,10 @@ angular.module('starter.controllers', [])
     var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
     $http.get(nghttp).success(function (response) {
         layer.close(mylayeruiwait);
-        if (response.list == null)
-            layermyui('暂无数据');
+        if (response.list == null) {
+            //layermyui('暂无数据');
+            $(".carlist .accordioncl").append("很抱歉,该地目前未有车型推荐!");
+        }
         else {
             $scope.car_categories = response.list;
         }
@@ -552,8 +586,10 @@ angular.module('starter.controllers', [])
     var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
     $http.get(nghttp).success(function (response) {
         layer.close(mylayeruiwait);
-        if (response.list == null)
-            layermyui('暂无数据');
+        if (response.list == null) {
+            //layermyui('暂无数据');
+            $(".carlist .accordioncl").append("很抱歉,该地目前未有车型推荐!");
+        }
         else {
             $scope.car_categories = response.list;
         }
@@ -689,10 +725,12 @@ angular.module('starter.controllers', [])
 
         var json = "";
         var api_url = "http://test.haihuilai.com/apis/qwb/v1/air_bookings/create";
-        var shop_id = 55;// getCookie('shopid4QWB');
+        var shop_id = getCookie('shopid4QWB');// 55;
+        if (!shop_id) { shop_id = 55; }
         var source_guide_id = "";
         var guide_id = "";
-        var customer_id = 15086;// getCookie('custid4QWB');
+        var customer_id = getCookie('custid4QWB');// 15086;
+        if (!customer_id) { customer_id = 15086 }
         //订单信息
         var car_category_id = carid;
         //接机
@@ -809,7 +847,7 @@ angular.module('starter.controllers', [])
         $('.car_service .spinner').spinner({ max: 5 });
         $('.car_service .spinner2').spinner2({ max: 5 });
     })
-    
+
     $scope.cityname = cityname;
     $scope.cityid = cityid;
     $scope.daysdiff = daysdiff;
@@ -845,10 +883,12 @@ angular.module('starter.controllers', [])
     $scope.createorder = function () {
         var json = "";
         var api_url = "http://test.haihuilai.com/apis/qwb/v1/bookings/create";
-        var shop_id = 55;// getCookie('shopid4QWB');
+        var shop_id = getCookie('shopid4QWB'); //55;//
+        if (!shop_id) { customer_id = 55 }
         var source_guide_id = "";
         var guide_id = "";
-        var customer_id = 15086;// getCookie('custid4QWB');
+        var customer_id = getCookie('custid4QWB'); //15086;// 
+        if (!customer_id) { customer_id = 15086 }
         //订单信息
         //接机
 
@@ -868,7 +908,7 @@ angular.module('starter.controllers', [])
 
             travel_itemsstr += "{\"location_id\":" + location_idarray[0] + ",\"days\":1},";
             for (var i = 1; i < datearray.length; i++) {
-                travel_itemsstr += "{\"location_id\":" + location_idarray[i] + ",\"days\":" + diffDateBy2days2(datearray[parseInt(i) - 1], datearray[i])  + "},";
+                travel_itemsstr += "{\"location_id\":" + location_idarray[i] + ",\"days\":" + diffDateBy2days2(datearray[parseInt(i) - 1], datearray[i]) + "},";
             }
             travel_itemsstr = travel_itemsstr.substr(0, travel_itemsstr.length - 1);
             from_location_id = location_idarray[0];

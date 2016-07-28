@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Reflection;
 using System.Web;
 using System.Web.Security;
@@ -39,8 +40,11 @@ namespace Trip.QWBWeb.ajax
         /// </summary>
         public void getcitieslist()
         {
+            //var ticket = HttpContext.Current.Request.Cookies["cusid"].Value;
+            //var guideId = FormsAuthentication.Decrypt(ticket);
             HttpContext.Current.Response.Write(Trip.QWB.qwbApi.getCitiesList());
         }
+
         /// <summary>
         /// 获取车型列表
         /// </summary>
@@ -202,7 +206,7 @@ namespace Trip.QWBWeb.ajax
             int to_location_id = 0;
             try
             {
-                from_location_id = Convert.ToInt32( HttpContext.Current.Request["from_location_id"]);
+                from_location_id = Convert.ToInt32(HttpContext.Current.Request["from_location_id"]);
                 to_location_id = Convert.ToInt32(HttpContext.Current.Request["to_location_id"]);
             }
             catch { }
