@@ -50,6 +50,7 @@ hr {
     border: 0;
     border-top: 1px solid #cccccc;
     padding: 0;
+    margin:5px 0;
 }
 
 img {
@@ -5524,7 +5525,7 @@ body > aside {
 .car_serach {
     background-color: #fff;
     border: 1px solid #dbdbdb;
-    padding: 7px 0;
+    padding: 4px 0;
     position: relative;
 }
 
@@ -5700,7 +5701,7 @@ body > aside {
 
 .panel {
     border-radius: 0px;
-    margin-bottom: 8px;
+    margin-bottom: 1px;
     border-color: #dbdbdb;
 }
 

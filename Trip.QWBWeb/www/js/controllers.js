@@ -63,12 +63,12 @@ angular.module('starter.controllers', [])
             _html += '<input class="cur-select cur_car_select" ng-click="clickCity($event)" placeholder="请选择留宿城市" '
             _html += 'onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model[' + myindex + '].wcity" ng-change=changecity()>'
             _html += '<div ng-hide="true" ng-model="model[' + myindex + '].wcityid2"></div>'
-            _html += '</a> <div style="display:none;margin:0 3%;max-height:310px;overflow:hidden">'
+            _html += '</a> <div style="display:none;margin:0 3%;max-height:365px;overflow:hidden">'
             _html += '<hr />'
             _html += '<p style="font-weight:bold;">热门城市列表 可输入城市中文</p>'
-            _html += '<div style="color:#9B9B9B;font-size:14px;max-height:70px;overflow:hidden" ng-repeat="x in areas">'
+            _html += '<div style="color:#9B9B9B;font-size:16px;max-height:75px;overflow:hidden" ng-repeat="x in areas">'
             _html += '<div class="mycitynameclass">{{x.name}}</div>'
-            _html += '<span ng-click="selectcity2($event)" style="color:black;margin:0 3% 0 0"'
+            _html += '<span ng-click="selectcity2($event)" style="color:black;margin:0 6% 0 0;line-height:24px"'
             _html += 'ng-repeat="xx in x.cities|filter:model[' + myindex + '].wcity|filter:x.is_hot">{{xx.name}}'
             _html += '<span ng-show="false">{{xx.id}}</span></span>'
             _html += '</div>'
@@ -83,7 +83,7 @@ angular.module('starter.controllers', [])
 
     //标准车--------------------------------------------------------------------------------------------------------------
 .controller('carsearchCtrl', function ($scope, $http, $ionicScrollDelegate) {
-
+    //layermyui("hi," + getCookie('custid4QWB'));
     var soloovarious = "";
     //单地用车标签
     $scope.solo = function () {
@@ -105,7 +105,7 @@ angular.module('starter.controllers', [])
     }
 
     $scope.clickCity = function ($event) {
-        $ionicScrollDelegate.scrollTo(0, 200);
+        $ionicScrollDelegate.scrollTo(0, 270);
         var indexposition = $event.target.outerHTML.indexOf("model[");
         var myindex = $event.target.outerHTML.substring(indexposition + 6, indexposition + 7);
         $(".carsearch .citydistancetip")[myindex - 1].className = "citydistancetip displaynone";
@@ -332,11 +332,12 @@ angular.module('starter.controllers', [])
 
 //接送机搜索--------------------------------------------------------------------------------------------------------------
 .controller('air_bookingCtrl', function ($scope, $http, $ionicScrollDelegate) {
+    //layermyui("hi," + getCookie('custid4QWB'));
     //接机或送机
     var pickosend = 1;
     //防止菜鸟客户看不到城市选择框
     $scope.clickCity = function () {
-        $ionicScrollDelegate.scrollTo(0, 250);
+        $ionicScrollDelegate.scrollTo(0, 230);
     }
 
     $scope.pick = function () {
@@ -432,6 +433,8 @@ angular.module('starter.controllers', [])
         $scope.model2 = { airports: "", airportsid: 0, airportscode: "", airportname: "" };
         $scope.model3 = { endaddress: "" };
         $(".air_booking #inputendaddress")[0].value = "";
+        //清空送达地点的下拉框数据
+        $scope.endaddress = "";
 
         displaynonecountry();
     }
@@ -508,6 +511,9 @@ angular.module('starter.controllers', [])
     };
     //datepicker 组件ed
 
+    $scope.downsome = function () {
+        $ionicScrollDelegate.scrollTo(0, 310);
+    }
 
     //立即搜索
     $scope.search = function () {
@@ -544,9 +550,10 @@ angular.module('starter.controllers', [])
         layer.close(mylayeruiwait);
         if (response.list == null) {
             //layermyui('暂无数据');
-            $(".carlist .accordioncl").append("很抱歉,该地目前未有车型推荐!");
+            $(".carlist .smalltips").append("很抱歉,该地目前未有车型推荐!");
         }
         else {
+            $scope.group = uniqueObject(response);
             $scope.car_categories = response.list;
         }
     })
@@ -563,9 +570,11 @@ angular.module('starter.controllers', [])
 
     $scope.toogledown = function ($event) {
         var toggoleid = $event.target.parentElement.parentElement.parentElement.nextSibling.nextSibling;
-        $(toggoleid).slideToggle();
-        $(".collapse").css({ visibility: "visible" });
-        $ionicScrollDelegate.resize();
+        if (toggoleid.className == "panel-collapse collapse") {
+            $(toggoleid).slideToggle();
+            $(".collapse").css({ visibility: "visible" });
+            $ionicScrollDelegate.resize();
+        }
     }
 })
 
@@ -578,9 +587,6 @@ angular.module('starter.controllers', [])
     var date2 = decodeURI(getpbyurl(2));
     var wcityid = getpbyurl(1);
 
-    //date1 = "2016-08-01|2016-08-02|2016-08-03|2016-08-05|2016-08-06";
-    // date2 = "";
-    // wcityid = "2292|2334|2292|2334|2292";
     var nghttp = "../../ajax/apihandler.ashx?fn=getbookingsnew&car_category_id=" + caridArray + "&pickup_time1=" + date1 + "&pickup_time2=" + date2 + "&locationid=" + wcityid + "";
     //loading层
     var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
@@ -588,12 +594,17 @@ angular.module('starter.controllers', [])
         layer.close(mylayeruiwait);
         if (response.list == null) {
             //layermyui('暂无数据');
-            $(".carlist .accordioncl").append("很抱歉,该地目前未有车型推荐!");
+            $(".carlist .smalltips").append("很抱歉,该地目前未有车型推荐!");
         }
         else {
+            $scope.group = uniqueObject(response);
             $scope.car_categories = response.list;
         }
+    }).error(function (data, state) {
+        console.log(data);
     })
+
+
     $scope.ordernow = function ($event) {
         var targ = $event.target.previousElementSibling;
         var carid = targ.innerText;
@@ -607,9 +618,13 @@ angular.module('starter.controllers', [])
 
     $scope.toogledown = function ($event) {
         var toggoleid = $event.target.parentElement.parentElement.parentElement.nextSibling.nextSibling;
-        $(toggoleid).slideToggle();
-        $(".collapse").css({ visibility: "visible" });
-        $ionicScrollDelegate.resize();
+
+        if (toggoleid.className == "panel-collapse collapse") {
+            $(toggoleid).slideToggle();
+            $(".collapse").css({ visibility: "visible" });
+            $ionicScrollDelegate.resize();
+        }
+
     }
 })
 
@@ -720,17 +735,27 @@ angular.module('starter.controllers', [])
         }
     };
     //datepicker 组件ed----------------------------------------------
-
+    //接送机支付
     $scope.createorder = function () {
 
         var json = "";
         var api_url = "http://test.haihuilai.com/apis/qwb/v1/air_bookings/create";
-        var shop_id = getCookie('shopid4QWB');// 55;
-        if (!shop_id) { shop_id = 55; }
+
+        var shop_id = getCookie('shopid4QWB'); //55;//
+        //layermyui("hi," + getCookie('custid4QWB'));
+        if (!shop_id) { shop_id = 55 }
         var source_guide_id = "";
-        var guide_id = "";
-        var customer_id = getCookie('custid4QWB');// 15086;
-        if (!customer_id) { customer_id = 15086 }
+        var customer_id = getCookie('custid4QWB'); //15086;// 
+        //if (!customer_id) { customer_id = 15086 }
+        var guideid = getCookie('guideid4QWB');// 11350;
+        //if (!guideid) { guideid = 11350 }
+
+        var pidstr = "";
+        if (customer_id)
+            pidstr = ",\"customer_id\":" + customer_id + ""
+        else if (guideid)
+            pidstr = ",\"guide_id\":" + guideid + ""
+
         //订单信息
         var car_category_id = carid;
         //接机
@@ -783,7 +808,7 @@ angular.module('starter.controllers', [])
             return;
         }
 
-        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + ",\"customer_id\":" + customer_id + ",\"order\":{\"car_category_id\":" + car_category_id + ",\"pickup_airport_code\":\"" + pickup_airport_code + "\",\"pickup_flight\":\"" + pickup_flight + "\",\"pickup_time\":\"" + pickup_time + "\",\"pickup_addr\":\"" + pickup_addr + "\",\"adults\":" + adults + ",\"traveller\":" + traveller + ",\"memo\":\"" + memo + "\",\"key\":\"" + key + "\",\"sign\":\"" + sign + "\"}}";
+        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + "" + pidstr + ",\"order\":{\"car_category_id\":" + car_category_id + ",\"pickup_airport_code\":\"" + pickup_airport_code + "\",\"pickup_flight\":\"" + pickup_flight + "\",\"pickup_time\":\"" + pickup_time + "\",\"pickup_addr\":\"" + pickup_addr + "\",\"adults\":" + adults + ",\"traveller\":" + traveller + ",\"memo\":\"" + memo + "\",\"key\":\"" + key + "\",\"sign\":\"" + sign + "\"}}";
         var nghttp = "../../ajax/apihandler.ashx?fn=createordertg&json=" + json + "";
         var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
         $http.get(nghttp).success(function (response) {
@@ -880,15 +905,26 @@ angular.module('starter.controllers', [])
         })
     }
 
+    //layermyui("hi," + getCookie('custid4QWB'));
+    //标准车支付
     $scope.createorder = function () {
         var json = "";
         var api_url = "http://test.haihuilai.com/apis/qwb/v1/bookings/create";
         var shop_id = getCookie('shopid4QWB'); //55;//
-        if (!shop_id) { customer_id = 55 }
+        //layermyui("hi," + getCookie('custid4QWB'));
+        if (!shop_id) { shop_id = 55 }
         var source_guide_id = "";
-        var guide_id = "";
         var customer_id = getCookie('custid4QWB'); //15086;// 
-        if (!customer_id) { customer_id = 15086 }
+        //if (!customer_id) { customer_id = 15086 }
+        var guideid = getCookie('guideid4QWB');// 11350;
+        //if (!guideid) { guideid = 11350 }
+
+        var pidstr = "";
+        if (customer_id)
+            pidstr = ",\"customer_id\":" + customer_id + ""
+        else if (guideid)
+            pidstr = ",\"guide_id\":" + guideid + ""
+
         //订单信息
         //接机
 
@@ -935,16 +971,28 @@ angular.module('starter.controllers', [])
             kids_age = kids_age + "]";
         }
 
-        var order_no = "DDH00011";
-        var contactName = $("#contactName")[0].value;
-        var contactPassport = $("#contactPassport")[0].value;
-        var contactPhone = $("#contactPhone")[0].value;
+        var contactName = $(".car_service #contactName")[0].value;
+        var contactPassport = $(".car_service #contactPassport")[0].value;
+        var contactPhone = $(".car_service #contactPhone")[0].value;
         var traveller = "{\"name\":\"" + contactName + "\",\"passport\":\"" + contactPassport + "\",\"mobile\":\"" + contactPhone + "\"}";
 
         var key = "qwb_1467082083";
         var sign = "3b1b7113028cc5eeefa5cc61f4872827";
 
-        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + ",\"customer_id\":" + customer_id + ",\"order\":{\"from_date\":\"" + from_date + "\",\"from_location_id\":\"" + from_location_id + "\",\"to_date\":\"" + to_date + "\",\"car_category_id\":" + car_category_id + ",\"driver_category_id\":\"" + driver_category_id + "\",\"adults\":" + adults + "" + kids_age + ",\"order_no\":\"" + order_no + "\",\"traveller\":" + traveller + ",\"travel_items\":[" + travel_itemsstr + "],\"key\":\"" + key + "\",\"sign\":\"" + sign + "\"}}";
+        if (contactName == "") {
+            layermyui('请输入联系人姓名!');
+            return;
+        }
+        if (contactPassport == "") {
+            layermyui('请输入联系人证件号!');
+            return;
+        }
+        if (contactPhone == "") {
+            layermyui('请输入联系电话!');
+            return;
+        }
+
+        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + "" + pidstr + ",\"order\":{\"from_date\":\"" + from_date + "\",\"from_location_id\":\"" + from_location_id + "\",\"to_date\":\"" + to_date + "\",\"car_category_id\":" + car_category_id + ",\"driver_category_id\":\"" + driver_category_id + "\",\"adults\":" + adults + "" + kids_age + ",\"traveller\":" + traveller + ",\"travel_items\":[" + travel_itemsstr + "],\"key\":\"" + key + "\",\"sign\":\"" + sign + "\"}}";
         var nghttp = "../../ajax/apihandler.ashx?fn=createcarordertg&json=" + json + "";
         var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
         $http.get(nghttp).success(function (response) {
@@ -1004,7 +1052,9 @@ var timechange = function () {
 //air_booking.html
 function myfocus(ob) {
     $(ob.parentNode.nextElementSibling).css('display', 'block');
-    // $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
+    //if (ob.id == "inputendaddress" && !ob.value) {
+    //    $(ob.parentNode.nextElementSibling).css('display', 'none');
+    //}
 }
 //air_booking.html
 function myblur(ob) {

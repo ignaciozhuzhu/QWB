@@ -113,12 +113,12 @@
                         <div ng-hide="true" ng-model="model.wcityid"></div>
                     </a>
 
-                    <div style="display:none;margin:0 3%;max-height:310px;overflow:hidden">
+                    <div style="display:none;margin:0 3%;max-height:365px;overflow:hidden">
                         <hr />
                         <p style="font-weight:bold;">热门城市列表 可输入城市中文</p>
-                        <div style="color:#9B9B9B;font-size:14px;max-height:70px;overflow:hidden" ng-repeat="x in areas track by x.id">
+                        <div style="color:#9B9B9B;font-size:16px;max-height:75px;overflow:hidden" ng-repeat="x in areas track by x.id">
                             <div class="mycitynameclass">{{x.name}}</div>
-                            <span ng-click="selectcity($event)" style="color:black;margin:0 3% 0 0" ng-repeat="xx in x.cities|filter:model.wcity|filter:x.is_hot">{{xx.name}}<span ng-show="false">{{xx.id}}</span></span>
+                            <span ng-click="selectcity($event)" style="color:black;margin:0 6% 0 0;line-height:24px" ng-repeat="xx in x.cities|filter:model.wcity|filter:x.is_hot">{{xx.name}}<span ng-show="false">{{xx.id}}</span></span>
                         </div>
                     </div>
 

@@ -108,6 +108,7 @@
   <ItemGroup>
     <Compile Include="API\qwbApi.cs" />
     <Compile Include="Common\BuildResponses.cs" />
+    <Compile Include="Common\ConvertJson.cs" />
     <Compile Include="Model\car_categories.cs" />
     <Compile Include="Model\carPriceListMod.cs" />
     <Compile Include="Model\carListMod.cs" />

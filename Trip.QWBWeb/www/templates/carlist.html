@@ -2,11 +2,20 @@
     .carlist .pane {
         background-color: #f2f4f3;
     }
+
     .carlist.pane {
         background-color: #f2f4f3;
     }
+
+    .carlist a {
+        text-decoration: none !important;
+    }
+
+    .displaynone {
+        display: none;
+    }
 </style>
-<ion-view hide-nav-bar="true" >
+<ion-view hide-nav-bar="true">
 </ion-view>
 <ion-view view-title="用车服务" class="carlist">
     <ion-content>
@@ -18,98 +27,115 @@
                 </div>
             </div>
         </div>
-        <div class="index_wrap">
-            <div id="accordion" class="accordioncl">
+        <div class="index_wrap smalltips"></div>
+        <div ng-repeat="Group in group">
+            <div class="index_wrap">
+                <div id="accordion" class="accordioncl">
+                    <div class="car_list_type ">{{Group.pram}}</div>
+                    <div class="panel" ng-repeat="x in car_categories|filter:Group.pram">
+                        <div class="panel-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" ng-click="toogledown($event)">
+                                <img style="width:68px;height:60px" class="car_list_img" src="http://www.haihuilai.com{{x.brand_img}}">
+                                <div class="car_list_name">
+                                    <h1>{{x.name}}</h1>
+                                    <p class="car_list_info">{{x.brand}} 等同等车型</p>
+                                    <p class="car_list_info">
+                                        <span><img class="car_list_ico" src="images/carren.png">{{x.max_seats}}</span>
+                                        <span><img class="car_list_ico" src="images/xingli.png">{{x.max_bag}}</span>
+                                    </p>
+                                    <p class="car_list_price">RMB<span class="price_com">{{x.total_price}}</span>起</p>
+                                    <p class="car_list_btn">选择服务<img class="car_list_ico2" src="images/arrowd.png"></p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="panel-collapse collapse" id="collapseThree">
+                            <div class="panel-body">
+                                <div class="car_service_item" style="overflow:hidden">
+                                    <div style="float:left;width:30%;height:100px">
+                                        <img src="img/中文司机.png" style="height:50px" />
+                                        <h1 class="car_service_title" style="margin-left: 6%;">中文司机</h1>
+                                    </div>
+                                    <div style="float:left;width:66%">
+                                        <p>具备合格的驾驶技能和最基本的沟通能力，能满足基本的用车需求。</p>
+                                        <p class="text_small">
+                                            ·1年以上从业经验<br />
+                                            ·3年以上驾龄<br />
+                                            ·出产5年内车辆<br />
+                                            ·合法居留<br />
+                                            ·第三者乘客险<br />
+                                            ·驾驶技能
+                                        </p>
+                                        <p class="car_service_offer">车内配置<span>纸巾</span></p>
+                                        <p class="car_service_price">总计约<span class="price_com">{{x.total_price}}</span>RMB</p>
+                                        <span ng-show="false">1</span>
+                                        <span ng-show="false">{{x.brand}}</span>
+                                        <span ng-show="false">{{x.name}}</span>
+                                        <span ng-show="false">{{x.driver_category_name}}</span>
+                                        <span ng-show="false">{{x.total_price}}</span>
+                                        <span ng-show="false">{{x.id}}</span>
+                                        <a class="car_service_btn" ng-click="ordernow($event)">下单</a>
+                                    </div>
+                                </div>
 
-                <div class="panel" ng-repeat="x in car_categories">
-                    <div class="car_list_type">{{x.group}}</div>
-                    <div class="panel-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" ng-click="toogledown($event)">
-                            <img style="width:68px;height:60px" class="car_list_img" src="http://www.haihuilai.com{{x.brand_img}}">
-                            <div class="car_list_name">
-                                <h1>{{x.name}}</h1>
-                                <p class="car_list_info">{{x.brand}} 等同等车型</p>
-                                <p class="car_list_info">
-                                    <span><img class="car_list_ico" src="images/carren.png">{{x.max_seats}}</span>
-                                    <span><img class="car_list_ico" src="images/xingli.png">{{x.max_bag}}</span>
-                                </p>
-                                <p class="car_list_price">RMB<span class="price_com">{{x.total_price}}</span>起</p>
-                                <p class="car_list_btn">选择服务<img class="car_list_ico2" src="images/arrowd.png"></p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="panel-collapse collapse" id="collapseThree">
-                        <div class="panel-body">
-                            <div class="car_service_item">
-                                <h1 class="car_service_title">中文司机</h1>
-                                <p>具备合格的驾驶技能和最基本的沟通能力，能满足基本的用车需求。</p>
-                                <p class="text_small">
-                                    ·1年以上从业经验<br />
-                                    ·3年以上驾龄<br />
-                                    ·出产5年内车辆<br />
-                                    ·合法居留<br />
-                                    ·第三者乘客险<br />
-                                    ·驾驶技能
-                                </p>
-                                <p class="car_service_offer">车内配置<span>纸巾</span></p>
-                                <p class="car_service_price">总计约<span class="price_com">{{x.total_price}}</span>RMB</p>
-                                <span ng-show="false">1</span>
-                                <span ng-show="false">{{x.brand}}</span>
-                                <span ng-show="false">{{x.name}}</span>
-                                <span ng-show="false">{{x.driver_category_name}}</span>
-                                <span ng-show="false">{{x.total_price}}</span>
-                                <span ng-show="false">{{x.id}}</span>
-                                <a class="car_service_btn" ng-click="ordernow($event)">下单</a>
-                            </div>
+                                <div class="car_service_item" style="overflow:hidden">
+                                    <div style="float:left;width:30%;height:100px">
+                                        <img src="img/标准专业司机.png" style="height:50px" />
+                                        <h1 class="car_service_title" style="margin-left: 6%;">标准专业司导</h1>
+                                    </div>
+                                    <div style="float:left;width:66%">
+                                        <p>具备熟练的驾驶技能和讲解经验, 能为行程提供良好的车导服务。</p>
+                                        <p class="text_small">
+                                            ·3年以上从业经验<br />
+                                            ·5年以上驾龄<br />
+                                            ·出产4年以内车辆<br />
+                                            ·合法居留<br />
+                                            ·第三者乘客险<br />
+                                            ·熟知当地人文<br />
+                                            ·当地语言熟练<br />
+                                            ·两个以上同业推荐
+                                        </p>
+                                        <p class="car_service_offer">车内配置<span>纸巾</span><span>雨伞</span></p>
+                                        <p class="car_service_price">总计约<span class="price_com">{{x.pickup_pricearr[0]}}</span>RMB</p>
+                                        <span ng-show="false">2</span>
+                                        <span ng-show="false">{{x.brand}}</span>
+                                        <span ng-show="false">{{x.name}}</span>
+                                        <span ng-show="false">{{x.driver_category_name}}</span>
+                                        <span ng-show="false">{{x.total_price}}</span>
+                                        <span ng-show="false">{{x.id}}</span>
+                                        <a class="car_service_btn" ng-click="ordernow($event)">下单</a>
+                                    </div>
+                                </div>
 
-                            <div class="car_service_item">
-                                <h1 class="car_service_title">标准专业司导</h1>
-                                <p>具备熟练的驾驶技能和讲解经验, 能为行程提供良好的车导服务。</p>
-                                <p class="text_small">
-                                    ·3年以上从业经验<br />
-                                    ·5年以上驾龄<br />
-                                    ·出产4年以内车辆<br />
-                                    ·合法居留<br />
-                                    ·第三者乘客险<br />
-                                    ·熟知当地人文<br />
-                                    ·当地语言熟练<br />
-                                    ·两个以上同业推荐
-                                </p>
-                                <p class="car_service_offer">车内配置<span>纸巾</span><span>雨伞</span></p>
-                                <p class="car_service_price">总计约<span class="price_com">{{x.pickup_pricearr[0]}}</span>RMB</p>
-                                <span ng-show="false">2</span>
-                                <span ng-show="false">{{x.brand}}</span>
-                                <span ng-show="false">{{x.name}}</span>
-                                <span ng-show="false">{{x.driver_category_name}}</span>
-                                <span ng-show="false">{{x.total_price}}</span>
-                                <span ng-show="false">{{x.id}}</span>
-                                <a class="car_service_btn" ng-click="ordernow($event)">下单</a>
-                            </div>
+                                <div class="car_service_item" style="overflow:hidden">
+                                    <div style="float:left;width:30%;height:100px">
+                                        <img src="img/标准专业司机.png" style="height:50px" />
+                                        <h1 class="car_service_title" style="margin-left: 6%;">高级专业司导</h1>
+                                    </div>
+                                    <div style="float:left;width:66%">
+                                        <p>具备熟练的驾驶技能和讲解经验, 能为行程提供良好的车导服务。</p>
+                                        <p class="text_small">
+                                            ·5年以上从业经验<br />
+                                            ·8年以上驾龄<br />
+                                            ·出产3年以内车辆<br />
+                                            ·合法居留<br />
+                                            ·第三者乘客险<br />
+                                            ·熟知当地人文<br />
+                                            ·当地语言熟练<br />
+                                            ·三个以上同业推荐
+                                        </p>
+                                        <p class="car_service_offer">车内配置<span>纸巾</span><span>雨伞</span><span>车载充电器</span></p>
+                                        <p class="car_service_price">总计<span class="price_com">{{x.pickup_pricearr[1]}}</span>RMB</p>
+                                        <span ng-show="false">3</span>
+                                        <span ng-show="false">{{x.brand}}</span>
+                                        <span ng-show="false">{{x.name}}</span>
+                                        <span ng-show="false">{{x.driver_category_name}}</span>
+                                        <span ng-show="false">{{x.total_price}}</span>
+                                        <span ng-show="false">{{x.id}}</span>
+                                        <a class="car_service_btn" ng-click="ordernow($event)">下单</a>
+                                    </div>
+                                </div>
 
-                            <div class="car_service_item">
-                                <h1 class="car_service_title">高级专业司导</h1>
-                                <p>具备熟练的驾驶技能和讲解经验, 能为行程提供良好的车导服务。</p>
-                                <p class="text_small">
-                                    ·5年以上从业经验<br />
-                                    ·8年以上驾龄<br />
-                                    ·出产3年以内车辆<br />
-                                    ·合法居留<br />
-                                    ·第三者乘客险<br />
-                                    ·熟知当地人文<br />
-                                    ·当地语言熟练<br />
-                                    ·三个以上同业推荐
-                                </p>
-                                <p class="car_service_offer">车内配置<span>纸巾</span><span>雨伞</span><span>车载充电器</span></p>
-                                <p class="car_service_price">总计<span class="price_com">{{x.pickup_pricearr[1]}}</span>RMB</p>
-                                <span ng-show="false">3</span>
-                                <span ng-show="false">{{x.brand}}</span>
-                                <span ng-show="false">{{x.name}}</span>
-                                <span ng-show="false">{{x.driver_category_name}}</span>
-                                <span ng-show="false">{{x.total_price}}</span>
-                                <span ng-show="false">{{x.id}}</span>
-                                <a class="car_service_btn" ng-click="ordernow($event)">下单</a>
                             </div>
-
                         </div>
                     </div>
                 </div>

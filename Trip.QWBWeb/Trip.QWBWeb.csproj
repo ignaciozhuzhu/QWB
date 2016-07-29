@@ -251,6 +251,8 @@
     <Content Include="www\images\bodyBg2.jpg" />
     <Content Include="www\images\bodyBg3.jpg" />
     <Content Include="www\images\foot.png" />
+    <Content Include="www\images\footer.png" />
+    <Content Include="www\images\footer2.png" />
     <Content Include="www\images\img1.jpg" />
     <Content Include="www\images\img2.jpg" />
     <Content Include="www\images\img3.jpg" />

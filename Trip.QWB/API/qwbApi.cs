@@ -8,6 +8,7 @@ using Trip.QWB.Model;
 using System.Web.Script.Serialization;
 using Trip.Api.Models.QuWanBei;
 using Trip.QWB.Common;
+using System.Web.Security;
 
 namespace Trip.QWB
 {
@@ -123,7 +124,8 @@ namespace Trip.QWB
         /// </summary>
         public static string createordertg(string json)
         {
-            var pickupObject = JsonConvert.DeserializeObject<PlaceOrderRequest>(json);
+            //var pickupObject = JsonConvert.DeserializeObject<PlaceOrderRequest>(json);
+            //pickupObject.shop_id= FormsAuthentication.Decrypt(guideId.shop_id);
             string url = adndoairserver;
             var response = HttpUtil.Post(json, url, contentType: "application/json");
             if (response != null)
@@ -150,7 +152,7 @@ namespace Trip.QWB
             if (pickup_time2 == "")
             {
                 string[] _pickup_timelist = pickup_time1.Split('|');
-                
+
                 strparam2 += "&from_date=" + _pickup_timelist[0] + "";
                 strparam2 += "&to_date=" + _pickup_timelist[_pickup_timelist.Length - 1] + "";
                 strparam2 += "&from_location_id=" + _locationidlist[0] + "";
@@ -188,7 +190,7 @@ namespace Trip.QWB
             strparam2 += "&adults=" + 1 + "";
 
             var response = BuildResponses.buildCarlistResponse(car_category_id, Convert.ToInt32(_locationidlist[0]), strparam2, "/bookings/new");
-            if (response != null)
+            if (response != null && response != "{\"list\": null}")
             {
                 return response;
             }
@@ -231,7 +233,7 @@ namespace Trip.QWB
                     strparam2 += "&travel_items[][days]=" + days + "";
                     strparam2 += "&travel_items[][location_id]=" + _locationidlist[i] + "";
                 }
-                
+
             }
             //否则为单地
             else
@@ -247,7 +249,7 @@ namespace Trip.QWB
                 strparam2 += "&travel_items[][days]=" + days + "";
                 strparam2 += "&travel_items[][location_id]=" + from_location_id + "";
             }
-            
+
             strparam2 += "&car_category_id=" + car_category_id + "";
             strparam2 += "&driver_category_id=" + driver_category_id + "";
             strparam2 += "&adults=" + adults + "";
@@ -278,9 +280,10 @@ namespace Trip.QWB
         /// <summary>
         /// 创建标准用车订单(一地用车拓谷)
         /// </summary>
-        public static string createcarordertg(string json)
+        public static string createcarordertg(string json)//, int shopid, int guideId, int cusid
         {
-            var pickupObject = JsonConvert.DeserializeObject<PlaceOrderRequest>(json);
+            //var pickupObject = JsonConvert.DeserializeObject<PlaceOrderRequest>(json);
+            //json = ConvertJson.ToJSON(pickupObject);
             string url = adndocarserver;
             var response = HttpUtil.Post(json, url, contentType: "application/json");
             if (response != null)

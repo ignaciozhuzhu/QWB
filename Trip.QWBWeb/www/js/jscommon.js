@@ -408,3 +408,35 @@ function getmyweekday(datenow) {
     var week = "周" + "日一二三四五六".split("")[datenow.getDay()];
     return week;
 }
+
+// 遍历数组法,最简单数组去重法
+function unique1(array) {
+    var n = []; //一个新的临时数组
+    //遍历当前数组
+    for (var i = 0; i < array.length; i++) {
+        //如果当前数组的第i已经保存进了临时数组，那么跳过，
+        //否则把当前项push到临时数组里面
+        if (n.indexOf(array[i]) == -1) n.push(array[i]);
+    }
+    return n;
+}
+
+//创建去重复的对象,以车型组为例
+//传入参数:response对象; 输出 Mygroup
+function uniqueObject(response) {
+    var Mygroup = new Array();
+    var mygroup;
+    function Groups(pram) {
+        this.pram = pram;
+    }
+    var Mygroup2 = new Array();
+    for (var i = 0; i < response.list.length; i++) {
+        Mygroup2[i] = response.list[i].group;
+    }
+    var uniquegroup = unique1(Mygroup2);
+    for (var i = 0; i < uniquegroup.length; i++) {
+        mygroup = new Groups(uniquegroup[i]);
+        Mygroup.push(mygroup);
+    }
+    return Mygroup;
+}
