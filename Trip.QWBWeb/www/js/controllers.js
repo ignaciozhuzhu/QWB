@@ -665,8 +665,8 @@ angular.module('starter.controllers', [])
         //回调函数
         var fun = function (_seat) {
             max_seat = _seat;
-            $('.air_service .spinner').spinner({ max: max_seat });
-            $('.air_service .spinner2').spinner2({ max: max_seat });
+            $('.air_service .spinnercd').myspinner({ max: max_seat });
+            $('.air_service .spinnerad').myspinner({ max: max_seat, min: 1 });
         }
         hexafy.myFunc(cityid, $http, $scope, carid, fun);
 
@@ -749,7 +749,7 @@ angular.module('starter.controllers', [])
     //儿童点击
     $(".air_service #sp01").click(function () {
         kids = this.children[0].children[1].value;
-        maxpassenger(".air_service #sp01", ".air_service #sp02",adults, kids, max_seat);
+        maxpassenger(".air_service #sp01", ".air_service #sp02", adults, kids, max_seat);
     });
     //成人点击
     $(".air_service #sp02").click(function () {
@@ -915,8 +915,8 @@ angular.module('starter.controllers', [])
         //回调函数
         var fun = function (_seat) {
             max_seat = _seat;
-            $('.car_service .spinner').spinner({ max: max_seat });
-            $('.car_service .spinner2').spinner3({ max: max_seat });
+            $('.car_service .spinnercd').myspinner({ max: max_seat });
+            $('.car_service .spinnerad').myspinner({ max: max_seat, min: 1 });
         }
         hexafy.myFunc(cityid, $http, $scope, carid, fun);
     })

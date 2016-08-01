@@ -2,9 +2,10 @@
  * 
  */
 ; (function ($) {
-    $.fn.spinner = function (opts) {
+    $.fn.myspinner = function (opts) {
         return this.each(function () {
-            var defaults = { value: 0, min: 0 }
+            if (!opts.min) opts.min = 0;
+            var defaults = { value: opts.min, min: opts.min }
             var options = $.extend(defaults, opts)
             var keyCodes = { up: 38, down: 40 }
             var container = $('<div></div>')
@@ -17,7 +18,6 @@
                   else if (getValue(field) != container.data('lastValidValue')) validateAndTrigger(field)
               })
 
-            //if (textField[0].childNodes.length == 0) {
             textField.wrap(container)
 
             var increaseButton = $('<button class="increase">+</button>').click(function () { changeValue(1) })
@@ -27,7 +27,6 @@
             container.data('lastValidValue', options.value)
             textField.before(decreaseButton)
             textField.after(increaseButton)
-            //}
 
             function changeValue(delta) {
                 textField.val(getValue() + delta)
