@@ -85,7 +85,7 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
      })
         //接送机服务
      .state('app.air_service', {
-         url: '/air_service/:pickosend/:airportname/:brand/:car_name/:driver_category_name/:carid/:pickprice/:airportscode/:date/:endaddress',
+         url: '/air_service/:cityid/:pickosend/:airportname/:brand/:car_name/:driver_category_name/:carid/:pickprice/:airportscode/:date/:endaddress',
          views: {
              'menuContent': {
                  templateUrl: 'templates/air_service.html',

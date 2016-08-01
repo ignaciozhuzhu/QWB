@@ -54,7 +54,6 @@ angular.module('starter.controllers', [])
 })
     //自定义行程路线控件
 .directive('carlinedetailpday', function () {
-
     return {
         restrict: 'E',
         template: function (tElement, tAttrs) {
@@ -81,10 +80,12 @@ angular.module('starter.controllers', [])
 
 })
 
+
+
     //标准车--------------------------------------------------------------------------------------------------------------
 .controller('carsearchCtrl', function ($scope, $http, $ionicScrollDelegate) {
-    //layermyui("hi," + getCookie('custid4QWB'));
     var soloovarious = "";
+
     //单地用车标签
     $scope.solo = function () {
         $(".carsearch #new1").css("color", "#01d4c1");
@@ -559,13 +560,13 @@ angular.module('starter.controllers', [])
     })
     $scope.ordernow = function ($event) {
         var targ = $event.target.previousElementSibling;
-        var id = targ.innerText;
+        var carid = targ.innerText;
         var total_price = targ.previousElementSibling.innerText;
         var driver_category_name = targ.previousElementSibling.previousElementSibling.innerText;
         var name = targ.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
         var brand = targ.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
         //pickosend=1接机 pickosend=2送机
-        window.location.href = "#/app/air_service/" + pickosend + "/" + airportname + "/" + brand + "/" + name + "/" + driver_category_name + "/" + id + "/" + total_price + "/" + airportscode + "/" + date + "/" + endaddress + "";
+        window.location.href = "#/app/air_service/" + wcityid + "/" + pickosend + "/" + airportname + "/" + brand + "/" + name + "/" + driver_category_name + "/" + carid + "/" + total_price + "/" + airportscode + "/" + date + "/" + endaddress + "";
     }
 
     $scope.toogledown = function ($event) {
@@ -629,7 +630,7 @@ angular.module('starter.controllers', [])
 })
 
 //接机服务--------------------------------------------------------------------------------------------------------------
-.controller('air_serviceCtrl', function ($scope, $http) {
+.controller('air_serviceCtrl', function ($scope, $http, hexafy) {
     var endaddress = decodeURI(getpbyurl(1));
     var date = decodeURI(getpbyurl(2));
     var airportscode = getpbyurl(3);
@@ -640,6 +641,7 @@ angular.module('starter.controllers', [])
     var car_brand = decodeURI(getpbyurl(8));
     var airportname = decodeURI(getpbyurl(9));
     var pickosend = getpbyurl(10);
+    var cityid = getpbyurl(11);
 
     //1接机,2送机
     if (pickosend == 1) {
@@ -658,9 +660,16 @@ angular.module('starter.controllers', [])
     $scope.endaddress = endaddress;
     $scope.pickprice = pickprice;
 
+    var max_seat;
     $scope.$on("$ionicView.loaded", function () {
-        $('.air_service .spinner').spinner({ max: 5 });
-        $('.air_service .spinner2').spinner2({ max: 5 });
+        //回调函数
+        var fun = function (_seat) {
+            max_seat = _seat;
+            $('.air_service .spinner').spinner({ max: max_seat });
+            $('.air_service .spinner2').spinner2({ max: max_seat });
+        }
+        hexafy.myFunc(cityid, $http, $scope, carid, fun);
+
         //选择时间需要用的
         $(function () {
             var curr = new Date().getFullYear();
@@ -734,6 +743,20 @@ angular.module('starter.controllers', [])
             $(".air_service .weekdayget")[0].innerText = getmyweekday(val);
         }
     };
+
+    var adults = 1;
+    var kids = 0;
+    //儿童点击
+    $(".air_service #sp01").click(function () {
+        kids = this.children[0].children[1].value;
+        maxpassenger(".air_service #sp01", ".air_service #sp02",adults, kids, max_seat);
+    });
+    //成人点击
+    $(".air_service #sp02").click(function () {
+        adults = this.children[0].children[1].value;
+        maxpassenger(".air_service #sp01", ".air_service #sp02", adults, kids, max_seat);
+    });
+
     //datepicker 组件ed----------------------------------------------
     //接送机支付
     $scope.createorder = function () {
@@ -771,8 +794,6 @@ angular.module('starter.controllers', [])
         //var drop_off_flight = "";
         //var drop_off_time = "";
         //var drop_off_addr = "";
-        var adults = $(".air_service .spinner2")[0].children[1].value;
-        var kids = $(".air_service .spinner")[0].children[1].value;
 
         //儿童年龄必填post,前台数据传递暂默认.
         var kids_age = "[";
@@ -829,9 +850,30 @@ angular.module('starter.controllers', [])
 
 })
 
+//angular初代service
+//给我一个城市id,我给你一组  车型列表  
+//你若再给我一个车型id,我给你 这个车型的详细信息.
+.service('hexafy', function () {
+    this.myFunc = function (cityid, $http, $scope, carid, callback) {
+        var nghttp = "../../ajax/apihandler.ashx?fn=getcarslist&locationid=" + cityid + "";
+        $http.get(nghttp).success(function (response) {
+            if (response.car_categories == null) {
+                //layermyui('暂无数据');
+            }
+            else {
+                for (var i = 0; i < response.car_categories.length; i++) {
+                    if (response.car_categories[i].id == carid) {
+                        $scope.hex = response.car_categories[i];
+                        callback($scope.hex.max_seats);
+                    }
+                }
+            }
+        })
+    }
+})
 
 //标准车服务--------------------------------------------------------------------------------------------------------------
-.controller('car_serviceCtrl', function ($scope, $http) {
+.controller('car_serviceCtrl', function ($scope, $http, hexafy) {
     var date2 = decodeURI(getpbyurl(1)).trim();
     var date1 = decodeURI(getpbyurl(2)).trim();
     var carid = decodeURI(getpbyurl(3));
@@ -841,6 +883,7 @@ angular.module('starter.controllers', [])
     var cityid = decodeURI(getpbyurl(7));
     var cityname = decodeURI(getpbyurl(8));
     var driver_category_id = decodeURI(getpbyurl(9));
+
     //总共天数,相同天数算1天.
     //先判断是单地用车还是多地用车
     var daysdiff;
@@ -867,10 +910,15 @@ angular.module('starter.controllers', [])
     $scope.driver_category_name = driver_category_name;
     $scope.car_name = car_name;
     $scope.car_brand = car_brand;
-
+    var max_seat;
     $scope.$on("$ionicView.loaded", function () {
-        $('.car_service .spinner').spinner({ max: 5 });
-        $('.car_service .spinner2').spinner2({ max: 5 });
+        //回调函数
+        var fun = function (_seat) {
+            max_seat = _seat;
+            $('.car_service .spinner').spinner({ max: max_seat });
+            $('.car_service .spinner2').spinner3({ max: max_seat });
+        }
+        hexafy.myFunc(cityid, $http, $scope, carid, fun);
     })
 
     $scope.cityname = cityname;
@@ -883,11 +931,13 @@ angular.module('starter.controllers', [])
     $(".car_service #sp01").click(function () {
         kids = this.children[0].children[1].value;
         accountCarPrice();
+        maxpassenger(".car_service #sp01", ".car_service #sp02", adults, kids, max_seat);
     });
     //成人点击
     $(".car_service #sp02").click(function () {
         adults = this.children[0].children[1].value;
         accountCarPrice();
+        maxpassenger(".car_service #sp01", ".car_service #sp02", adults, kids, max_seat);
     });
     accountCarPrice();
 

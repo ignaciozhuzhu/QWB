@@ -9,7 +9,7 @@
             var keyCodes = { up: 38, down: 40 }
             var container = $('<div></div>')
             container.addClass('spinner');
-            var textField = $(this).addClass('value').attr('maxlength', '2').val(options.value)
+            var textField = $(this).addClass('value').attr('readonly', 'readonly').attr('maxlength', '2').val(options.value)
               .bind('keyup paste change', function (e) {
                   var field = $(this)
                   if (e.keyCode == keyCodes.up) changeValue(1)
@@ -17,17 +17,17 @@
                   else if (getValue(field) != container.data('lastValidValue')) validateAndTrigger(field)
               })
 
-            if (textField[0].childNodes.length == 0) {
-                textField.wrap(container)
+            //if (textField[0].childNodes.length == 0) {
+            textField.wrap(container)
 
-                var increaseButton = $('<button class="increase">+</button>').click(function () { changeValue(1) })
-                var decreaseButton = $('<button class="decrease">-</button>').click(function () { changeValue(-1) })
+            var increaseButton = $('<button class="increase">+</button>').click(function () { changeValue(1) })
+            var decreaseButton = $('<button class="decrease">-</button>').click(function () { changeValue(-1) })
 
-                validate(textField)
-                container.data('lastValidValue', options.value)
-                textField.before(decreaseButton)
-                textField.after(increaseButton)
-            }
+            validate(textField)
+            container.data('lastValidValue', options.value)
+            textField.before(decreaseButton)
+            textField.after(increaseButton)
+            //}
 
             function changeValue(delta) {
                 textField.val(getValue() + delta)

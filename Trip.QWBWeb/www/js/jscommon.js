@@ -440,3 +440,16 @@ function uniqueObject(response) {
     }
     return Mygroup;
 }
+
+
+//最大乘坐人数实时限制.a,b一般为控件id.
+function maxpassenger(a, b, adults, kids, max_seat) {
+    if (parseInt(adults) + parseInt(kids) >= max_seat) {
+        $(a)[0].children[0].children[2].disabled = true;
+        $(b)[0].children[0].children[2].disabled = true;
+    }
+    else {
+        $(a)[0].children[0].children[2].disabled = false;
+        $(b)[0].children[0].children[2].disabled = false;
+    }
+}

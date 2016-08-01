@@ -24,7 +24,7 @@ a img {
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
 	display: block
 }
-.spinner-sprite, .spinner .decrease, .spinner .decrease[disabled], .spinner .increase, .spinner .value, .spinner .value.passive {
+.spinner-sprite, .spinner .decrease, .spinner .decrease[disabled], .spinner .increase, .spinner .increase[disabled], .spinner .value, .spinner .value.passive {
 	background: url('../images/spinner3.png') no-repeat
 }
 .spinner {
@@ -66,6 +66,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 	background-position: 0 0;
 	cursor: pointer;
 	text-indent: -10000px;
+}
+.spinner .increase[disabled]  {
+	background-position: 0 -125px;
+	cursor: default
 }
 .spinner .value {
 	background-position: 0 -100px;
