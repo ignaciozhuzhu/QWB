@@ -28,9 +28,9 @@
         background-color: #f2f4f3;
     }
 
-    carlinedetailpday {
+    /*variocities-components {
         display: none;
-    }
+    }*/
 
     .citydistancetip {
         margin-left: 5%;
@@ -51,7 +51,6 @@
     ::-moz-placeholder {
         padding-left: 4%;
     }
-
 </style>
 <ion-view hide-nav-bar="true">
 </ion-view>
@@ -107,36 +106,17 @@
 
                 <div class="car_serach">
                     <span class="car_search_toptitle">用车城市</span>
-
-                    <a class="btn-select car_select">
-                        <input class="cur-select cur_car_select" ng-click="clickCity()" onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model.wcity" ng-change=changecity(model.wcity)>
-                        <div ng-hide="true" ng-model="model.wcityid"></div>
-                    </a>
-
-                    <div style="display:none;margin:0 3%;max-height:365px;overflow:hidden">
-                        <hr />
-                        <p style="font-weight:bold;">热门城市列表 可输入城市中文</p>
-                        <div style="color:#9B9B9B;font-size:16px;max-height:75px;overflow:hidden" ng-repeat="x in areas track by x.id">
-                            <div class="mycitynameclass">{{x.name}}</div>
-                            <span ng-click="selectcity($event)" style="color:black;margin:0 6% 0 0;line-height:24px" ng-repeat="xx in x.cities|filter:model.wcity|filter:x.is_hot">{{xx.name}}<span ng-show="false">{{xx.id}}</span></span>
-                        </div>
-                    </div>
-
+                    <cities-components></cities-components>
                 </div>
 
                 <div class="carline" style="display:none">
                     <p class="car_toptitle"><span>行程路线(当天结束城市)</span></p>
                     <div class="carlinedetail" style="display:block">
-                        <carlinedetailpday myindex="1"></carlinedetailpday>
-                        <carlinedetailpday myindex="2"></carlinedetailpday>
-                        <carlinedetailpday myindex="3"></carlinedetailpday>
-                        <carlinedetailpday myindex="4"></carlinedetailpday>
-                        <carlinedetailpday myindex="5"></carlinedetailpday>
-                        <carlinedetailpday myindex="6"></carlinedetailpday>
-                        <carlinedetailpday myindex="7"></carlinedetailpday>
-                        <carlinedetailpday myindex="8"></carlinedetailpday>
-                        <carlinedetailpday myindex="9"></carlinedetailpday>
-                        <carlinedetailpday myindex="10"></carlinedetailpday>
+                        <!--<variocities-components myindex="1"></variocities-components>
+                        <variocities-components myindex="2"></variocities-components>
+                        <variocities-components myindex="3"></variocities-components>
+                        <variocities-components myindex="4"></variocities-components>
+                        <variocities-components myindex="5"></variocities-components>-->
                     </div>
                 </div>
 

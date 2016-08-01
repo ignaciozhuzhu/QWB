@@ -1,0 +1,10 @@
+﻿<a class="btn-select car_select">
+    <input class="cur-select cur_car_select" ng-focus="displaybox($event)" ng-blur="displaynonebox($event)" ng-model="model2.airports">
+    <div ng-hide="true" ng-model="model2.airportsid"></div>
+    <div ng-hide="true" ng-model="model2.airportscode"></div>
+</a>
+<div style="display:none;margin:0 3%;max-height:310px;overflow:hidden">
+    <div style="color:black;font-size:14px;max-height:70px;overflow:hidden" ng-repeat="x in airports">
+        <span ng-click="selectairport($event)">{{x.name}}-{{x.code}}<span ng-show="false">{{x.id}}</span><span ng-show="false">{{x.code}}</span><span ng-show="false">{{x.name}}</span></span>
+    </div>
+</div>

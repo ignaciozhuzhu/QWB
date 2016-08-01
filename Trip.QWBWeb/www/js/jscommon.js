@@ -453,3 +453,23 @@ function maxpassenger(a, b, adults, kids, max_seat) {
         $(b)[0].children[0].children[2].disabled = false;
     }
 }
+
+
+//air_service.html
+var timechange = function () {
+    var pickupTime = $("#pickupTime")[0].value;
+    pickupTime = pickupTime.substr(0, 2);
+    if (pickupTime.substr(0, 1) == 0)
+        pickupTime = pickupTime.substr(1, 1);
+    //22点以后,7点以前 加收夜间服务费
+    if (pickupTime >= 22 || pickupTime < 7) {
+        var nighttipcost = 100;
+        $("#nighttipsimg").css("display", "block");
+        $("#nighttipcost").empty().append(nighttipcost);
+        var total = parseInt($("#totalcost")[0].innerText) + nighttipcost;
+        $("#totalcost").empty().append(total);
+    }
+    else {
+        $("#nighttipsimg").css("display", "none");
+    }
+}

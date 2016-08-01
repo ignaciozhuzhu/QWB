@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 
-angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers'])
+angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers', 'starter.directive', 'starter.service'])
 
 .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {

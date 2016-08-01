@@ -61,38 +61,14 @@
                 <div class="height8"></div>
                 <div class="car_serach">
                     <span class="car_search_toptitle pickcity">降落城市</span>
-
-                    <a class="btn-select car_select">
-                        <input id="inputcity" class="cur-select cur_car_select" ng-click="clickCity()" onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model.wcity" ng-change=changecity(model.wcity)>
-                        <div ng-hide="true" id="inputcityid" ng-model="model.wcityid"></div>
-                    </a>
-
-                    <div id="secondcities" style="display:none;margin:0 3%;max-height:365px;overflow:hidden">
-                        <hr />
-                        <p style="font-weight:bold;">热门城市列表 可输入城市中文</p>
-                        <div style="color:#9B9B9B;font-size:16px;max-height:75px;overflow:hidden;" ng-repeat="x in areas">
-                            <div class="mycitynameclass">{{x.name}}</div>
-                            <span ng-click="selectcity($event)" style="color:black;margin:0 6% 0 0;line-height:24px" ng-repeat="xx in x.cities|filter:model.wcity|filter:x.is_hot">{{xx.name}}<span ng-show="false">{{xx.id}}</span></span>
-                        </div>
-                    </div>
-
+                    <cities-components></cities-components>
                 </div>
 
                 <div class="height8"></div>
                 <div class="car_serach">
                     <span class="car_search_toptitle pickairport">降落机场</span>
 
-                    <a class="btn-select car_select">
-                        <input id="inputairports" class="cur-select cur_car_select" onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model2.airports">
-                        <div ng-hide="true" id="inputairportsid" ng-model="model2.airportsid"></div>
-                        <div ng-hide="true" ng-model="model2.airportscode"></div>
-                    </a>
-
-                    <div id="secondcities" style="display:none;margin:0 3%;max-height:310px;overflow:hidden">
-                        <div style="color:black;font-size:14px;max-height:70px;overflow:hidden" ng-repeat="x in airports">
-                            <span ng-click="selectairport($event)">{{x.name}}-{{x.code}}<span ng-show="false">{{x.id}}</span><span ng-show="false">{{x.code}}</span><span ng-show="false">{{x.name}}</span></span>
-                        </div>
-                    </div>
+                    <airport-components></airport-components>
 
                 </div>
 
@@ -111,7 +87,7 @@
                     <span class="car_search_toptitle pickaddress">送达地点</span>
 
                     <a class="btn-select car_select">
-                        <input id="inputendaddress" class="cur-select cur_car_select" ng-click="downsome()" onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model3.endaddress" ng-change="changeaddress(model3.endaddress)">
+                        <input id="inputendaddress" class="cur-select cur_car_select" ng-click="downsome()" ng-focus="displaybox($event)" ng-blur="displaynonebox($event)" ng-model="model3.endaddress" ng-change="changeaddress(model3.endaddress)">
                     </a>
 
                     <div id="endaddress" style="display:none;margin:0 3%;max-height:310px;overflow:hidden">

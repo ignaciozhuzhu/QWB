@@ -1,0 +1,14 @@
+﻿<a class="btn-select car_select">
+    <input class="cur-select cur_car_select" ng-click="clickCity()"
+           ng-focus="displaybox($event)" ng-blur="displaynonebox($event)" ng-model="model.wcity" ng-change=changecity(model.wcity)>
+    <div ng-hide="true" ng-model="model.wcityid"></div>
+</a>
+<div style="display:none;margin:0 3%;max-height:365px;overflow:hidden">
+    <hr />
+    <p style="font-weight:bold;">热门城市列表 可输入城市中文</p>
+    <div style="color:#9B9B9B;font-size:16px;max-height:75px;overflow:hidden" ng-repeat="x in areas track by x.id">
+        <div class="mycitynameclass">{{x.name}}</div>
+        <span ng-click="selectcity($event)" style="color:black;margin:0 6% 0 0;line-height:24px"
+              ng-repeat="xx in x.cities|filter:model.wcity|filter:x.is_hot">{{xx.name}}<span ng-show="false">{{xx.id}}</span></span>
+    </div>
+</div>

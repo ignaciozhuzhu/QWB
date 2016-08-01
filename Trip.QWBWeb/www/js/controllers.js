@@ -2,47 +2,9 @@
 
 angular.module('starter.controllers', [])
 
-
-.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
-
-    // With the new view caching in Ionic, Controllers are only called
-    // when they are recreated or on app start, instead of every page change.
-    // To listen for when this page is active (for example, to refresh data),
-    // listen for the $ionicView.enter event:
-    //$scope.$on('$ionicView.enter', function(e) {
-    //});
-
-    // Form data for the login modal
-    $scope.loginData = {};
-
-    // Create the login modal that we will use later
-    //$ionicModal.fromTemplateUrl('templates/login.html', {
-    //    scope: $scope
-    //}).then(function (modal) {
-    //    $scope.modal = modal;
-    //});
-
-    // Triggered in the login modal to close it
-    $scope.closeLogin = function () {
-        $scope.modal.hide();
-    };
-
-    // Open the login modal
-    $scope.login = function () {
-        $scope.modal.show();
-    };
-
-    // Perform the login action when the user submits the login form
-    $scope.doLogin = function () {
-        console.log('Doing login', $scope.loginData);
-
-        // Simulate a login delay. Remove this and replace with your login
-        // code if using a login system
-        $timeout(function () {
-            $scope.closeLogin();
-        }, 1000);
-    };
+.controller('AppCtrl', function () {
 })
+
     //封面
 .controller('indexCtrl', function ($scope, $http) {
     $scope.bzyc = function () {
@@ -52,39 +14,17 @@ angular.module('starter.controllers', [])
         window.location.href = " #/app/air_booking";
     }
 })
-    //自定义行程路线控件
-.directive('carlinedetailpday', function () {
-    return {
-        restrict: 'E',
-        template: function (tElement, tAttrs) {
-            var myindex = tAttrs.myindex;
-            var _html = '<p>Day ' + myindex + '  </p><div class="car_serach"><a class="btn-select car_select">'
-            _html += '<input class="cur-select cur_car_select" ng-click="clickCity($event)" placeholder="请选择留宿城市" '
-            _html += 'onfocus="myfocus(this)" onblur="myblur(this)" ng-model="model[' + myindex + '].wcity" ng-change=changecity()>'
-            _html += '<div ng-hide="true" ng-model="model[' + myindex + '].wcityid2"></div>'
-            _html += '</a> <div style="display:none;margin:0 3%;max-height:365px;overflow:hidden">'
-            _html += '<hr />'
-            _html += '<p style="font-weight:bold;">热门城市列表 可输入城市中文</p>'
-            _html += '<div style="color:#9B9B9B;font-size:16px;max-height:75px;overflow:hidden" ng-repeat="x in areas">'
-            _html += '<div class="mycitynameclass">{{x.name}}</div>'
-            _html += '<span ng-click="selectcity2($event)" style="color:black;margin:0 6% 0 0;line-height:24px"'
-            _html += 'ng-repeat="xx in x.cities|filter:model[' + myindex + '].wcity|filter:x.is_hot">{{xx.name}}'
-            _html += '<span ng-show="false">{{xx.id}}</span></span>'
-            _html += '</div>'
-            _html += '</div><p class="citydistancetip displaynone">一天内可以到达</p></div>'
-            _html += '<img src="img/减号.png" style="height:30px !important;width: 30px !important;margin: 5px 0;" ng-click="delday()"></img>';
-            return _html;
-        }
-
-    };
-
-})
-
-
 
     //标准车--------------------------------------------------------------------------------------------------------------
-.controller('carsearchCtrl', function ($scope, $http, $ionicScrollDelegate) {
+.controller('carsearchCtrl', function ($scope, $http, $ionicScrollDelegate, $compile) {
     var soloovarious = "";
+
+    $scope.displaybox = function ($event) {
+        $($event.target.parentNode.nextElementSibling).css('display', 'block');
+    }
+    $scope.displaynonebox = function ($event) {
+        $($event.target.parentNode.nextElementSibling).css('display', 'none');
+    }
 
     //单地用车标签
     $scope.solo = function () {
@@ -111,16 +51,22 @@ angular.module('starter.controllers', [])
         var myindex = $event.target.outerHTML.substring(indexposition + 6, indexposition + 7);
         $(".carsearch .citydistancetip")[myindex - 1].className = "citydistancetip displaynone";
     }
+    var clickcount = 0;
     $scope.delday = function () {
-        //debugger
-        clickcount--;
-        $("carlinedetailpday")[clickcount].className = "displaynone";
+        $(".carlinedetail")[0].lastElementChild.remove();
+
+        //   clickcount--;
+        //   $("variocities-components")[clickcount].className = "displaynone";
     }
 
-    var clickcount = 0;
     $scope.adddate = function () {
-        $("carlinedetailpday")[clickcount].className = "displayblock";
-        clickcount++;
+        var queryRow = angular.element(document.createElement('variocities-components'));
+        $compile(queryRow)($scope);
+        $(".carlinedetail").append(queryRow);
+        displaynonecountry();
+
+        //$("variocities-components")[clickcount].className = "displayblock";
+        //clickcount++;
     }
 
     //cities 组件bg----------------------------------------------------------------------------
@@ -333,6 +279,14 @@ angular.module('starter.controllers', [])
 
 //接送机搜索--------------------------------------------------------------------------------------------------------------
 .controller('air_bookingCtrl', function ($scope, $http, $ionicScrollDelegate) {
+
+    $scope.displaybox = function ($event) {
+        $($event.target.parentNode.nextElementSibling).css('display', 'block');
+    }
+    $scope.displaynonebox = function ($event) {
+        $($event.target.parentNode.nextElementSibling).css('display', 'none');
+    }
+
     //layermyui("hi," + getCookie('custid4QWB'));
     //接机或送机
     var pickosend = 1;
@@ -850,28 +804,6 @@ angular.module('starter.controllers', [])
 
 })
 
-//angular初代service
-//给我一个城市id,我给你一组  车型列表  
-//你若再给我一个车型id,我给你 这个车型的详细信息.
-.service('hexafy', function () {
-    this.myFunc = function (cityid, $http, $scope, carid, callback) {
-        var nghttp = "../../ajax/apihandler.ashx?fn=getcarslist&locationid=" + cityid + "";
-        $http.get(nghttp).success(function (response) {
-            if (response.car_categories == null) {
-                //layermyui('暂无数据');
-            }
-            else {
-                for (var i = 0; i < response.car_categories.length; i++) {
-                    if (response.car_categories[i].id == carid) {
-                        $scope.hex = response.car_categories[i];
-                        callback($scope.hex.max_seats);
-                    }
-                }
-            }
-        })
-    }
-})
-
 //标准车服务--------------------------------------------------------------------------------------------------------------
 .controller('car_serviceCtrl', function ($scope, $http, hexafy) {
     var date2 = decodeURI(getpbyurl(1)).trim();
@@ -1065,48 +997,3 @@ angular.module('starter.controllers', [])
 
 })
 
-
-
-//***************************以下公用方法*******************************************************************
-
-//air_service.html
-var timechange = function () {
-    var pickupTime = $("#pickupTime")[0].value;
-    pickupTime = pickupTime.substr(0, 2);
-    if (pickupTime.substr(0, 1) == 0)
-        pickupTime = pickupTime.substr(1, 1);
-    //22点以后,7点以前 加收夜间服务费
-    if (pickupTime >= 22 || pickupTime < 7) {
-        var nighttipcost = 100;
-        $("#nighttipsimg").css("display", "block");
-        $("#nighttipcost").empty().append(nighttipcost);
-        var total = parseInt($("#totalcost")[0].innerText) + nighttipcost;
-        $("#totalcost").empty().append(total);
-    }
-    else {
-        $("#nighttipsimg").css("display", "none");
-    }
-}
-
-//air_booking.html
-//function secBoard(n) {
-//    for (i = 1; i < 3; i++) {
-//        document.getElementById("new" + i + "").style.color = "#b1b1b1";
-//        document.getElementById("new" + n + "").style.color = "#01d4c1";
-//    }
-//    for (i = 1; i < 3; i++) {
-//        document.getElementById("tbx" + i + "").style.display = "none";
-//        document.getElementById("tbx" + n + "").style.display = "block";
-//    }
-//}
-//air_booking.html
-function myfocus(ob) {
-    $(ob.parentNode.nextElementSibling).css('display', 'block');
-    //if (ob.id == "inputendaddress" && !ob.value) {
-    //    $(ob.parentNode.nextElementSibling).css('display', 'none');
-    //}
-}
-//air_booking.html
-function myblur(ob) {
-    $(ob.parentNode.nextElementSibling).css('display', 'none');
-}
