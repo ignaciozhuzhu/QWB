@@ -717,7 +717,7 @@ angular.module('starter.controllers', [])
             return;
         }
 
-        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + "" + pidstr + ",\"order\":{\"car_category_id\":" + car_category_id + ",\"pickup_airport_code\":\"" + pickup_airport_code + "\",\"pickup_flight\":\"" + pickup_flight + "\",\"pickup_time\":\"" + pickup_time + "\",\"pickup_addr\":\"" + pickup_addr + "\",\"adults\":" + adults + "" + kids_age + ",\"traveller\":" + traveller + ",\"memo\":\"" + memo + "\",\"key\":\"" + key + "\",\"sign\":\"" + sign + "\",\"total_price\":\"" + total_price + "\"}}";
+        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + ",\"order\":{\"car_category_id\":" + car_category_id + ",\"pickup_airport_code\":\"" + pickup_airport_code + "\",\"pickup_flight\":\"" + pickup_flight + "\",\"pickup_time\":\"" + pickup_time + "\",\"pickup_addr\":\"" + pickup_addr + "\",\"adults\":" + adults + "" + kids_age + ",\"traveller\":" + traveller + ",\"memo\":\"" + memo + "\",\"key\":\"" + key + "\",\"sign\":\"" + sign + "\",\"total_price\":\"" + total_price + "\"}}";
         var nghttp = "../../ajax/apihandler.ashx?fn=createordertg&json=" + json + "";
         var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
         $http.get(nghttp).success(function (response) {
@@ -913,7 +913,7 @@ angular.module('starter.controllers', [])
             return;
         }
 
-        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + "" + pidstr + ",\"order\":{\"from_date\":\"" + from_date + "\",\"from_location_id\":\"" + from_location_id + "\",\"to_date\":\"" + to_date + "\",\"car_category_id\":" + car_category_id + ",\"driver_category_id\":\"" + driver_category_id + "\",\"adults\":" + adults + "" + kids_age + ",\"traveller\":" + traveller + ",\"travel_items\":[" + travel_itemsstr + "],\"key\":\"" + key + "\",\"sign\":\"" + sign + "\",\"total_price\":\"" + total_price + "\"}}";
+        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + ",\"order\":{\"from_date\":\"" + from_date + "\",\"from_location_id\":\"" + from_location_id + "\",\"to_date\":\"" + to_date + "\",\"car_category_id\":" + car_category_id + ",\"driver_category_id\":\"" + driver_category_id + "\",\"adults\":" + adults + "" + kids_age + ",\"traveller\":" + traveller + ",\"travel_items\":[" + travel_itemsstr + "],\"key\":\"" + key + "\",\"sign\":\"" + sign + "\",\"total_price\":\"" + total_price + "\"}}";
         var nghttp = "../../ajax/apihandler.ashx?fn=createcarordertg&json=" + json + "";
         var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
         $http.get(nghttp).success(function (response) {

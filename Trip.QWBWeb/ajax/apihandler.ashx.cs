@@ -40,8 +40,6 @@ namespace Trip.QWBWeb.ajax
         /// </summary>
         public void getcitieslist()
         {
-            //var ticket = HttpContext.Current.Request.Cookies["cusid"].Value;
-            // var guideId = FormsAuthentication.Decrypt(ticket);
             HttpContext.Current.Response.Write(Trip.QWB.qwbApi.getCitiesList());
         }
 
@@ -119,12 +117,32 @@ namespace Trip.QWBWeb.ajax
         /// </summary>
         public void createordertg()
         {
+            int gid = 0;
+            int cid = 0;
+            var ticket = "";
+            try
+            {
+                ticket = HttpContext.Current.Request.Cookies["guideid"].Value;
+                gid = Convert.ToInt32(FormsAuthentication.Decrypt(ticket).Name);
+            }
+            catch { }
+            try
+            {
+                ticket = HttpContext.Current.Request.Cookies["cusid"].Value;
+                cid = Convert.ToInt32(FormsAuthentication.Decrypt(ticket).Name);
+            }
+            catch { }
+
             string json = "";
             try
             {
                 json = HttpContext.Current.Request["json"];
             }
             catch { }
+            if (gid > 0)
+                json = json.Substring(0, json.Length - 1) + ",\"guide_id\":" + gid + "" + "}";
+            else if (cid > 0)
+                json = json.Substring(0, json.Length - 1) + ",\"customer_id\":" + cid + "" + "}";
             HttpContext.Current.Response.Write(Trip.QWB.qwbApi.createordertg(json));
         }
 
@@ -188,56 +206,34 @@ namespace Trip.QWBWeb.ajax
         /// </summary>
         public void createcarordertg()
         {
-            string json = "";
-            var ticket0 = "";
-            var ticket1 = "";
-            var ticket2 = "";
-            FormsAuthenticationTicket shopId;
-            FormsAuthenticationTicket cusId;
-            FormsAuthenticationTicket guideId;
+            int gid = 0;
+            int cid = 0;
+            var ticket = "";
+            try
+            {
+                ticket = HttpContext.Current.Request.Cookies["guideid"].Value;
+                gid = Convert.ToInt32(FormsAuthentication.Decrypt(ticket).Name);
+            }
+            catch { }
+            try
+            {
+                ticket = HttpContext.Current.Request.Cookies["cusid"].Value;
+                cid = Convert.ToInt32(FormsAuthentication.Decrypt(ticket).Name);
+            }
+            catch { }
 
-            int shopname = 0;
-            int cusidname = 0;
-            int guidename = 0;
+            string json = "";
             try
             {
                 json = HttpContext.Current.Request["json"];
             }
             catch { }
+            if (gid > 0)
+                json = json.Substring(0, json.Length - 1) + ",\"guide_id\":" + gid + "" + "}";
+            else if (cid > 0)
+                json = json.Substring(0, json.Length - 1) + ",\"customer_id\":" + cid + "" + "}";
 
-            try
-            {
-                ticket0 = HttpContext.Current.Request.Cookies["shopid4QWB"].Value;
-                //shopId = FormsAuthentication.Decrypt(ticket0);
-                //shopname = Convert.ToInt32(shopId.Name);
-            }
-            catch
-            {
-                shopname = 0;
-            }
-
-            try
-            {
-                ticket1 = HttpContext.Current.Request.Cookies["cusid"].Value;
-                //cusId = FormsAuthentication.Decrypt(ticket1);
-                //cusidname = Convert.ToInt32(cusId.Name);
-            }
-            catch
-            {
-                cusidname = 0;
-            }
-            try
-            {
-                ticket2 = HttpContext.Current.Request.Cookies["guideid"].Value;
-                //guideId = FormsAuthentication.Decrypt(ticket2);
-                //guidename = Convert.ToInt32(guideId.Name);
-            }
-            catch
-            {
-                guidename = 0;
-            }
-
-            HttpContext.Current.Response.Write(Trip.QWB.qwbApi.createcarordertg(json));//, shopname, cusidname, guidename
+            HttpContext.Current.Response.Write(Trip.QWB.qwbApi.createcarordertg(json));
         }
 
         /// <summary>
