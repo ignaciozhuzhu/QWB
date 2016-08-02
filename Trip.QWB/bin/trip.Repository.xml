@@ -244,9 +244,69 @@
             使用拓谷的微信支付
             </summary>
         </member>
+        <member name="P:Trip.Repository.Entities.AuditDetailExt.EntityNo">
+            <summary>
+            编号。例如订单编号，产品编号等
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.AuditDetailExt.Categories">
+            <summary>
+            日志分类列表
+            </summary>
+        </member>
+        <member name="T:Trip.Repository.Entities.AuditDetailCategory">
+            <summary>
+            分类
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.AuditDetailCategory.Name">
+            <summary>
+            分类标题。例如线路编辑，订单生成等
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.AuditDetailCategory.Items">
+            <summary>
+            修改项列表
+            </summary>
+        </member>
+        <member name="T:Trip.Repository.Entities.AuditDetailItem">
+            <summary>
+            修改项
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.AuditDetailItem.Title">
+            <summary>
+            修改项名称
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.AuditDetailItem.OldValue">
+            <summary>
+            修改前的值
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.AuditDetailItem.NewValue">
+            <summary>
+            修改后的值
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.AuditDetailItem.StringFormatter">
+            <summary>
+            格式化字符串，用于最终显示
+            占位符说明：
+            {0}：Title
+            {1}：OldValue
+            {2}：NewValue
+            {EntityNo}：AuditDetailExt类中的EntityNo
+            </summary>
+        </member>
         <member name="T:Trip.Repository.Entities.AuditEntity">
             <summary>
             A class which represents the Audit table.
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.AuditEntity.AuditDetail">
+            <summary>
+            订单修改扩展信息
             </summary>
         </member>
         <member name="P:Trip.Repository.Entities.AuditEntity.orderAuditDetail">
@@ -312,6 +372,26 @@
         <member name="P:Trip.Repository.Entities.AuditEntity.Created">
             <summary>
             修改时间
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.AuditPropertyInfo.Name">
+            <summary>
+            属性名称
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.AuditPropertyInfo.DisplayName">
+            <summary>
+            显示名称
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.AuditPropertyInfo.CategoryName">
+            <summary>
+            类型名称
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.AuditPropertyInfo.StringFormatter">
+            <summary>
+            同AuditDetailItem类中的StringFormatter
             </summary>
         </member>
         <member name="T:Trip.Repository.Entities.DepartmentEntity">
@@ -989,6 +1069,11 @@
             egobus首页URl
             </summary>
         </member>
+        <member name="T:Trip.Repository.Entities.OrderAuditDetailExt">
+            <summary>
+            已经不用，只是为了兼容之前数据所以留下来
+            </summary>
+        </member>
         <member name="P:Trip.Repository.Entities.OrderAuditDetailExt.OrderNo">
             <summary>
             订单号
@@ -1164,6 +1249,11 @@
             送机价格
             </summary>
         </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiAirportTransferOrderExt.api_info">
+            <summary>
+            接口信息
+            </summary>
+        </member>
         <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.from_date">
             <summary>
             开始日期, 格式YYYY-MM-DD,如: 2016-01-11
@@ -1257,6 +1347,11 @@
         <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.tips">
             <summary>
             导游小费, RMB元
+            </summary>
+        </member>
+        <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.api_info">
+            <summary>
+            接口信息
             </summary>
         </member>
         <member name="P:Trip.Repository.Entities.QuWanBeiCarOrderExt.TravelItem.location_id">
@@ -8074,6 +8169,11 @@
             特殊分类每行个数
             </summary>
         </member>
+        <member name="P:Trip.Repository.Entities.ShopRule.NumberOfSpecialCatalogRows">
+            <summary>
+            特殊分类行数
+            </summary>
+        </member>
         <member name="P:Trip.Repository.Entities.ShopRule.BusinessMemberManageEnabeld">
             <summary>
             同业帐号管理
@@ -8876,6 +8976,11 @@
             <param name="productId"></param>
             <returns></returns>
         </member>
+        <member name="M:Trip.Repository.Interfaces.IProductPriceRepository.GetByVendorTeamId(System.String,System.Int32)">
+            <summary>
+            根据供应商编号获取开班
+            </summary>
+        </member>
         <member name="M:Trip.Repository.Interfaces.IProductPriceRepository.GetProductPrice(System.Int32)">
             <summary>
             获取开班
@@ -9222,18 +9327,11 @@
             <summary>
             获取门票计划列表
             </summary>
-            <param name="productId">产品编号</param>
-            <param name="shopId">店铺编号</param>
-            <param name="hide">隐藏状态</param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Repository.Interfaces.ITicketPlanRepository.GetTicketPlan(System.Int32,System.Nullable{System.Int32},System.Nullable{System.Boolean})">
             <summary>
             获取门票计划
             </summary>
-            <param name="ticketPlanId"></param>
-            <param name="shopId"></param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Repository.Interfaces.ITourNotifyRepository.GetPaged(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -9982,6 +10080,11 @@
             <param name="productId"></param>
             <returns></returns>
         </member>
+        <member name="M:Trip.Repository.SqlServer.ProductPriceRepository.GetByVendorTeamId(System.String,System.Int32)">
+            <summary>
+            根据供应商编号获取开班
+            </summary>
+        </member>
         <member name="M:Trip.Repository.SqlServer.ProductPriceRepository.GetPaged(Trip.Repository.Request.GetPagedProductPlansViewRequest)">
             <summary>
             分页获取开班
@@ -10131,11 +10234,6 @@
             <summary>
             获取特定类别的所有产品
             </summary>
-            <param name="shopId">店铺编号</param>
-            <param name="productGenre">产品类别</param>
-            <param name="isHidden">隐藏状态</param>
-            <param name="isSale">销售状态</param>
-            <returns>产品列表</returns>
         </member>
         <member name="M:Trip.Repository.SqlServer.ProductRepository.GetVisaCountries(System.Int32,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
             <summary>
@@ -10421,9 +10519,6 @@
             <summary>
             获取门票计划
             </summary>
-            <param name="ticketPlanId"></param>
-            <param name="shopId"></param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Repository.SqlServer.TourNotifyRepository.GetPaged(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>

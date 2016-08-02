@@ -6,17 +6,17 @@ angular.module('starter.controllers', [])
 })
 
     //封面
-.controller('indexCtrl', function ($scope, $http) {
+.controller('indexCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.bzyc = function () {
         window.location.href = " #/app/carsearch";
     }
     $scope.jsj = function () {
         window.location.href = " #/app/air_booking";
     }
-})
+}])
 
     //标准车--------------------------------------------------------------------------------------------------------------
-.controller('carsearchCtrl', function ($scope, $http, $ionicScrollDelegate, $compile) {
+.controller('carsearchCtrl', ['$scope', '$http', '$ionicScrollDelegate', '$compile', function ($scope, $http, $ionicScrollDelegate, $compile) {
     var soloovarious = "";
 
     $scope.displaybox = function ($event) {
@@ -70,7 +70,7 @@ angular.module('starter.controllers', [])
     }
 
     //cities 组件bg----------------------------------------------------------------------------
-    var nghttp = "../../ajax/apihandler.ashx?fn=getcitieslist";
+    var nghttp = "/ajax/apihandler.ashx?fn=getcitieslist";
     var responseche;
     $http.get(nghttp).success(function (response) {
         for (var i = 0; i < response.zones.length; i++) {
@@ -115,12 +115,12 @@ angular.module('starter.controllers', [])
                 }
             }
             //显示回有热门城市的国家
-            var mylen = $(".carsearch .displaynonecity").length;
-            for (var i = 0; i < mylen; i++) {
-                if ($(".carsearch .displaynonecity")[i].nextElementSibling) {
-                    $(".carsearch .displaynonecity")[i].className = "mycitynameclass";
-                    i--;
-                    mylen--;
+            var mylen2 = $(".carsearch .displaynonecity").length;
+            for (var m = 0; m < mylen2; m++) {
+                if ($(".carsearch .displaynonecity")[m].nextElementSibling) {
+                    $(".carsearch .displaynonecity")[m].className = "mycitynameclass";
+                    m--;
+                    mylen2--;
                 }
             }
         }, 200);
@@ -275,10 +275,10 @@ angular.module('starter.controllers', [])
 
         window.location.href = "#/app/carlist2/" + $scope.model.wcity + "/" + $scope.caridArray + "/" + date1 + "/" + date2 + "/" + cityid + "";
     }
-})
+}])
 
 //接送机搜索--------------------------------------------------------------------------------------------------------------
-.controller('air_bookingCtrl', function ($scope, $http, $ionicScrollDelegate) {
+.controller('air_bookingCtrl', ['$scope', '$http', '$ionicScrollDelegate', function ($scope, $http, $ionicScrollDelegate) {
 
     $scope.displaybox = function ($event) {
         $($event.target.parentNode.nextElementSibling).css('display', 'block');
@@ -293,7 +293,7 @@ angular.module('starter.controllers', [])
     //防止菜鸟客户看不到城市选择框
     $scope.clickCity = function () {
         $ionicScrollDelegate.scrollTo(0, 230);
-    }
+    } 
 
     $scope.pick = function () {
         $(".air_booking .pickcity")[0].innerText = "降落城市";
@@ -369,12 +369,12 @@ angular.module('starter.controllers', [])
                 }
             }
             //显示回有热门城市的国家
-            var mylen = $(".air_booking .displaynonecity").length;
-            for (var i = 0; i < mylen; i++) {
-                if ($(".air_booking .displaynonecity")[i].nextElementSibling) {
-                    $(".air_booking .displaynonecity")[i].className = "mycitynameclass";
-                    i--;
-                    mylen--;
+            var mylen2 = $(".air_booking .displaynonecity").length;
+            for (var m = 0; m < mylen2; m++) {
+                if ($(".air_booking .displaynonecity")[m].nextElementSibling) {
+                    $(".air_booking .displaynonecity")[m].className = "mycitynameclass";
+                    m--;
+                    mylen2--;
                 }
             }
         }, 200);
@@ -486,10 +486,10 @@ angular.module('starter.controllers', [])
 
     }
 
-})
+}])
 
 //车型推荐列表(接送机)--------------------------------------------------------------------------------------------------------------
-.controller('carlistCtrl', function ($scope, $http, $ionicScrollDelegate) {
+.controller('carlistCtrl', ['$scope', '$http', '$ionicScrollDelegate', function ($scope, $http, $ionicScrollDelegate) {
     $(".carlisthrefback").attr("href", "#/app/air_booking");
     var pickosend = getpbyurl(7);
     var airportname = decodeURI(getpbyurl(6));
@@ -531,10 +531,10 @@ angular.module('starter.controllers', [])
             $ionicScrollDelegate.resize();
         }
     }
-})
+}])
 
 //车型推荐列表(标准用车)--------------------------------------------------------------------------------------------------------------
-.controller('carlist2Ctrl', function ($scope, $http, $ionicScrollDelegate) {
+.controller('carlist2Ctrl', ['$scope', '$http', '$ionicScrollDelegate', function ($scope, $http, $ionicScrollDelegate) {
     $(".carlisthrefback").attr("href", "#/app/carsearch");
     var cityname = decodeURI(getpbyurl(5));
     var caridArray = decodeURI(getpbyurl(4));
@@ -581,10 +581,10 @@ angular.module('starter.controllers', [])
         }
 
     }
-})
+}])
 
 //接机服务--------------------------------------------------------------------------------------------------------------
-.controller('air_serviceCtrl', function ($scope, $http, hexafy) {
+.controller('air_serviceCtrl',['$scope', '$http', 'hexafy', function ($scope, $http, hexafy) {
     var endaddress = decodeURI(getpbyurl(1));
     var date = decodeURI(getpbyurl(2));
     var airportscode = getpbyurl(3);
@@ -613,6 +613,7 @@ angular.module('starter.controllers', [])
     $scope.airportname = airportname;
     $scope.endaddress = endaddress;
     $scope.pickprice = pickprice;
+    var total_price = pickprice;
 
     var max_seat;
     $scope.$on("$ionicView.loaded", function () {
@@ -783,7 +784,7 @@ angular.module('starter.controllers', [])
             return;
         }
 
-        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + "" + pidstr + ",\"order\":{\"car_category_id\":" + car_category_id + ",\"pickup_airport_code\":\"" + pickup_airport_code + "\",\"pickup_flight\":\"" + pickup_flight + "\",\"pickup_time\":\"" + pickup_time + "\",\"pickup_addr\":\"" + pickup_addr + "\",\"adults\":" + adults + ",\"traveller\":" + traveller + ",\"memo\":\"" + memo + "\",\"key\":\"" + key + "\",\"sign\":\"" + sign + "\"}}";
+        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + "" + pidstr + ",\"order\":{\"car_category_id\":" + car_category_id + ",\"pickup_airport_code\":\"" + pickup_airport_code + "\",\"pickup_flight\":\"" + pickup_flight + "\",\"pickup_time\":\"" + pickup_time + "\",\"pickup_addr\":\"" + pickup_addr + "\",\"adults\":" + adults + ",\"traveller\":" + traveller + ",\"memo\":\"" + memo + "\",\"key\":\"" + key + "\",\"sign\":\"" + sign + "\",\"total_price\":\"" + total_price + "\"}}";
         var nghttp = "../../ajax/apihandler.ashx?fn=createordertg&json=" + json + "";
         var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
         $http.get(nghttp).success(function (response) {
@@ -792,7 +793,10 @@ angular.module('starter.controllers', [])
                 var orderid = response.data.order_no;
                 var vendor_order_no = response.data.vendor_order_no;
                 layermyui('下单成功!将为您自动跳转...');
-                setTimeout('window.location.href = "http://oando.com.cn/tuogu/orders.html"', 2000);
+                //现在是有动态链接地址了,暂时支持马上支付.
+                setTimeout('window.location.href = "' + response.data.pay_url + '"', 2000);
+                //下面的这个是固定的拓谷的外链
+                //setTimeout('window.location.href = "http://oando.com.cn/tuogu/orders.html"', 2000);
             }
             else {
                 layermyui('下单失败!' + response.message);
@@ -802,10 +806,10 @@ angular.module('starter.controllers', [])
 
     }
 
-})
+}])
 
 //标准车服务--------------------------------------------------------------------------------------------------------------
-.controller('car_serviceCtrl', function ($scope, $http, hexafy) {
+.controller('car_serviceCtrl', ['$scope', '$http', 'hexafy', function ($scope, $http, hexafy) {
     var date2 = decodeURI(getpbyurl(1)).trim();
     var date1 = decodeURI(getpbyurl(2)).trim();
     var carid = decodeURI(getpbyurl(3));
@@ -915,6 +919,8 @@ angular.module('starter.controllers', [])
         var to_date = date2;
         var car_category_id = carid;
 
+        var total_price = $scope.total_price;
+         
         var travel_itemsstr = "";
         //多地对日期和地址数组处理.
 
@@ -946,7 +952,7 @@ angular.module('starter.controllers', [])
             kids_age = ",\"kids\":" + kids + ",\"kids_age\":";
             //儿童年龄必填post,前台数据传递暂默认.
             kids_age += "[";
-            for (var i = 1; i <= kids; i++) {
+            for (var n = 1; n <= kids; n++) {
                 kids_age += "10,";
             }
             kids_age = kids_age.substr(0, kids_age.length - 1);
@@ -974,7 +980,7 @@ angular.module('starter.controllers', [])
             return;
         }
 
-        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + "" + pidstr + ",\"order\":{\"from_date\":\"" + from_date + "\",\"from_location_id\":\"" + from_location_id + "\",\"to_date\":\"" + to_date + "\",\"car_category_id\":" + car_category_id + ",\"driver_category_id\":\"" + driver_category_id + "\",\"adults\":" + adults + "" + kids_age + ",\"traveller\":" + traveller + ",\"travel_items\":[" + travel_itemsstr + "],\"key\":\"" + key + "\",\"sign\":\"" + sign + "\"}}";
+        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + "" + pidstr + ",\"order\":{\"from_date\":\"" + from_date + "\",\"from_location_id\":\"" + from_location_id + "\",\"to_date\":\"" + to_date + "\",\"car_category_id\":" + car_category_id + ",\"driver_category_id\":\"" + driver_category_id + "\",\"adults\":" + adults + "" + kids_age + ",\"traveller\":" + traveller + ",\"travel_items\":[" + travel_itemsstr + "],\"key\":\"" + key + "\",\"sign\":\"" + sign + "\",\"total_price\":\"" + total_price + "\"}}";
         var nghttp = "../../ajax/apihandler.ashx?fn=createcarordertg&json=" + json + "";
         var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
         $http.get(nghttp).success(function (response) {
@@ -985,7 +991,11 @@ angular.module('starter.controllers', [])
                 //window.location.href = "#/app/airpay/" + orderid + "";
 
                 layermyui('下单成功!将为您自动跳转...');
-                setTimeout('window.location.href = "http://oando.com.cn/tuogu/orders.html"', 2000);
+                //debugger
+                //现在是有动态链接地址了,暂时支持马上支付.
+                setTimeout('window.location.href = "' + response.data.pay_url + '"', 2000);
+                //下面的这个是固定的拓谷的外链
+                //setTimeout('window.location.href = "http://oando.com.cn/tuogu/orders.html"', 2000);
             }
             else {
                 layermyui('下单失败!' + response.message);
@@ -995,5 +1005,5 @@ angular.module('starter.controllers', [])
 
     }
 
-})
+}])
 

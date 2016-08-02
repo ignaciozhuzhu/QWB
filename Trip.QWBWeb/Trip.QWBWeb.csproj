@@ -99,78 +99,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="admin\functions\bannerimg.aspx.cs">
-      <DependentUpon>bannerimg.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\functions\bannerimg.aspx.designer.cs">
-      <DependentUpon>bannerimg.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\functions\linecategory.aspx.cs">
-      <DependentUpon>linecategory.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\functions\linecategory.aspx.designer.cs">
-      <DependentUpon>linecategory.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\functions\linerecommend.aspx.cs">
-      <DependentUpon>linerecommend.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\functions\linerecommend.aspx.designer.cs">
-      <DependentUpon>linerecommend.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\functions\linestore.aspx.cs">
-      <DependentUpon>linestore.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\functions\linestore.aspx.designer.cs">
-      <DependentUpon>linestore.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\functions\recommendstorage.aspx.cs">
-      <DependentUpon>recommendstorage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\functions\recommendstorage.aspx.designer.cs">
-      <DependentUpon>recommendstorage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\functions\searchtag.aspx.cs">
-      <DependentUpon>searchtag.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\functions\searchtag.aspx.designer.cs">
-      <DependentUpon>searchtag.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\master\Header.Master.cs">
-      <DependentUpon>Header.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\master\Header.Master.designer.cs">
-      <DependentUpon>Header.Master</DependentUpon>
-    </Compile>
     <Compile Include="ajax\apihandler.ashx.cs">
       <DependentUpon>apihandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="admin\functions\bannerimg.aspx" />
-    <Content Include="admin\functions\linecategory.aspx" />
-    <Content Include="admin\functions\linerecommend.aspx" />
-    <Content Include="admin\functions\linerefresh.html" />
-    <Content Include="admin\functions\linestore.aspx" />
-    <Content Include="admin\functions\recommendstorage.aspx" />
-    <Content Include="admin\functions\searchtag.aspx" />
-    <Content Include="admin\images\hand.png" />
-    <Content Include="admin\images\left-handing.png" />
-    <Content Include="admin\images\left_hand.png" />
-    <Content Include="admin\images\password.png" />
-    <Content Include="admin\images\right_hand.png" />
-    <Content Include="admin\images\right_handing.png" />
-    <Content Include="admin\images\tou.png" />
-    <Content Include="admin\images\username.png" />
-    <Content Include="admin\js\jquery-1.9.1.min.js" />
-    <Content Include="admin\login.html" />
     <Content Include="img\01.jpg" />
     <Content Include="img\02.jpg" />
     <Content Include="img\04.jpg" />
@@ -223,20 +157,9 @@
     <Content Include="img\轮船游.png" />
     <Content Include="img\锯齿划线.png" />
     <Content Include="Web.config" />
-    <Content Include="www\css\datepicker.css" />
+    <Content Include="www\css\bootstrap.min.css" />
     <Content Include="www\css\jquery.spinner.css" />
-    <Content Include="www\css\jquery.spinner2.css" />
-    <Content Include="www\css\mfb.css" />
-    <Content Include="www\css\mfb2.css" />
-    <Content Include="www\css\royalslider.css" />
-    <Content Include="www\css\rs-minimal-white.css" />
     <Content Include="www\css\style.css" />
-    <Content Include="www\css\userstyle.css" />
-    <Content Include="www\css\userstyle.min.css" />
-    <Content Include="www\demos\down.html" />
-    <Content Include="www\demos\extend.html" />
-    <Content Include="www\demos\localdb.html" />
-    <Content Include="www\demos\teledown.html" />
     <Content Include="www\images\1.jpg" />
     <Content Include="www\images\2.jpg" />
     <Content Include="www\images\3.jpg" />
@@ -313,9 +236,14 @@
     <Content Include="www\img\锦江旅游图标.jpg" />
     <Content Include="www\img\锯齿划线.png" />
     <Content Include="www\index.html" />
+    <Content Include="www\js\directive.js" />
+    <Content Include="www\js\directive_html\airport.html" />
+    <Content Include="www\js\directive_html\cities.html" />
+    <Content Include="www\js\service.js" />
     <Content Include="www\lib\angular-1.4.6.min.js" />
     <Content Include="www\js\app.js" />
     <Content Include="www\js\controllers.js" />
+    <Content Include="www\lib\bootstrap.min.js" />
     <Content Include="www\lib\ionic-datepicker\ionic-datepicker.js" />
     <Content Include="www\lib\ionic-datepicker\ionic-datepicker.min.js" />
     <Content Include="www\lib\ionic-datepicker\style.css" />
@@ -324,7 +252,6 @@
     <Content Include="www\lib\jquery-1.8.3.min.js" />
     <Content Include="www\lib\jquery.royalslider.min.js" />
     <Content Include="www\lib\jquery.spinner.js" />
-    <Content Include="www\lib\jquery.spinner2.js" />
     <Content Include="www\lib\Jquerybui.js" />
     <Content Include="www\js\jscommon.js" />
     <Content Include="www\lib\layer\layer.js" />
@@ -374,7 +301,6 @@
     <Content Include="www\templates\index.html" />
     <Content Include="www\templates\index2.html" />
     <Content Include="www\templates\menu.html" />
-    <Content Include="admin\master\Header.Master" />
     <Content Include="ajax\apihandler.ashx" />
     <Content Include="www\templates\reactdemo\index2.html" />
     <Content Include="www\templates\reactdemo\index1.html" />
@@ -430,9 +356,7 @@
     <Content Include="www\lib\ionic\scss\_variables.scss" />
     <Content Include="www\lib\ionic\version.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="www\js\css\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>

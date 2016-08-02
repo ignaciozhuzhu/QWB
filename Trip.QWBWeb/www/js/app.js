@@ -7,7 +7,7 @@
 
 angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers', 'starter.directive', 'starter.service'])
 
-.run(function ($ionicPlatform) {
+.run(['$ionicPlatform' ,function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -21,9 +21,9 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers', '
             StatusBar.styleDefault();
         }
     });
-})
+}])
 
-.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config( ['$stateProvider','$urlRouterProvider','$ionicConfigProvider', function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.backButton.text("");
     $ionicConfigProvider.backButton.previousTitleText(false);
     $stateProvider
@@ -112,9 +112,9 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers', '
                  controller: 'airpayCtrl'
              }
          }
-     })
+     });     
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/index2');///app/playlists
-});
+}]);
 

@@ -74,14 +74,66 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Trip.Service.AuditExtensions.NewOrderAuditDetailItem(Trip.Repository.Entities.OrderPartCategory,System.String,System.String,System.String)">
+        <member name="M:Trip.Service.AuditBaseSetting`1.GetForInsertAudit(Trip.Repository.Entities.AuditEntity,`0)">
             <summary>
-            new OrderAuditDetailItem
+            获取新建操作的详细内容
             </summary>
-            <param name="category"></param>
-            <param name="oldValue"></param>
-            <param name="newValue"></param>
+        </member>
+        <member name="M:Trip.Service.AuditBaseSetting`1.GetForUpdateAudit(Trip.Repository.Entities.AuditEntity,`0,`0)">
+            <summary>
+            获取修改操作的详细内容
+            </summary>
+            <param name="audit"></param>
+            <param name="oldEntity"></param>
+            <param name="newEntity"></param>
             <returns></returns>
+        </member>
+        <member name="P:Trip.Service.AuditBaseSetting`1.SimpleProperties">
+            <summary>
+            修改操作需要记录日志的属性列表
+            </summary>
+        </member>
+        <member name="M:Trip.Service.AuditBaseSetting`1.IsEqual(System.Type,System.Object,System.Object)">
+            <summary>
+            判断两个对象是否相等
+            </summary>
+            <param name="dataType"></param>
+            <param name="oldObj"></param>
+            <param name="newObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Trip.Service.AuditManager`1.ForInsert(`0)">
+            <summary>
+            新增时添加日志
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:Trip.Service.AuditManager`1.ForUpdate(`0,`0)">
+            <summary>
+            编辑时添加日志
+            </summary>
+            <param name="oldEntity"></param>
+            <param name="newEntity"></param>
+        </member>
+        <member name="M:Trip.Service.AuditManager`1.Clone(`0)">
+            <summary>
+            复制一个对象
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Trip.Service.AuditManager`1.GetSettingByAuditObjectType(Trip.Repository.Entities.AuditObjectType)">
+            <summary>
+            获取日志具体设置
+            </summary>
+            <param name="ObjectType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Trip.Service.AuditManager`1.InsertAudit(Trip.Repository.Entities.AuditEntity)">
+            <summary>
+            插入日志
+            </summary>
+            <param name="entity"></param>
         </member>
         <member name="M:Trip.Service.AuditService.GetAllAudits(Trip.Repository.Entities.AuditObjectType,System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -91,6 +143,50 @@
             <param name="objectId"></param>
             <param name="start"></param>
             <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Trip.Service.LineAuditSetting`1.GetForInsertAudit(Trip.Repository.Entities.AuditEntity,`0)">
+            <summary>
+            获取添加日志
+            </summary>
+        </member>
+        <member name="M:Trip.Service.LineAuditSetting`1.GetForInsertDetail(Trip.Repository.Entities.AuditDetailExt,`0)">
+            <summary>
+            获取添加时的详细内容
+            </summary>
+        </member>
+        <member name="M:Trip.Service.LineAuditSetting`1.GetForUpdateAudit(Trip.Repository.Entities.AuditEntity,`0,`0)">
+            <summary>
+            获取修改日志
+            </summary>
+            <param name="audit"></param>
+            <param name="oldEntity"></param>
+            <param name="newEntity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Trip.Service.OrderAuditSetting`1.GetForInsertAudit(Trip.Repository.Entities.AuditEntity,`0)">
+            <summary>
+            获取添加日志
+            </summary>
+        </member>
+        <member name="M:Trip.Service.OrderAuditSetting`1.GetForInsertDetail(Trip.Repository.Entities.AuditDetailExt,`0)">
+            <summary>
+            获取添加时的详细内容
+            </summary>
+        </member>
+        <member name="M:Trip.Service.OrderAuditSetting`1.GetForUpdateAudit(Trip.Repository.Entities.AuditEntity,`0,`0)">
+            <summary>
+            获取修改日志
+            </summary>
+            <param name="audit"></param>
+            <param name="oldEntity"></param>
+            <param name="newEntity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Trip.Service.OrderAuditSetting`1.GetDisplayString(System.Type,System.Object,System.String)">
+            <summary>
+            获取显示的字符串
+            </summary>
             <returns></returns>
         </member>
         <member name="M:Trip.Service.MemberExtensions.GetAllowCatalogIds(Trip.Repository.Entities.MemberEntity)">
@@ -599,6 +695,11 @@
             <param name="productId"></param>
             <param name="PickupAreaIds"></param>
         </member>
+        <member name="M:Trip.Service.ProductPriceServcie.GetByVendorTeamId(System.String,System.Int32)">
+            <summary>
+            根据供应商编号获取开班
+            </summary>
+        </member>
         <member name="M:Trip.Service.ProductPriceServcie.DeleteProductPrice(Trip.Repository.Entities.ProductPriceEntity)">
             <summary>
             删除开班
@@ -645,7 +746,6 @@
             获取锦江优惠价格
             注意：此处如果优惠价小于零售价 则认为没有优惠价
             </summary>
-            <param name="price"></param>
             <returns></returns>
         </member>
         <member name="M:Trip.Service.ProductExtensions.GetPreferentialAgentPrice(Trip.Repository.Entities.ProductPriceLineEntity)">
@@ -653,7 +753,6 @@
             获取锦江优惠代理价格
             注意：此处如果优惠价小于代理价 则认为没有优惠价
             </summary>
-            <param name="price"></param>
             <returns></returns>
         </member>
         <member name="M:Trip.Service.ProductExtensions.GetRetailPrice(Trip.Repository.Entities.ProductPriceLineEntity)">
@@ -661,44 +760,35 @@
             获取零售价
             TODO 需要重新考虑
             </summary>
-            <param name="price"></param>
             <returns></returns>
         </member>
         <member name="M:Trip.Service.ProductExtensions.Is1KuaiTicket(Trip.Repository.Entities.ProductEntity)">
             <summary>
             是否是1块门票
             </summary>
-            <param name="product"></param>
             <returns></returns>
         </member>
         <member name="M:Trip.Service.ProductExtensions.IsProvideByZjCyts(Trip.Repository.Entities.ProductEntity)">
             <summary>
             是否由 中青旅 提供线路
             </summary>
-            <param name="product"></param>
             <returns></returns>
         </member>
         <member name="M:Trip.Service.ProductExtensions.GetChildPriceLine(Trip.Repository.Entities.ProductPriceEntity)">
             <summary>
             获取儿童价格
             </summary>
-            <param name="plan"></param>
             <returns></returns>
         </member>
         <member name="M:Trip.Service.TicketPlanService.GetTicketPlans(System.Int32,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
             <summary>
             获取门票计划列表
             </summary>
-            <param name="shopId">店铺编号</param>
-            <param name="productId">产品编号</param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Service.TicketPlanService.GetTicketPlan(System.Int32,System.Nullable{System.Int32},System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
             <summary>
             获取门票计划
             </summary>
-            <param name="ticketPlanId"></param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Service.TicketPlanService.InsertTicketPlan(Trip.Repository.Entities.TicketPlanEntity)">
             <summary>
@@ -1352,11 +1442,6 @@
             <summary>
             Get Product
             </summary>
-            <param name="productId">Product Id</param>
-            <param name="isHidden">Hidden Status</param>
-            <param name="isSale">Sale Status</param>
-            <param name="isOffLine"></param>
-            <returns>Product</returns>
         </member>
         <member name="M:Trip.Service.ProductService.GetProductByVendorId(System.Int32,System.String)">
             <summary>

@@ -1,4 +1,3 @@
-
 ol, ul {
 	list-style: none
 }
@@ -24,6 +23,7 @@ a img {
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
 	display: block
 }
+
 .spinner-sprite, .spinner .decrease, .spinner .decrease[disabled], .spinner .increase, .spinner .increase[disabled], .spinner .value, .spinner .value.passive {
 	background: url('../images/spinner3.png') no-repeat
 }
