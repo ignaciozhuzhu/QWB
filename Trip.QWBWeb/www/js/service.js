@@ -8,7 +8,6 @@
         var cityidarray = cityid.split('|');
         var nghttp = "../../ajax/apihandler.ashx?fn=getcarslist&locationid=" + cityidarray[0] + "";
         $http.get(nghttp).success(function (response) {
-            debugger
             if (response.car_categories == null) {
                 layermyui('该车型乘坐人数配置不全');
             }

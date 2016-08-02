@@ -63,7 +63,7 @@ angular.module('starter.controllers', [])
         var queryRow = angular.element(document.createElement('variocities-components'));
         $compile(queryRow)($scope);
         $(".carlinedetail").append(queryRow);
-        displaynonecountry();
+        displaynonecountry(".carsearch");
 
         //$("variocities-components")[clickcount].className = "displayblock";
         //clickcount++;
@@ -679,13 +679,17 @@ angular.module('starter.controllers', [])
         //var drop_off_time = "";
         //var drop_off_addr = "";
 
-        //儿童年龄必填post,前台数据传递暂默认.
-        var kids_age = "[";
-        for (var i = 1; i <= kids; i++) {
-            kids_age += "10,";
+        var kids_age = "";
+        if (kids > 0) {
+            kids_age = ",\"kids\":" + kids + ",\"kids_age\":";
+            //儿童年龄必填post,前台数据传递暂默认.
+            kids_age += "[";
+            for (var n = 1; n <= kids; n++) {
+                kids_age += "10,";
+            }
+            kids_age = kids_age.substr(0, kids_age.length - 1);
+            kids_age = kids_age + "]";
         }
-        kids_age = kids_age.substr(0, kids_age.length - 1);
-        kids_age = kids_age + "]";
 
         var contactName = $(".air_service #contactName")[0].value;
         var contactPassport = $(".air_service #contactPassport")[0].value;
@@ -713,7 +717,7 @@ angular.module('starter.controllers', [])
             return;
         }
 
-        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + "" + pidstr + ",\"order\":{\"car_category_id\":" + car_category_id + ",\"pickup_airport_code\":\"" + pickup_airport_code + "\",\"pickup_flight\":\"" + pickup_flight + "\",\"pickup_time\":\"" + pickup_time + "\",\"pickup_addr\":\"" + pickup_addr + "\",\"adults\":" + adults + ",\"traveller\":" + traveller + ",\"memo\":\"" + memo + "\",\"key\":\"" + key + "\",\"sign\":\"" + sign + "\",\"total_price\":\"" + total_price + "\"}}";
+        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + "" + pidstr + ",\"order\":{\"car_category_id\":" + car_category_id + ",\"pickup_airport_code\":\"" + pickup_airport_code + "\",\"pickup_flight\":\"" + pickup_flight + "\",\"pickup_time\":\"" + pickup_time + "\",\"pickup_addr\":\"" + pickup_addr + "\",\"adults\":" + adults + "" + kids_age + ",\"traveller\":" + traveller + ",\"memo\":\"" + memo + "\",\"key\":\"" + key + "\",\"sign\":\"" + sign + "\",\"total_price\":\"" + total_price + "\"}}";
         var nghttp = "../../ajax/apihandler.ashx?fn=createordertg&json=" + json + "";
         var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
         $http.get(nghttp).success(function (response) {
