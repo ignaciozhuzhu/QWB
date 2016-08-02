@@ -45,3 +45,16 @@
         templateUrl: 'js/directive_html/airport.html'
     };
 })
+
+//错误图片提示
+.directive('errSrc', function () {
+    return {
+        link: function (scope, element, attrs) {
+            element.bind('error', function () {
+                if (attrs.src != attrs.errSrc) {
+                    attrs.$set('src', attrs.errSrc);
+                }
+            });
+        }
+    }
+})

@@ -8,6 +8,7 @@
         var cityidarray = cityid.split('|');
         var nghttp = "../../ajax/apihandler.ashx?fn=getcarslist&locationid=" + cityidarray[0] + "";
         $http.get(nghttp).success(function (response) {
+            debugger
             if (response.car_categories == null) {
                 layermyui('该车型乘坐人数配置不全');
             }
@@ -22,5 +23,26 @@
         }).error(function (data) {
             layermyui('该车型配置有误');
         })
+    }
+})
+
+.service('getcitysev', function () {
+    this.myFunc = function ($http, $scope, funcallback) {
+        var nghttp = "../../ajax/apihandler.ashx?fn=getcitieslist";
+        $http.get(nghttp).success(function (response) {
+            for (var i = 0; i < response.zones.length; i++) {
+                for (var j = 0; j < response.zones[i].areas.length; j++) {
+                    if (response.zones[i].areas[j].is_hot == false)
+                        response.zones[i].areas[j].is_hot = "a";
+                    for (var k = 0; k < response.zones[i].areas[j].cities.length; k++) {
+                        if (response.zones[i].areas[j].cities[k].is_hot == false)
+                            response.zones[i].areas[j].cities[k].is_hot = "b";
+                    }
+                }
+            }
+            $scope.zones = response.zones;
+            funcallback(response);
+            $(".inittext")[0].text = "请选择";
+        });
     }
 })

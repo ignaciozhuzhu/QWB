@@ -16,7 +16,7 @@ angular.module('starter.controllers', [])
 }])
 
     //标准车--------------------------------------------------------------------------------------------------------------
-.controller('carsearchCtrl', ['$scope', '$http', '$ionicScrollDelegate', '$compile', function ($scope, $http, $ionicScrollDelegate, $compile) {
+.controller('carsearchCtrl', ['$scope', '$http', '$ionicScrollDelegate', '$compile', 'getcitysev', function ($scope, $http, $ionicScrollDelegate, $compile, getcitysev) {
     var soloovarious = "";
 
     $scope.displaybox = function ($event) {
@@ -70,22 +70,11 @@ angular.module('starter.controllers', [])
     }
 
     //cities 组件bg----------------------------------------------------------------------------
-    var nghttp = "/ajax/apihandler.ashx?fn=getcitieslist";
-    var responseche;
-    $http.get(nghttp).success(function (response) {
-        for (var i = 0; i < response.zones.length; i++) {
-            for (var j = 0; j < response.zones[i].areas.length; j++) {
-                if (response.zones[i].areas[j].is_hot == false)
-                    response.zones[i].areas[j].is_hot = "a";
-                for (var k = 0; k < response.zones[i].areas[j].cities.length; k++) {
-                    if (response.zones[i].areas[j].cities[k].is_hot == false)
-                        response.zones[i].areas[j].cities[k].is_hot = "b";
-                }
-            }
-        }
-        responseche = response;
-        $scope.zones = response.zones;
-    });
+
+    var funcallback = function (_responseche) {
+        responseche = _responseche;
+    }
+    var responseche = getcitysev.myFunc($http, $scope, funcallback);
 
     //用车地域改变监听
     $scope.change = function (x) {
@@ -95,43 +84,21 @@ angular.module('starter.controllers', [])
             }
         }
         $scope.model = { wcity: "", wcityid: 0 };
-        displaynonecountry();
+        displaynonecountry(".carsearch");
     }
     //输入降落城市框监听
     $scope.changecity = function () {
-        displaynonecountry();
+        displaynonecountry(".carsearch");
     }
 
-    //显示或隐藏城市的国家
-    var displaynonecountry = function () {
-        setTimeout(function () {
-            //隐藏没有热门城市的国家
-            var mylen = $(".carsearch .mycitynameclass").length;
-            for (var i = 0; i < mylen; i++) {
-                if (!$(".carsearch .mycitynameclass")[i].nextElementSibling) {
-                    $(".carsearch .mycitynameclass")[i].className = "displaynonecity";
-                    i--;
-                    mylen--;
-                }
-            }
-            //显示回有热门城市的国家
-            var mylen2 = $(".carsearch .displaynonecity").length;
-            for (var m = 0; m < mylen2; m++) {
-                if ($(".carsearch .displaynonecity")[m].nextElementSibling) {
-                    $(".carsearch .displaynonecity")[m].className = "mycitynameclass";
-                    m--;
-                    mylen2--;
-                }
-            }
-        }, 200);
-    }
+
 
     //降落城市改变监听(点击事件)
     $scope.selectcity = function ($event) {
         $scope.model = { wcity: $event.target.innerText, wcityid: $event.target.children[0].innerText };
         $scope.caridArray = "";
         cityselectfun();
-        displaynonecountry();
+        displaynonecountry(".carsearch");
 
         //清空距离提示
         for (var i = 0; i < 10; i++) {
@@ -146,7 +113,7 @@ angular.module('starter.controllers', [])
         $scope.model.length = parseInt(myindex) + 1;
         $scope.caridArray = "";
         cityselectfun();
-        displaynonecountry();
+        displaynonecountry(".carsearch");
 
         var cityid1;
         var cityid2;
@@ -164,7 +131,6 @@ angular.module('starter.controllers', [])
     function distancetip(cityid1, cityid2, myindex) {
         var nghttp = "../../ajax/apihandler.ashx?fn=getdistances&from_location_id=" + cityid1 + "&to_location_id=" + cityid2 + "";
         $http.get(nghttp).success(function (response) {
-            //debugger
             if (response.status == 0) {
                 $(".carsearch .citydistancetip")[myindex - 1].className = "citydistancetip displayblock";
                 if (response.distance < 400) {
@@ -278,7 +244,7 @@ angular.module('starter.controllers', [])
 }])
 
 //接送机搜索--------------------------------------------------------------------------------------------------------------
-.controller('air_bookingCtrl', ['$scope', '$http', '$ionicScrollDelegate', function ($scope, $http, $ionicScrollDelegate) {
+.controller('air_bookingCtrl', ['$scope', '$http', '$ionicScrollDelegate', 'getcitysev', function ($scope, $http, $ionicScrollDelegate, getcitysev) {
 
     $scope.displaybox = function ($event) {
         $($event.target.parentNode.nextElementSibling).css('display', 'block');
@@ -293,7 +259,7 @@ angular.module('starter.controllers', [])
     //防止菜鸟客户看不到城市选择框
     $scope.clickCity = function () {
         $ionicScrollDelegate.scrollTo(0, 230);
-    } 
+    }
 
     $scope.pick = function () {
         $(".air_booking .pickcity")[0].innerText = "降落城市";
@@ -319,22 +285,10 @@ angular.module('starter.controllers', [])
     //要监听这两个是因为有三层联动关系.
 
     //cities 组件bg
-    var nghttp = "../../ajax/apihandler.ashx?fn=getcitieslist";
-    var responseche;
-    $http.get(nghttp).success(function (response) {
-        for (var i = 0; i < response.zones.length; i++) {
-            for (var j = 0; j < response.zones[i].areas.length; j++) {
-                if (response.zones[i].areas[j].is_hot == false)
-                    response.zones[i].areas[j].is_hot = "a";
-                for (var k = 0; k < response.zones[i].areas[j].cities.length; k++) {
-                    if (response.zones[i].areas[j].cities[k].is_hot == false)
-                        response.zones[i].areas[j].cities[k].is_hot = "b";
-                }
-            }
-        }
-        responseche = response;
-        $scope.zones = response.zones;
-    });
+    var funcallback = function (_responseche) {
+        responseche = _responseche;
+    }
+    var responseche = getcitysev.myFunc($http, $scope, funcallback);
 
     //用车地域改变监听
     $scope.change = function (x) {
@@ -348,36 +302,12 @@ angular.module('starter.controllers', [])
         $scope.model3 = { endaddress: "" };
         $(".air_booking #inputendaddress")[0].value = "";
 
-        displaynonecountry();
+        displaynonecountry(".air_booking");
     }
 
     //输入降落城市框监听
     $scope.changecity = function () {
-        displaynonecountry();
-    }
-
-    //显示或隐藏城市的国家
-    var displaynonecountry = function () {
-        setTimeout(function () {
-            //隐藏没有热门城市的国家
-            var mylen = $(".air_booking .mycitynameclass").length;
-            for (var i = 0; i < mylen; i++) {
-                if (!$(".air_booking .mycitynameclass")[i].nextElementSibling) {
-                    $(".air_booking .mycitynameclass")[i].className = "displaynonecity";
-                    i--;
-                    mylen--;
-                }
-            }
-            //显示回有热门城市的国家
-            var mylen2 = $(".air_booking .displaynonecity").length;
-            for (var m = 0; m < mylen2; m++) {
-                if ($(".air_booking .displaynonecity")[m].nextElementSibling) {
-                    $(".air_booking .displaynonecity")[m].className = "mycitynameclass";
-                    m--;
-                    mylen2--;
-                }
-            }
-        }, 200);
+        displaynonecountry(".air_booking");
     }
 
     //降落城市改变监听(点击事件)
@@ -391,7 +321,7 @@ angular.module('starter.controllers', [])
         //清空送达地点的下拉框数据
         $scope.endaddress = "";
 
-        displaynonecountry();
+        displaynonecountry(".air_booking");
     }
 
     $scope.caridArray = "";
@@ -417,7 +347,6 @@ angular.module('starter.controllers', [])
         })
     }
     //cities 组件ed
-
 
     //选择机场的点击动作
     $scope.selectairport = function ($event) {
@@ -584,7 +513,7 @@ angular.module('starter.controllers', [])
 }])
 
 //接机服务--------------------------------------------------------------------------------------------------------------
-.controller('air_serviceCtrl',['$scope', '$http', 'hexafy', function ($scope, $http, hexafy) {
+.controller('air_serviceCtrl', ['$scope', '$http', 'hexafy', function ($scope, $http, hexafy) {
     var endaddress = decodeURI(getpbyurl(1));
     var date = decodeURI(getpbyurl(2));
     var airportscode = getpbyurl(3);
@@ -920,7 +849,7 @@ angular.module('starter.controllers', [])
         var car_category_id = carid;
 
         var total_price = $scope.total_price;
-         
+
         var travel_itemsstr = "";
         //多地对日期和地址数组处理.
 
@@ -991,7 +920,7 @@ angular.module('starter.controllers', [])
                 //window.location.href = "#/app/airpay/" + orderid + "";
 
                 layermyui('下单成功!将为您自动跳转...');
-                //debugger
+
                 //现在是有动态链接地址了,暂时支持马上支付.
                 setTimeout('window.location.href = "' + response.data.pay_url + '"', 2000);
                 //下面的这个是固定的拓谷的外链

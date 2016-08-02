@@ -81,7 +81,7 @@
                 <div class="car_serach">
                     <div class="car_search_toptitle">用车地域</div>
                     <select name="date" ng-change="change(x)" ng-model="x">
-                        <option value="">请选择</option>
+                        <option class="inittext" value="">正在加载...</option>
                         <option value="{{x.id}}" ng-repeat="x in zones">{{x.name}}</option>
                     </select>
                 </div>

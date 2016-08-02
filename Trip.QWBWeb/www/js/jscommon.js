@@ -473,3 +473,27 @@ var timechange = function () {
         $("#nighttipsimg").css("display", "none");
     }
 }
+
+//显示或隐藏城市的国家
+var displaynonecountry = function (classname) {
+    setTimeout(function () {
+        //隐藏没有热门城市的国家
+        var mylen = $(classname + " .mycitynameclass").length;
+        for (var i = 0; i < mylen; i++) {
+            if (!$(classname + " .mycitynameclass")[i].nextElementSibling) {
+                $(classname + " .mycitynameclass")[i].className = "displaynonecity";
+                i--;
+                mylen--;
+            }
+        }
+        //显示回有热门城市的国家
+        var mylen2 = $(classname + " .displaynonecity").length;
+        for (var m = 0; m < mylen2; m++) {
+            if ($(classname + " .displaynonecity")[m].nextElementSibling) {
+                $(classname + " .displaynonecity")[m].className = "mycitynameclass";
+                m--;
+                mylen2--;
+            }
+        }
+    }, 200);
+}
