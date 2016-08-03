@@ -252,6 +252,32 @@ namespace Trip.QWBWeb.ajax
             HttpContext.Current.Response.Write(Trip.QWB.qwbApi.getdistances(from_location_id, to_location_id));
         }
 
+        /// <summary>
+        /// 判断是否已登录
+        /// </summary>
+        public void iflogin()
+        {
+            int gid = 0;
+            int cid = 0;
+            var ticket = "";
+            try
+            {
+                ticket = HttpContext.Current.Request.Cookies["guideid"].Value;
+                gid = Convert.ToInt32(FormsAuthentication.Decrypt(ticket).Name);
+            }
+            catch { }
+            try
+            {
+                ticket = HttpContext.Current.Request.Cookies["cusid"].Value;
+                cid = Convert.ToInt32(FormsAuthentication.Decrypt(ticket).Name);
+            }
+            catch { }
+            if (gid > 0 || cid > 0)
+                HttpContext.Current.Response.Write("true");
+            else
+                HttpContext.Current.Response.Write("false");
+        }
+
         public bool IsReusable
         {
             get

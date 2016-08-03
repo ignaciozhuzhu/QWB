@@ -7,12 +7,29 @@ angular.module('starter.controllers', [])
 
     //封面
 .controller('indexCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.bzyc = function () {
-        window.location.href = " #/app/carsearch";
-    }
-    $scope.jsj = function () {
-        window.location.href = " #/app/air_booking";
-    }
+
+    var nghttp = "../../ajax/apihandler.ashx?fn=iflogin";
+    $http.get(nghttp).success(function (response) {
+        if (response == "true") {
+            $scope.bzyc = function () {
+                window.location.href = " #/app/carsearch";
+            }
+            $scope.jsj = function () {
+                window.location.href = " #/app/air_booking";
+            }
+        }
+        else {
+            layermyui('请先使用拓谷帐号登录');
+
+            $scope.bzyc = function () {
+                layermyui('请先使用拓谷帐号登录');
+            }
+            $scope.jsj = function () {
+                layermyui('请先使用拓谷帐号登录');
+            }
+        }
+    })
+
 }])
 
     //标准车--------------------------------------------------------------------------------------------------------------
@@ -90,8 +107,6 @@ angular.module('starter.controllers', [])
     $scope.changecity = function () {
         displaynonecountry(".carsearch");
     }
-
-
 
     //降落城市改变监听(点击事件)
     $scope.selectcity = function ($event) {
