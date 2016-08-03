@@ -206,21 +206,7 @@ namespace Trip.QWBWeb.ajax
         /// </summary>
         public void createcarordertg()
         {
-            int gid = 0;
-            int cid = 0;
-            var ticket = "";
-            try
-            {
-                ticket = HttpContext.Current.Request.Cookies["guideid"].Value;
-                gid = Convert.ToInt32(FormsAuthentication.Decrypt(ticket).Name);
-            }
-            catch { }
-            try
-            {
-                ticket = HttpContext.Current.Request.Cookies["cusid"].Value;
-                cid = Convert.ToInt32(FormsAuthentication.Decrypt(ticket).Name);
-            }
-            catch { }
+            int[] id = getgidocid();
 
             string json = "";
             try
@@ -228,10 +214,10 @@ namespace Trip.QWBWeb.ajax
                 json = HttpContext.Current.Request["json"];
             }
             catch { }
-            if (gid > 0)
-                json = json.Substring(0, json.Length - 1) + ",\"guide_id\":" + gid + "" + "}";
-            else if (cid > 0)
-                json = json.Substring(0, json.Length - 1) + ",\"customer_id\":" + cid + "" + "}";
+            if (id[0] > 0)
+                json = json.Substring(0, json.Length - 1) + ",\"guide_id\":" + id[0] + "" + "}";
+            else if (id[1] > 0)
+                json = json.Substring(0, json.Length - 1) + ",\"customer_id\":" + id[1] + "" + "}";
 
             HttpContext.Current.Response.Write(Trip.QWB.qwbApi.createcarordertg(json));
         }
@@ -257,6 +243,19 @@ namespace Trip.QWBWeb.ajax
         /// </summary>
         public void iflogin()
         {
+            int[] id = getgidocid();
+            if (id[0] > 0 || id[1] > 0)
+                HttpContext.Current.Response.Write("true");
+            else
+                HttpContext.Current.Response.Write("false");
+        }
+
+        /// <summary>
+        /// 获取cookieticket
+        /// </summary>
+        private int[] getgidocid()
+        {
+            int[] id = new int[2];
             int gid = 0;
             int cid = 0;
             var ticket = "";
@@ -272,10 +271,9 @@ namespace Trip.QWBWeb.ajax
                 cid = Convert.ToInt32(FormsAuthentication.Decrypt(ticket).Name);
             }
             catch { }
-            if (gid > 0 || cid > 0)
-                HttpContext.Current.Response.Write("true");
-            else
-                HttpContext.Current.Response.Write("false");
+            id[0] = gid;
+            id[1] = cid;
+            return id;
         }
 
         public bool IsReusable
