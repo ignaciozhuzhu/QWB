@@ -26,6 +26,13 @@
     margin-top: auto;
 }
 
+#hotv3 h2, .button {
+    text-shadow:none
+}
+.datepicker-modal-buttons .button {
+    border: 1px solid;
+}
+
 .boxcarsearch .button {
     font: icon;
     -webkit-box-shadow: none;
