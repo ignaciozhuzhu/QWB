@@ -14,6 +14,7 @@ namespace Trip.QWBWeb.ajax
     /// </summary>
     public class apihandler : IHttpHandler, IRequiresSessionState
     {
+        private const string jsoncallbackpar = "jsoncallback";
         public void ProcessRequest(HttpContext context)
         {
             try
@@ -245,9 +246,17 @@ namespace Trip.QWBWeb.ajax
         {
             int[] id = getgidocid();
             if (id[0] > 0 || id[1] > 0)
-                HttpContext.Current.Response.Write("true");
+            {
+                string json = "true";
+                HttpContext.Current.Response.Write(json);
+               //   HttpContext.Current.Response.Write(getjson2jsonp(json));
+            }
             else
-                HttpContext.Current.Response.Write("false");
+            {
+                string json = "false";
+                HttpContext.Current.Response.Write(json);
+               //  HttpContext.Current.Response.Write(getjson2jsonp(json));
+            }
         }
 
         /// <summary>
@@ -274,6 +283,15 @@ namespace Trip.QWBWeb.ajax
             id[0] = gid;
             id[1] = cid;
             return id;
+        }
+        /// <summary>
+        /// json转jsonp格式
+        /// </summary>
+        private string getjson2jsonp(string json)
+        {
+            string jsonp = HttpContext.Current.Request[jsoncallbackpar];
+            string strReturn = jsonp + "(" + json + ")";
+            return strReturn;
         }
 
         public bool IsReusable

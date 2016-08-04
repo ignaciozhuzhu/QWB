@@ -22,7 +22,7 @@
             _html += '<span ng-show="false">{{xx.id}}</span></span>';
             _html += '</div>';
             _html += '</div><p class="citydistancetip displaynone">一天内可以到达</p></div>';
-            _html += '<img src="img/减号.png" style="height:30px !important;width: 30px !important;margin: 5px 0;" ng-click="delday()"></img>';
+            _html += '<img src="images/minus.png" style="height:30px !important;width: 30px !important;margin: 5px 0;" ng-click="delday()"></img>';
             return _html;
         }
 

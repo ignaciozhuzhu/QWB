@@ -102,7 +102,6 @@
     <Compile Include="ajax\apihandler.ashx.cs">
       <DependentUpon>apihandler.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="img\01.jpg" />
@@ -160,82 +159,25 @@
     <Content Include="www\css\bootstrap.min.css" />
     <Content Include="www\css\jquery.spinner.css" />
     <Content Include="www\css\style.css" />
-    <Content Include="www\images\1.jpg" />
-    <Content Include="www\images\2.jpg" />
-    <Content Include="www\images\3.jpg" />
-    <Content Include="www\images\4.jpg" />
-    <Content Include="www\images\5.jpg" />
     <Content Include="www\images\arrow2.png" />
+    <Content Include="www\images\arrow2w.png" />
     <Content Include="www\images\arrowd.png" />
     <Content Include="www\images\arrowd2.png" />
-    <Content Include="www\images\backtop.gif" />
-    <Content Include="www\images\bg_calendar.png" />
-    <Content Include="www\images\bodyBg.jpg" />
-    <Content Include="www\images\bodyBg2.jpg" />
-    <Content Include="www\images\bodyBg3.jpg" />
+    <Content Include="www\images\bzzysj.png" />
+    <Content Include="www\images\carren.png" />
+    <Content Include="www\images\checkboxg.png" />
+    <Content Include="www\images\error.png" />
+    <Content Include="www\images\fm2.png" />
     <Content Include="www\images\foot.png" />
     <Content Include="www\images\footer.png" />
     <Content Include="www\images\footer2.png" />
-    <Content Include="www\images\img1.jpg" />
-    <Content Include="www\images\img2.jpg" />
-    <Content Include="www\images\img3.jpg" />
-    <Content Include="www\images\img4.jpg" />
-    <Content Include="www\images\loading.gif" />
-    <Content Include="www\images\sicon_v5.png" />
+    <Content Include="www\images\minus.png" />
     <Content Include="www\images\spinner.png" />
-    <Content Include="www\images\spinner2.png" />
-    <Content Include="www\images\图片加载失败.png" />
-    <Content Include="www\images\夜间服务费.png" />
-    <Content Include="www\img\1.jpg" />
-    <Content Include="www\img\applepay.png" />
-    <Content Include="www\img\checkbox.png" />
-    <Content Include="www\img\checkboxg.png" />
-    <Content Include="www\img\info.png" />
-    <Content Include="www\img\logo.png" />
-    <Content Include="www\img\logo2.png" />
-    <Content Include="www\img\logo3.png" />
-    <Content Include="www\img\logo4.png" />
-    <Content Include="www\img\myorder.png" />
-    <Content Include="www\img\signin.png" />
-    <Content Include="www\img\tele.png" />
-    <Content Include="www\img\tele2.png" />
-    <Content Include="www\img\tele3.png" />
-    <Content Include="www\img\个人中心图标.png" />
-    <Content Include="www\img\个人中心图标2.png" />
-    <Content Include="www\img\个人图标.jpg" />
-    <Content Include="www\img\主题游.png" />
-    <Content Include="www\img\减号.png" />
-    <Content Include="www\img\信用卡支付.png" />
-    <Content Include="www\img\储蓄卡支付.png" />
-    <Content Include="www\img\出团日期.png" />
-    <Content Include="www\img\向上箭头.png" />
-    <Content Include="www\img\定位图标2.png" />
-    <Content Include="www\img\定位图标3.png" />
-    <Content Include="www\img\定制游.png" />
-    <Content Include="www\img\小黄星.png" />
-    <Content Include="www\img\左边li图标.png" />
-    <Content Include="www\img\左边li图标2.png" />
-    <Content Include="www\img\左边li图标3.png" />
-    <Content Include="www\img\左边li图标4.png" />
-    <Content Include="www\img\微信支付.png" />
-    <Content Include="www\img\支付宝.png" />
-    <Content Include="www\img\收藏前.png" />
-    <Content Include="www\img\收藏后.png" />
-    <Content Include="www\img\放大镜2.png" />
-    <Content Include="www\img\更多.png" />
-    <Content Include="www\img\更多2.png" />
-    <Content Include="www\img\电话.png" />
-    <Content Include="www\img\立减.png" />
-    <Content Include="www\img\自由行.png" />
-    <Content Include="www\img\行程特色.png" />
-    <Content Include="www\img\跟团游.png" />
-    <Content Include="www\img\路线行程.png" />
-    <Content Include="www\img\路线行程2.png" />
-    <Content Include="www\img\轮船游.png" />
-    <Content Include="www\img\返回.png" />
-    <Content Include="www\img\返回3.png" />
-    <Content Include="www\img\锦江旅游图标.jpg" />
-    <Content Include="www\img\锯齿划线.png" />
+    <Content Include="www\images\spinner3.png" />
+    <Content Include="www\images\spinner5.png" />
+    <Content Include="www\images\xingli.png" />
+    <Content Include="www\images\yjfwf.png" />
+    <Content Include="www\images\zwsj.png" />
     <Content Include="www\index.html" />
     <Content Include="www\js\directive.js" />
     <Content Include="www\js\directive_html\airport.html" />
@@ -291,7 +233,6 @@
     <Content Include="www\lib\md5.js" />
     <Content Include="www\lib\sha1.js" />
     <Content Include="www\lib\xml2json.min.js" />
-    <Content Include="www\templates\airpay.html" />
     <Content Include="www\templates\air_booking.html" />
     <Content Include="www\templates\car_service.html" />
     <Content Include="www\templates\air_service.html" />
@@ -357,7 +298,9 @@
     <Content Include="www\lib\ionic\scss\_variables.scss" />
     <Content Include="www\lib\ionic\version.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
