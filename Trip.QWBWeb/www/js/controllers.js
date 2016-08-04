@@ -7,6 +7,8 @@ angular.module('starter.controllers', [])
 
     //封面
 .controller('indexCtrl', ['$scope', '$http', function ($scope, $http) {
+    var shopname = request2("shop");
+    setCookie("shopid4QWB", shopname, 30);
 
     var nghttp = "../../ajax/apihandler.ashx?fn=iflogin";
     $http.get(nghttp).success(function (response) {
@@ -665,7 +667,7 @@ angular.module('starter.controllers', [])
 
         var shop_id = getCookie('shopid4QWB'); //55;//
         //layermyui("hi," + getCookie('custid4QWB'));
-        if (!shop_id) { shop_id = 55 }
+        if (!shop_id) { shop_id = "tuogu" }
         var source_guide_id = "";
         var customer_id = getCookie('custid4QWB'); //15086;// 
         //if (!customer_id) { customer_id = 15086 }
@@ -732,7 +734,7 @@ angular.module('starter.controllers', [])
             return;
         }
 
-        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + ",\"order\":{\"car_category_id\":" + car_category_id + ",\"pickup_airport_code\":\"" + pickup_airport_code + "\",\"pickup_flight\":\"" + pickup_flight + "\",\"pickup_time\":\"" + pickup_time + "\",\"pickup_addr\":\"" + pickup_addr + "\",\"adults\":" + adults + "" + kids_age + ",\"traveller\":" + traveller + ",\"memo\":\"" + memo + "\",\"key\":\"" + key + "\",\"sign\":\"" + sign + "\",\"total_price\":\"" + total_price + "\"}}";
+        json = "{\"api_url\":\"" + api_url + "\",\"shop\":\"" + shop_id + "\",\"order\":{\"car_category_id\":" + car_category_id + ",\"pickup_airport_code\":\"" + pickup_airport_code + "\",\"pickup_flight\":\"" + pickup_flight + "\",\"pickup_time\":\"" + pickup_time + "\",\"pickup_addr\":\"" + pickup_addr + "\",\"adults\":" + adults + "" + kids_age + ",\"traveller\":" + traveller + ",\"memo\":\"" + memo + "\",\"key\":\"" + key + "\",\"sign\":\"" + sign + "\",\"total_price\":\"" + total_price + "\"}}";
         var nghttp = "../../ajax/apihandler.ashx?fn=createordertg&json=" + json + "";
         var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
         $http.get(nghttp).success(function (response) {
@@ -846,7 +848,7 @@ angular.module('starter.controllers', [])
         var api_url = "http://test.haihuilai.com/apis/qwb/v1/bookings/create";
         var shop_id = getCookie('shopid4QWB'); //55;//
         //layermyui("hi," + getCookie('custid4QWB'));
-        if (!shop_id) { shop_id = 55 }
+        if (!shop_id) { shop_id = "tuogu" }
         var source_guide_id = "";
         var customer_id = getCookie('custid4QWB'); //15086;// 
         //if (!customer_id) { customer_id = 15086 }
@@ -928,7 +930,7 @@ angular.module('starter.controllers', [])
             return;
         }
 
-        json = "{\"api_url\":\"" + api_url + "\",\"shop_id\":" + shop_id + ",\"order\":{\"from_date\":\"" + from_date + "\",\"from_location_id\":\"" + from_location_id + "\",\"to_date\":\"" + to_date + "\",\"car_category_id\":" + car_category_id + ",\"driver_category_id\":\"" + driver_category_id + "\",\"adults\":" + adults + "" + kids_age + ",\"traveller\":" + traveller + ",\"travel_items\":[" + travel_itemsstr + "],\"key\":\"" + key + "\",\"sign\":\"" + sign + "\",\"total_price\":\"" + total_price + "\"}}";
+        json = "{\"api_url\":\"" + api_url + "\",\"shop\":\"" + shop_id + "\",\"order\":{\"from_date\":\"" + from_date + "\",\"from_location_id\":\"" + from_location_id + "\",\"to_date\":\"" + to_date + "\",\"car_category_id\":" + car_category_id + ",\"driver_category_id\":\"" + driver_category_id + "\",\"adults\":" + adults + "" + kids_age + ",\"traveller\":" + traveller + ",\"travel_items\":[" + travel_itemsstr + "],\"key\":\"" + key + "\",\"sign\":\"" + sign + "\",\"total_price\":\"" + total_price + "\"}}";
         var nghttp = "../../ajax/apihandler.ashx?fn=createcarordertg&json=" + json + "";
         var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
         $http.get(nghttp).success(function (response) {

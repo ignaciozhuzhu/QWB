@@ -835,55 +835,45 @@
             <param name="ticketPlan"></param>
             <returns></returns>
         </member>
+        <member name="M:Trip.Service.PushPlanService.InsertHistory(System.Int32,System.Int32,System.Int32,Trip.Repository.Entities.WeixinExtType,System.String,System.Int32,System.Int32)">
+            <summary>
+            添加一条推送历史记录
+            </summary>
+        </member>
         <member name="M:Trip.Service.PushPlanService.Get(System.Int32,System.Int32)">
             <summary>
             获取指定编号的推送计划
             </summary>
-            <param name="shopId">店铺编号</param>
-            <param name="id">计划编号</param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Service.PushPlanService.GetPaged(System.Int32,System.Int32,System.Int32)">
             <summary>
             分页获取推送计划
             </summary>
-            <param name="shopId">店铺编号</param>
-            <param name="start">分页起始</param>
-            <param name="length">分页大小</param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Service.PushPlanService.Delete(Trip.Repository.Entities.PushPlanEntity)">
             <summary>
             删除推送一条计划
             </summary>
-            <param name="pushPlan"></param>
         </member>
         <member name="M:Trip.Service.PushPlanService.Add(Trip.Repository.Entities.PushPlanEntity)">
             <summary>
             添加一条推送计划
             </summary>
-            <param name="pushPlan">要添加的推送计划</param>
         </member>
         <member name="M:Trip.Service.PushPlanService.Pushed(System.Int32,System.Int32)">
             <summary>
             将推送计划设置为已推送
             </summary>
-            <param name="id">计划编号</param>
-            <param name="shopId">计划所属店铺编号</param>
         </member>
         <member name="M:Trip.Service.PushPlanService.Pushed(Trip.Repository.Entities.PushPlanEntity)">
             <summary>
             将推送计划设置为已推送
             </summary>
-            <param name="pushPlan">要修改的推送计划</param>
         </member>
         <member name="M:Trip.Service.PushPlanService.GetAllToPush(System.DateTime,System.DateTime)">
             <summary>
             获取所有待推送的计划 TODO
             </summary>
-            <param name="beginTime">计划时间-起始</param>
-            <param name="endTime">计划时间-结束</param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Service.ServerProductService.GetDestinationCities(System.Int32)">
             <summary>
@@ -1237,6 +1227,12 @@
             <param name="shopId">店铺编号</param>
             <returns>订单列表</returns>
         </member>
+        <member name="M:Trip.Service.OrderService.GetAllPayExpiringOrders">
+            <summary>
+            获取所有支付时限即将到期的订单
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Trip.Service.OrderService.GetOrderByOrderId(System.Int32,System.Int32)">
             <summary>
             根据订单编号获取订单信息
@@ -1585,28 +1581,21 @@
             <summary>
             获取所有B2B平台社
             </summary>
-            <returns></returns>
         </member>
         <member name="M:Trip.Service.ShopService.InsertShop(Trip.Repository.Entities.ShopEntity)">
             <summary>
             添加店铺
             </summary>
-            <param name="shop"></param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Service.ShopService.UpdateShop(Trip.Repository.Entities.ShopEntity)">
             <summary>
             更新店铺
             </summary>
-            <param name="shop"></param>
         </member>
         <member name="M:Trip.Service.ShopService.IsShopAgentExited(System.Int32,System.Int32)">
             <summary>
             判断Id等于shopId的店铺是否被id为agentId的店铺代理
             </summary>
-            <param name="shopId"></param>
-            <param name="agentId"></param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Service.ShopService.SyncDisplayInfoToLittleShop(Trip.Repository.Entities.ShopEntity)">
             <summary>

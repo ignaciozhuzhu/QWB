@@ -3144,6 +3144,11 @@
             程序猿大战产品汪去了，没时间写注释
             </summary>
         </member>
+        <member name="P:Trip.Repository.Entities.ViewExtGuideEntity.ProductLibraryIndex">
+            <summary>
+            程序猿大战产品汪去了，没时间写注释
+            </summary>
+        </member>
         <member name="T:Trip.Repository.Entities.SalesPointProductViewEntity">
             <summary>
             A class which represents the SalesPointProductView view.
@@ -8129,6 +8134,11 @@
             省中青 出境中心业务员编号
             </summary>
         </member>
+        <member name="P:Trip.Repository.Entities.ShopRule.EnableIndexDepartureCitySwitch">
+            <summary>
+            首页口岸切换开关
+            </summary>
+        </member>
         <member name="P:Trip.Repository.Entities.ShopRule.ServerProductDepositRatio">
             <summary>
             对接线路定金百分比
@@ -8871,6 +8881,12 @@
             <param name="shopId">店铺编号</param>
             <returns>订单列表</returns>
         </member>
+        <member name="M:Trip.Repository.Interfaces.IOrderRepository.GetAllPayExpiringOrders">
+            <summary>
+            获取所有支付时限即将到期的订单
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Trip.Repository.Interfaces.IOrderRepository.GetOrderByOrderId(System.Int32,System.Int32)">
             <summary>
             根据订单编号获取订单信息
@@ -9546,10 +9562,6 @@
             <summary>
             分页获取活动列表
             </summary>
-            <param name="shopId">活动所属店铺编号</param>
-            <param name="start">分页起始</param>
-            <param name="length">分页大小</param>
-            <returns>分页范围内的活动列表</returns>
         </member>
         <member name="M:Trip.Repository.SqlServer.AnnouncementRepository.GetPaged(System.Int32,System.Int32,System.String)">
             <summary>
@@ -9669,9 +9681,6 @@
             <summary>
             获取子分类数量
             </summary>
-            <param name="parentCatalogId"></param>
-            <param name="shopId"></param>
-            <returns></returns>
         </member>
         <member name="M:Trip.Repository.SqlServer.CatalogRepository.GetCatalogBySkin(System.Int32,System.String)">
             <summary>
@@ -9972,6 +9981,12 @@
             <param name="shopId">店铺编号</param>
             <returns>订单列表</returns>
         </member>
+        <member name="M:Trip.Repository.SqlServer.OrderRepository.GetAllPayExpiringOrders">
+            <summary>
+            获取所有支付时限即将到期的订单
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Trip.Repository.SqlServer.OrderRepository.GetOrderByOrderId(System.Int32,System.Int32)">
             <summary>
             根据订单编号获取订单信息
@@ -10215,12 +10230,6 @@
             <summary>
             Get Product
             </summary>
-            <param name="productId">Product Id</param>
-            <param name="isHidden">Hidden Status</param>
-            <param name="isSale">Sale Status</param>
-            <param name="shopId">Shop Id</param>
-            <param name="isOffLine"></param>
-            <returns>Product</returns>
         </member>
         <member name="M:Trip.Repository.SqlServer.ProductRepository.GetProductByProductGenre(System.Int32,Trip.Repository.Entities.ProductGenre)">
             <summary>

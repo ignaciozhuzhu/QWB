@@ -375,6 +375,23 @@ function request(paras) {
     }
 }
 
+//获取URL的参数
+function request2(paras) {
+    var url = location.href;
+    var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+    var paraObj = {}
+    for (i = 0, j = decodeURI(paraString[0]) ; i < 1; i++) {
+        paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+    }
+    var returnValue = paraObj[paras.toLowerCase()];
+    if (typeof (returnValue) == "undefined") {
+        return "";
+    } else {
+        returnValue = returnValue.substring(0, returnValue.indexOf("#"));
+        return returnValue;
+    }
+}
+
 
 function sortbydepartDate(a, b) {
     return a.departDate - b.departDate;

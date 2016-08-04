@@ -23,7 +23,7 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers', '
     });
 }])
 
-.config( ['$stateProvider','$urlRouterProvider','$ionicConfigProvider', function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.backButton.text("");
     $ionicConfigProvider.backButton.previousTitleText(false);
     $stateProvider
@@ -115,6 +115,6 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers', '
      });     
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/index2');///app/playlists
+    $urlRouterProvider.otherwise('/app/index2');
 }]);
 

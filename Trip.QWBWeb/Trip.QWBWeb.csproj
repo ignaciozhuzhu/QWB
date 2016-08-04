@@ -31,7 +31,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>www\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -99,63 +99,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ajax\apihandler.ashx.cs">
+    <Compile Include="www\ajax\apihandler.ashx.cs">
       <DependentUpon>apihandler.ashx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="img\01.jpg" />
-    <Content Include="img\02.jpg" />
-    <Content Include="img\04.jpg" />
-    <Content Include="img\1.jpg" />
-    <Content Include="img\10.jpg" />
-    <Content Include="img\11695763_152849345114_2.jpg" />
-    <Content Include="img\12018626_103826765000_2.jpg" />
-    <Content Include="img\3.jpg" />
-    <Content Include="img\4.jpg" />
-    <Content Include="img\4949133_154725687000_2.jpg" />
-    <Content Include="img\4高雄港.jpg" />
-    <Content Include="img\5.jpg" />
-    <Content Include="img\8.jpg" />
-    <Content Include="img\9.jpg" />
-    <Content Include="img\9448607_181709728000_2.jpg" />
-    <Content Include="img\9448607_215633671000_2.jpg" />
-    <Content Include="img\add.png" />
-    <Content Include="img\applepay.png" />
-    <Content Include="img\checkbox - 副本.png" />
-    <Content Include="img\circle.png" />
-    <Content Include="img\delete.png" />
-    <Content Include="img\disable.png" />
-    <Content Include="img\edit.png" />
-    <Content Include="img\info.png" />
-    <Content Include="img\logo.png" />
-    <Content Include="img\logo5.png" />
-    <Content Include="img\okbtn.png" />
-    <Content Include="img\radiono.png" />
-    <Content Include="img\radiook.png" />
-    <Content Include="img\spinner2.png" />
-    <Content Include="img\tele2.png" />
-    <Content Include="img\tele3.png" />
-    <Content Include="img\个人中心图标.png" />
-    <Content Include="img\主题游.png" />
-    <Content Include="img\今.png" />
-    <Content Include="img\今2.png" />
-    <Content Include="img\储蓄卡支付.png" />
-    <Content Include="img\取消标签.png" />
-    <Content Include="img\定位图标.png" />
-    <Content Include="img\定位图标2.png" />
-    <Content Include="img\定制游.png" />
-    <Content Include="img\微信支付.png" />
-    <Content Include="img\放大镜.png" />
-    <Content Include="img\放大镜2.png" />
-    <Content Include="img\无穷大.png" />
-    <Content Include="img\电话.png" />
-    <Content Include="img\电话图标.png" />
-    <Content Include="img\自由行.png" />
-    <Content Include="img\跟团游.png" />
-    <Content Include="img\轮船游.png" />
-    <Content Include="img\锯齿划线.png" />
-    <Content Include="Web.config" />
     <Content Include="www\css\bootstrap.min.css" />
     <Content Include="www\css\jquery.spinner.css" />
     <Content Include="www\css\style.css" />
@@ -243,15 +191,9 @@
     <Content Include="www\templates\index.html" />
     <Content Include="www\templates\index2.html" />
     <Content Include="www\templates\menu.html" />
-    <Content Include="ajax\apihandler.ashx" />
+    <Content Include="www\ajax\apihandler.ashx" />
     <Content Include="www\templates\reactdemo\index2.html" />
     <Content Include="www\templates\reactdemo\index1.html" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
     <Content Include="www\lib\less\koala-config.json" />
     <Content Include="www\lib\ionic\fonts\ionicons.eot" />
     <Content Include="www\lib\ionic\fonts\ionicons.ttf" />
@@ -297,6 +239,13 @@
     <Content Include="www\lib\ionic\scss\_util.scss" />
     <Content Include="www\lib\ionic\scss\_variables.scss" />
     <Content Include="www\lib\ionic\version.json" />
+    <Content Include="www\Web.config" />
+    <None Include="www\Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="www\Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
