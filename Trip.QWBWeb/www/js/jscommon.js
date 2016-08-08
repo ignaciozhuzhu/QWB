@@ -505,7 +505,7 @@ var displaynonecountry = function (classname) {
         //隐藏没有热门城市的国家
         var mylen = $(classname + " .mycitynameclass").length;
         for (var i = 0; i < mylen; i++) {
-            if (!$(classname + " .mycitynameclass")[i].nextElementSibling) {
+            if (!$(classname + " .mycitynameclass")[i].nextElementSibling.children[0]) {
                 $(classname + " .mycitynameclass")[i].className = "displaynonecity";
                 i--;
                 mylen--;
@@ -514,7 +514,7 @@ var displaynonecountry = function (classname) {
         //显示回有热门城市的国家
         var mylen2 = $(classname + " .displaynonecity").length;
         for (var m = 0; m < mylen2; m++) {
-            if ($(classname + " .displaynonecity")[m].nextElementSibling) {
+            if ($(classname + " .displaynonecity")[m].nextElementSibling.children[0]) {
                 $(classname + " .displaynonecity")[m].className = "mycitynameclass";
                 m--;
                 mylen2--;

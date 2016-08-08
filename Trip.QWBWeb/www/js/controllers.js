@@ -131,7 +131,7 @@ angular.module('starter.controllers', [])
             }
         }
     }
-    //动态控件的城市点击事件
+    //动态控件的城市点击事件(多地用车)
     $scope.selectcity2 = function ($event) {
         var indexposition = $event.target.outerHTML.indexOf("model[");
         var myindex = $event.target.outerHTML.substring(indexposition + 6, indexposition + 7);
@@ -416,7 +416,7 @@ angular.module('starter.controllers', [])
 }])
 
 //车型推荐列表(接送机)--------------------------------------------------------------------------------------------------------------
-.controller('carlistCtrl', ['$scope', '$http', '$ionicScrollDelegate', function ($scope, $http, $ionicScrollDelegate) {
+.controller('carlistCtrl', ['$scope', '$http', '$ionicScrollDelegate','$timeout', function ($scope, $http, $ionicScrollDelegate, $timeout) {
     $(".carlisthrefback").attr("href", "#/app/air_booking");
     var pickosend = getpbyurl(7);
     var airportname = decodeURI(getpbyurl(6));
