@@ -304,6 +304,14 @@ function layermyui(msg) {
         time: time
     })
 }
+function checkMobile(s) {
+    var length = s.length;
+    if (length == 11 && /^(((1[0-9]{1})|)+\d{9})$/.test(s)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 //接口又挂了,一天不知道要挂几次.随时挂,时时挂.调用接口返回后每次直接调用该方法以确认不是自方问题.
 function find404admin(response) {

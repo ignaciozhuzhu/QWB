@@ -8,6 +8,9 @@ angular.module('starter.controllers', [])
     //封面
 .controller('indexCtrl', ['$scope', '$http', function ($scope, $http) {
     var shopname = request2("shop");
+    if (shopname == "") {
+        shopname = "tuogu";
+    }
     setCookie("shopid4QWB", shopname, 30);
 
     var nghttp = "../../ajax/apihandler.ashx?fn=iflogin";
@@ -21,13 +24,15 @@ angular.module('starter.controllers', [])
             }
         }
         else {
-            layermyui('请先使用拓谷帐号登录');
+          //  layermyui('请先使用拓谷帐号登录');
 
             $scope.bzyc = function () {
-                layermyui('请先使用拓谷帐号登录');
+                window.location.href = "http://oando.com.cn/" + shopname + "/login.html?returnUrl=http://qwb.oando.com.cn/?shop=" + shopname + "";
+               // layermyui('请先使用拓谷帐号登录');
             }
             $scope.jsj = function () {
-                layermyui('请先使用拓谷帐号登录');
+                window.location.href = "http://oando.com.cn/" + shopname + "/login.html?returnUrl=http://qwb.oando.com.cn/?shop=" + shopname + "";
+                //layermyui('请先使用拓谷帐号登录');
             }
         }
     })
@@ -35,7 +40,7 @@ angular.module('starter.controllers', [])
 }])
 
     //标准车--------------------------------------------------------------------------------------------------------------
-.controller('carsearchCtrl', ['$scope', '$http', '$ionicScrollDelegate', '$compile', 'getcitysev', function ($scope, $http, $ionicScrollDelegate, $compile, getcitysev) {
+.controller('carsearchCtrl', ['$scope', '$http', '$ionicScrollDelegate', '$compile', 'getcitysev', 'getdistancessev', 'hexafy', function ($scope, $http, $ionicScrollDelegate, $compile, getcitysev, getdistancessev, hexafy) {
     var soloovarious = "";
 
     $scope.displaybox = function ($event) {
@@ -66,9 +71,11 @@ angular.module('starter.controllers', [])
 
     $scope.clickCity = function ($event) {
         $ionicScrollDelegate.scrollTo(0, 270);
-        var indexposition = $event.target.outerHTML.indexOf("model[");
-        var myindex = $event.target.outerHTML.substring(indexposition + 6, indexposition + 7);
-        $(".carsearch .citydistancetip")[myindex - 1].className = "citydistancetip displaynone";
+        if (soloovarious == 2) {
+            var indexposition = $event.target.outerHTML.indexOf("model[");
+            var myindex = $event.target.outerHTML.substring(indexposition + 6, indexposition + 7);
+            $(".carsearch .citydistancetip")[myindex - 1].className = "citydistancetip displaynone";
+        }
     }
     var clickcount = 0;
     $scope.delday = function () {
@@ -118,8 +125,10 @@ angular.module('starter.controllers', [])
         displaynonecountry(".carsearch");
 
         //清空距离提示
-        for (var i = 0; i < 10; i++) {
-            $(".carsearch .citydistancetip")[i].innerText = "";
+        if (soloovarious == 2) {
+            for (var i = 0; i < 10; i++) {
+                $(".carsearch .citydistancetip")[i].innerText = "";
+            }
         }
     }
     //动态控件的城市点击事件
@@ -146,42 +155,18 @@ angular.module('starter.controllers', [])
     }
 
     function distancetip(cityid1, cityid2, myindex) {
-        var nghttp = "../../ajax/apihandler.ashx?fn=getdistances&from_location_id=" + cityid1 + "&to_location_id=" + cityid2 + "";
-        $http.get(nghttp).success(function (response) {
-            if (response.status == 0) {
-                $(".carsearch .citydistancetip")[myindex - 1].className = "citydistancetip displayblock";
-                if (response.distance < 400) {
-                    $(".carsearch .citydistancetip")[myindex - 1].innerText = "一天内可以到达";
-                }
-                else if (response.distance >= 400 && response.distance < 600) {
-                    $(".carsearch .citydistancetip")[myindex - 1].innerText = "约" + response.distance + "公里,距离较远,可能会加收费用.";
-                }
-                else if (response.distance > 600) {
-                    $(".carsearch .citydistancetip")[myindex - 1].innerText = "约" + response.distance + "公里,距离太远,一天内可能无法抵达.";
-                }
-            }
-            else {
-                $(".carsearch .citydistancetip")[myindex - 1].className = "citydistancetip displaynone";
-            }
-        })
+        var responseche = getdistancessev.myFunc($http, cityid1, cityid2, myindex);
     }
 
     $scope.caridArray = "";
     var cityselectfun = function () {
-        //var caridArray = "";
-        var nghttp = "../../ajax/apihandler.ashx?fn=getairports&city_id=" + $scope.model.wcityid + "";
-        $http.get(nghttp).success(function (response) {
-            $scope.airports = response.airports;
-            var nghttp = "../../ajax/apihandler.ashx?fn=getcarslist&locationid=" + $scope.model.wcityid + "";
-            $http.get(nghttp).success(function (response) {
-                //将车型id遍历存入 caridArray 字符串中
-                for (var i = 0; i < response.car_categories.length; i++) {
-                    $scope.caridArray += response.car_categories[i].id + "|";
-                }
-                $scope.caridArray = $scope.caridArray.substr(0, $scope.caridArray.length - 1);
-            })
-        })
+        //回调函数
+        var fun = function (_caridArray) {
+            $scope.caridArray = _caridArray;
+        }
+        hexafy.myFunc2($scope.model.wcityid, $http, $scope, fun);
     }
+
     //-----------------------------------------------------------------------------------------
 
     //datepicker 组件bg
@@ -261,7 +246,7 @@ angular.module('starter.controllers', [])
 }])
 
 //接送机搜索--------------------------------------------------------------------------------------------------------------
-.controller('air_bookingCtrl', ['$scope', '$http', '$ionicScrollDelegate', 'getcitysev', function ($scope, $http, $ionicScrollDelegate, getcitysev) {
+.controller('air_bookingCtrl', ['$scope', '$http', '$ionicScrollDelegate', 'getcitysev', 'hexafy', function ($scope, $http, $ionicScrollDelegate, getcitysev, hexafy) {
 
     $scope.displaybox = function ($event) {
         $($event.target.parentNode.nextElementSibling).css('display', 'block');
@@ -347,16 +332,8 @@ angular.module('starter.controllers', [])
         var nghttp = "../../ajax/apihandler.ashx?fn=getairports&city_id=" + $scope.model.wcityid + "";
         $http.get(nghttp).success(function (response) {
             if (response.airports.length > 0) {
-
                 $scope.airports = response.airports;
-                var nghttp = "../../ajax/apihandler.ashx?fn=getcarslist&locationid=" + $scope.model.wcityid + "";
-                $http.get(nghttp).success(function (response) {
-                    //将车型id遍历存入 caridArray 字符串中
-                    for (var i = 0; i < response.car_categories.length; i++) {
-                        $scope.caridArray += response.car_categories[i].id + "|";
-                    }
-                    $scope.caridArray = $scope.caridArray.substr(0, $scope.caridArray.length - 1);
-                })
+                hexafy.myFunc2($scope.model.wcityid, $http, $scope);
             }
             else {
                 layermyui('该城市未开通机场');
@@ -733,6 +710,11 @@ angular.module('starter.controllers', [])
             layermyui('请输入联系电话!');
             return;
         }
+        if (!checkMobile(contactPhone)) {
+            layermyui('电话格式不正确');
+            return;
+        }
+
 
         json = "{\"api_url\":\"" + api_url + "\",\"shop\":\"" + shop_id + "\",\"order\":{\"car_category_id\":" + car_category_id + ",\"pickup_airport_code\":\"" + pickup_airport_code + "\",\"pickup_flight\":\"" + pickup_flight + "\",\"pickup_time\":\"" + pickup_time + "\",\"pickup_addr\":\"" + pickup_addr + "\",\"adults\":" + adults + "" + kids_age + ",\"traveller\":" + traveller + ",\"memo\":\"" + memo + "\",\"key\":\"" + key + "\",\"sign\":\"" + sign + "\",\"total_price\":\"" + total_price + "\"}}";
         var nghttp = "../../ajax/apihandler.ashx?fn=createordertg&json=" + json + "";
@@ -927,6 +909,10 @@ angular.module('starter.controllers', [])
         }
         if (contactPhone == "") {
             layermyui('请输入联系电话!');
+            return;
+        }
+        if (!checkMobile(contactPhone)) {
+            layermyui('电话格式不正确');
             return;
         }
 
