@@ -58,7 +58,9 @@
             }
             $scope.zones = response.zones;
             funcallback(response);
-            $(".inittext")[0].text = "请选择";
+            for (var i = 0; i < $(".inittext").length; i++) {
+                $(".inittext")[i].text = "请选择";
+            }
         });
     }
 })

@@ -333,7 +333,11 @@ angular.module('starter.controllers', [])
         $http.get(nghttp).success(function (response) {
             if (response.airports.length > 0) {
                 $scope.airports = response.airports;
-                hexafy.myFunc2($scope.model.wcityid, $http, $scope);
+
+                var fun = function (_caridArray) {
+                    $scope.caridArray = _caridArray;
+                }
+                hexafy.myFunc2($scope.model.wcityid, $http, $scope, fun);
             }
             else {
                 layermyui('该城市未开通机场');
@@ -447,17 +451,20 @@ angular.module('starter.controllers', [])
     }
 
     $scope.toogledown = function ($event) {
+        $timeout(function () {
+            $ionicScrollDelegate.$getByHandle('mainScroll').resize();
+            $ionicScrollDelegate.$getByHandle('mainScroll').resize();
+        }, 400)
         var toggoleid = $event.target.parentElement.parentElement.parentElement.nextSibling.nextSibling;
         if (toggoleid.className == "panel-collapse collapse") {
             $(toggoleid).slideToggle();
             $(".collapse").css({ visibility: "visible" });
-            $ionicScrollDelegate.resize();
         }
     }
 }])
 
 //车型推荐列表(标准用车)--------------------------------------------------------------------------------------------------------------
-.controller('carlist2Ctrl', ['$scope', '$http', '$ionicScrollDelegate', function ($scope, $http, $ionicScrollDelegate) {
+.controller('carlist2Ctrl', ['$scope', '$http', '$ionicScrollDelegate', '$timeout', function ($scope, $http, $ionicScrollDelegate, $timeout) {
     $(".carlisthrefback").attr("href", "#/app/carsearch");
     var cityname = decodeURI(getpbyurl(5));
     var caridArray = decodeURI(getpbyurl(4));
@@ -481,8 +488,6 @@ angular.module('starter.controllers', [])
     }).error(function (data, state) {
         console.log(data);
     })
-
-
     $scope.ordernow = function ($event) {
         var targ = $event.target.previousElementSibling;
         var carid = targ.innerText;
@@ -493,14 +498,16 @@ angular.module('starter.controllers', [])
         var driver_category_id = targ.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
         window.location.href = "#/app/car_service/" + driver_category_id + "/" + cityname + "/" + wcityid + "/" + brand + "/" + car_name + "/" + driver_category_name + "/" + carid + "/" + date1 + "/" + date2 + "";
     }
-
     $scope.toogledown = function ($event) {
+        $timeout(function () {
+            $ionicScrollDelegate.$getByHandle('mainScroll').resize();
+            $ionicScrollDelegate.$getByHandle('mainScroll').resize();
+        }, 400)
         var toggoleid = $event.target.parentElement.parentElement.parentElement.nextSibling.nextSibling;
 
         if (toggoleid.className == "panel-collapse collapse") {
             $(toggoleid).slideToggle();
             $(".collapse").css({ visibility: "visible" });
-            $ionicScrollDelegate.resize();
         }
 
     }
