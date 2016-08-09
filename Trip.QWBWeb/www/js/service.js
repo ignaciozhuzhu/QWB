@@ -87,3 +87,24 @@
         })
     }
 })
+
+//获取导游信息列表
+.service('getdriverinfo', function () {
+    this.myFunc = function ($http) {
+        var nghttp = "../../ajax/apihandler.ashx?fn=getdriver_categories";
+        //loading层
+        var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });
+        $http.get(nghttp).success(function (response) {
+            layer.close(mylayeruiwait);
+            if (response.driver_categories == null) {
+                //layermyui('暂无数据');
+                $(".carlist .smalltips").append("很抱歉,无导游司机信息!");
+            }
+            else {
+                $scope.driver_categories = response.driver_categories;
+            }
+        }).error(function (data, state) {
+            console.log(data);
+        })
+    }
+})

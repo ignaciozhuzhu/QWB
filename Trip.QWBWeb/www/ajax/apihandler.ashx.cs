@@ -294,6 +294,15 @@ namespace Trip.QWBWeb.www.ajax
             return strReturn;
         }
 
+
+        /// <summary>
+        /// 获取获取导游类型列表
+        /// </summary>
+        public void getdriver_categories()
+        {
+            HttpContext.Current.Response.Write(Trip.QWB.qwbApi.getdriver_categories());
+        }
+
         public bool IsReusable
         {
             get

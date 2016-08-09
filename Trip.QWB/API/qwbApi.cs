@@ -161,9 +161,17 @@ namespace Trip.QWB
                     //第一个为1天,剩下的天数按相减的来算.
                     if (i == 0)
                     {
-                        days = 1;
+                        days = 0;
                     }
-                    else {
+                    else if (i == 1)
+                    {
+                        DateTime t1 = DateTime.Parse(_pickup_timelist[i - 1]);
+                        DateTime t2 = DateTime.Parse(_pickup_timelist[i]);
+                        ts = t2 - t1;
+                        days = ts.Days + 1;
+                    }
+                    else
+                    {
                         DateTime t1 = DateTime.Parse(_pickup_timelist[i - 1]);
                         DateTime t2 = DateTime.Parse(_pickup_timelist[i]);
                         ts = t2 - t1;
@@ -303,6 +311,24 @@ namespace Trip.QWB
         {
             string url = hhlserver;
             url += "/distances?" + testuser + "&from_location_id=" + from_location_id + "&to_location_id=" + to_location_id + "";
+            var response = HttpUtil.Get(url);
+            if (response != null)
+            {
+                return response;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 获取获取导游类型列表
+        /// </summary>
+        public static string getdriver_categories()
+        {
+            string url = hhlserver;
+            url += "/driver_categories?" + testuser + "";
             var response = HttpUtil.Get(url);
             if (response != null)
             {

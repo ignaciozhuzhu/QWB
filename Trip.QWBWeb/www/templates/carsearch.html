@@ -55,14 +55,25 @@
 <ion-view hide-nav-bar="true">
 </ion-view>
 <ion-view view-title="标准用车" class="carsearch">
+
+    <div id="navigation" class="touchcarousel navtall">
+        <div class="background backgroundblack">
+            <a href="#/app/index2"><img class="arrow" src="images/arrow2w.png" /></a>
+            <h1 class="n_title whitefont">标准用车</h1>
+        </div>
+    </div>
+
     <ion-content class="stable-bg2">
+
         <div class="header headtall">
+
             <div id="navigation" class="touchcarousel navtall">
                 <div class="background backgroundblack">
                     <a href="#/app/index2"><img class="arrow" src="images/arrow2w.png" /></a>
                     <h1 class="n_title whitefont">标准用车</h1>
                 </div>
             </div>
+
             <div class="nav_link" id="new">
                 <ul>
                     <li id="new1" style="cursor:pointer;background:none repeat #f2f4f3;color:#01d4c1;" ng-click="solo()">
@@ -102,8 +113,8 @@
                         <button class="button button-block button-positive mybuttondate" style="margin-left:10px"> {{ currentDate2 | date:'yyyy-MM-dd' }} </button>
                     </ionic-datepicker><span class="weekdayget"></span>
                 </div>
-                <div class="height8"></div>
 
+                <div class="height8"></div>
                 <div class="car_serach">
                     <span class="car_search_toptitle">用车城市</span>
                     <cities-components></cities-components>

@@ -24,11 +24,11 @@ angular.module('starter.controllers', [])
             }
         }
         else {
-          //  layermyui('请先使用拓谷帐号登录');
+            //  layermyui('请先使用拓谷帐号登录');
 
             $scope.bzyc = function () {
                 window.location.href = "http://oando.com.cn/" + shopname + "/login.html?returnUrl=http://qwb.oando.com.cn/?shop=" + shopname + "";
-               // layermyui('请先使用拓谷帐号登录');
+                // layermyui('请先使用拓谷帐号登录');
             }
             $scope.jsj = function () {
                 window.location.href = "http://oando.com.cn/" + shopname + "/login.html?returnUrl=http://qwb.oando.com.cn/?shop=" + shopname + "";
@@ -40,8 +40,8 @@ angular.module('starter.controllers', [])
 }])
 
     //标准车--------------------------------------------------------------------------------------------------------------
-.controller('carsearchCtrl', ['$scope', '$http', '$ionicScrollDelegate', '$compile', 'getcitysev', 'getdistancessev', 'hexafy', function ($scope, $http, $ionicScrollDelegate, $compile, getcitysev, getdistancessev, hexafy) {
-    var soloovarious = "";
+.controller('carsearchCtrl', ['$scope', '$http', '$ionicScrollDelegate', '$compile', 'getcitysev', 'getdistancessev', 'hexafy', '$timeout', function ($scope, $http, $ionicScrollDelegate, $compile, getcitysev, getdistancessev, hexafy, $timeout) {
+    var soloovarious = 1;
 
     $scope.displaybox = function ($event) {
         $($event.target.parentNode.nextElementSibling).css('display', 'block');
@@ -70,6 +70,11 @@ angular.module('starter.controllers', [])
     }
 
     $scope.clickCity = function ($event) {
+        $timeout(function () {
+            //     $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
+            //      $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
+        }, 400)
+        //   $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
         $ionicScrollDelegate.scrollTo(0, 270);
         if (soloovarious == 2) {
             var indexposition = $event.target.outerHTML.indexOf("model[");
@@ -184,18 +189,18 @@ angular.module('starter.controllers', [])
 
     $scope.datePickerCallback = function (val) {
         if (!val) {
-            console.log('Date not selected');
+            // console.log('Date not selected');
         } else {
-            console.log('Selected date is : ', val);
+            // console.log('Selected date is : ', val);
             $(".carsearch .weekdayget")[0].innerText = getmyweekday(val);
             $scope.minDate2 = val;
         }
     };
     $scope.datePickerCallback2 = function (val) {
         if (!val) {
-            console.log('Date not selected');
+            //  console.log('Date not selected');
         } else {
-            console.log('Selected date is : ', val);
+            // console.log('Selected date is : ', val);
             $(".carsearch .weekdayget")[1].innerText = getmyweekday(val);
             $scope.maxDate = val;
         }
@@ -211,19 +216,26 @@ angular.module('starter.controllers', [])
             cityid = $scope.model.wcityid;
             var datebegin = $("ionic-datepicker")[0].innerText;
             var datebegin2Date = parserDate(datebegin);
-            var Tommorow
             date2 = "";
             date1 = datebegin;
-            for (var i = 1; i < $scope.model.length; i++) {
-                cityid += "|" + $scope.model[i].wcityid2;
-                if (i == 1) {
-                    Tommorow = datebegin2Date;
+            var mytomrr = datebegin2Date;
+
+            if ($scope.model.length == 2) {
+                date1 = datebegin + '|' + datebegin;
+                cityid += "|" + $scope.model[1].wcityid2;
+            }
+            else if ($scope.model.length > 2) {
+                for (var i = 1; i < $scope.model.length; i++) {
+                    cityid += "|" + $scope.model[i].wcityid2;
+
+                    if (i == 1) {
+                        date1 = datebegin + '|' + datebegin;
+                    }
+                    else {
+                        mytomrr = new Date(mytomrr.valueOf() + 1 * 24 * 60 * 60 * 1000);
+                        date1 += "|" + FormatDateYear(mytomrr);
+                    }
                 }
-                else {
-                    Tommorow = parserDate(Tommorow);
-                }
-                Tommorow = FormatDateYear(new Date(Tommorow.valueOf() + 1 * 24 * 60 * 60 * 1000));
-                date1 += "|" + Tommorow;
             }
         }
         else {
@@ -234,6 +246,11 @@ angular.module('starter.controllers', [])
 
         if (!$scope.model.wcity) {
             layermyui('请选择城市');
+            return;
+        }
+
+        if (!$scope.model.length && soloovarious == 2) {
+            layermyui('请选择结束城市');
             return;
         }
         if (date1 > date2 && soloovarious == 1) {
@@ -416,7 +433,7 @@ angular.module('starter.controllers', [])
 }])
 
 //车型推荐列表(接送机)--------------------------------------------------------------------------------------------------------------
-.controller('carlistCtrl', ['$scope', '$http', '$ionicScrollDelegate','$timeout', function ($scope, $http, $ionicScrollDelegate, $timeout) {
+.controller('carlistCtrl', ['$scope', '$http', '$ionicScrollDelegate', '$timeout', 'getdriverinfo', function ($scope, $http, $ionicScrollDelegate, $timeout, getdriverinfo) {
     $(".carlisthrefback").attr("href", "#/app/air_booking");
     var pickosend = getpbyurl(7);
     var airportname = decodeURI(getpbyurl(6));
@@ -439,6 +456,9 @@ angular.module('starter.controllers', [])
             $scope.car_categories = response.list;
         }
     })
+
+    getdriverinfo.myFunc($http);
+
     $scope.ordernow = function ($event) {
         var targ = $event.target.previousElementSibling;
         var carid = targ.innerText;
@@ -464,7 +484,7 @@ angular.module('starter.controllers', [])
 }])
 
 //车型推荐列表(标准用车)--------------------------------------------------------------------------------------------------------------
-.controller('carlist2Ctrl', ['$scope', '$http', '$ionicScrollDelegate', '$timeout', function ($scope, $http, $ionicScrollDelegate, $timeout) {
+.controller('carlist2Ctrl', ['$scope', '$http', '$ionicScrollDelegate', '$timeout', 'getdriverinfo', function ($scope, $http, $ionicScrollDelegate, $timeout, getdriverinfo) {
     $(".carlisthrefback").attr("href", "#/app/carsearch");
     var cityname = decodeURI(getpbyurl(5));
     var caridArray = decodeURI(getpbyurl(4));
@@ -488,6 +508,9 @@ angular.module('starter.controllers', [])
     }).error(function (data, state) {
         console.log(data);
     })
+
+    getdriverinfo.myFunc($http);
+
     $scope.ordernow = function ($event) {
         var targ = $event.target.previousElementSibling;
         var carid = targ.innerText;
@@ -622,9 +645,9 @@ angular.module('starter.controllers', [])
 
     $scope.datePickerCallback = function (val) {
         if (!val) {
-            console.log('Date not selected');
+            // console.log('Date not selected');
         } else {
-            console.log('Selected date is : ', val);
+            // console.log('Selected date is : ', val);
             $(".air_service .weekdayget")[0].innerText = getmyweekday(val);
         }
     };

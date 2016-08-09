@@ -50,23 +50,25 @@
                         </div>
                         <div class="panel-collapse collapse" id="collapseThree">
                             <div class="panel-body">
-                                <div class="car_service_item" style="overflow:hidden">
-                                    <div style="float:left;width:30%;height:100px">
-                                        <img src="images/zwsj.png" style="height:50px" />
-                                        <h1 class="car_service_title" style="margin-left: 6%;">中文司机</h1>
+
+                                <div class="car_service_item" style="overflow:hidden" ng-repeat="driver in driver_categories |orderBy: 'id'  ">
+                                    <div style="float:left;width:30%;">
+                                        <img ng-src="http://www.haihuilai.com{{driver.img}}" style="width: 130%; margin-left: -20%;" />
+                                        <!--<h1 class="car_service_title" style="margin-left: 6%;">{{driver.name}}</h1>-->
                                     </div>
                                     <div style="float:left;width:66%">
-                                        <p>具备合格的驾驶技能和最基本的沟通能力，能满足基本的用车需求。</p>
+                                        <p>{{driver.desc}}</p>
                                         <p class="text_small">
-                                            ·1年以上从业经验<br />
+                                            <span ng-repeat="xx in driver.tags">·{{xx}} <br /></span>
+                                            <!--·1年以上从业经验<br />
                                             ·3年以上驾龄<br />
                                             ·出产5年内车辆<br />
                                             ·合法居留<br />
                                             ·第三者乘客险<br />
-                                            ·驾驶技能
+                                            ·驾驶技能-->
                                         </p>
-                                        <p class="car_service_offer">车内配置<span>纸巾</span></p>
-                                        <p class="car_service_price">总计约<span class="price_com">{{x.total_price}}</span>RMB</p>
+                                        <p class="car_service_offer">车内配置<span ng-repeat="xx in driver.car_tags">{{xx}}</span></p>
+                                        <p class="car_service_price">总计约<span class="price_com">{{x.total_price}}</span>RMB起</p>
                                         <span ng-show="false">1</span>
                                         <span ng-show="false">{{x.brand}}</span>
                                         <span ng-show="false">{{x.name}}</span>
@@ -77,7 +79,7 @@
                                     </div>
                                 </div>
 
-                                <div class="car_service_item" style="overflow:hidden">
+                                <!--<div class="car_service_item" style="overflow:hidden">
                                     <div style="float:left;width:30%;height:100px">
                                         <img src="images/bzzysj.png" style="height:50px" />
                                         <h1 class="car_service_title" style="margin-left: 6%;">标准专业司导</h1>
@@ -133,7 +135,7 @@
                                         <span ng-show="false">{{x.id}}</span>
                                         <a class="car_service_btn" ng-click="ordernow($event)">下单</a>
                                     </div>
-                                </div>
+                                </div>-->
 
                             </div>
                         </div>
