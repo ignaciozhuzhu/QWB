@@ -9,7 +9,7 @@
             if (!myindex)
                 myindex = $("variocities-components").length + 1;
             var _html = '<p>Day ' + myindex + '  </p><div class="car_serach"><a class="btn-select car_select">';
-            _html += '<input class="cur-select cur_car_select" ng-click="clickCity($event)" placeholder="请选择留宿城市" ';
+            _html += '<input focus-input class="cur-select cur_car_select" ng-click="clickCity($event)" placeholder="请选择留宿城市" ';
             _html += 'ng-focus="displaybox($event)" ng-blur="displaynonebox($event)" ng-model="model[' + myindex + '].wcity" ng-change=changecity()>';
             _html += '<div ng-hide="true" ng-model="model[' + myindex + '].wcityid2"></div>';
             _html += '</a> <div style="display:none;margin:0 3%;max-height:365px;overflow:hidden">';
@@ -58,3 +58,36 @@
         }
     }
 })
+
+  .directive('focusInput', ['$ionicScrollDelegate', '$window', '$timeout', '$ionicPosition', function ($ionicScrollDelegate, $window, $timeout, $ionicPosition) {
+      return {
+          restrict: 'A',
+          scope: false,
+          link: function ($scope, iElm, iAttrs, controller) {
+              if (ionic.Platform.isIOS()) {
+                  iElm.on('focus', function () {
+                      var top = $ionicScrollDelegate.getScrollPosition().top;
+                      var eleTop = ($ionicPosition.offset(iElm).top) / 2
+                      var realTop = eleTop + top + 50;//这50是我加的,稍微下移50px;让输入框更加居中一点
+                      $timeout(function () {
+                          if (!$scope.$last) {
+                              $ionicScrollDelegate.scrollTo(0, realTop);
+                          } else {
+                              try {
+                                  var aim = angular.element(document).find('.scroll')
+                                  aim.css('transform', 'translate3d(0px,' + '-' + realTop + 'px, 0px) scale(1)');
+                                  $timeout(function () {
+                                      iElm[0].focus();
+                                      console.log(2);
+                                  }, 100)
+                              } catch (e) {
+                              }
+
+                          }
+                      }, 300)
+                  })
+              }
+
+          }
+      }
+  }])

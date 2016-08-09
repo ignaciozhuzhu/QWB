@@ -40,7 +40,7 @@ angular.module('starter.controllers', [])
 }])
 
     //标准车--------------------------------------------------------------------------------------------------------------
-.controller('carsearchCtrl', ['$scope', '$http', '$ionicScrollDelegate', '$compile', 'getcitysev', 'getdistancessev', 'hexafy', '$timeout', function ($scope, $http, $ionicScrollDelegate, $compile, getcitysev, getdistancessev, hexafy, $timeout) {
+.controller('carsearchCtrl', ['$scope', '$http', '$ionicScrollDelegate', '$compile', 'getcitysev', 'getdistancessev', 'hexafy', function ($scope, $http, $ionicScrollDelegate, $compile, getcitysev, getdistancessev, hexafy) {
     var soloovarious = 1;
 
     $scope.displaybox = function ($event) {
@@ -70,12 +70,6 @@ angular.module('starter.controllers', [])
     }
 
     $scope.clickCity = function ($event) {
-        $timeout(function () {
-            //     $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
-            //      $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
-        }, 400)
-        //   $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
-        $ionicScrollDelegate.scrollTo(0, 270);
         if (soloovarious == 2) {
             var indexposition = $event.target.outerHTML.indexOf("model[");
             var myindex = $event.target.outerHTML.substring(indexposition + 6, indexposition + 7);
@@ -277,7 +271,7 @@ angular.module('starter.controllers', [])
     var pickosend = 1;
     //防止菜鸟客户看不到城市选择框
     $scope.clickCity = function () {
-        $ionicScrollDelegate.scrollTo(0, 230);
+        // $ionicScrollDelegate.scrollTo(0, 230);
     }
 
     $scope.pick = function () {
@@ -411,7 +405,7 @@ angular.module('starter.controllers', [])
     //datepicker 组件ed
 
     $scope.downsome = function () {
-        $ionicScrollDelegate.scrollTo(0, 310);
+        // $ionicScrollDelegate.scrollTo(0, 310);
     }
 
     //立即搜索
@@ -457,7 +451,7 @@ angular.module('starter.controllers', [])
         }
     })
 
-    getdriverinfo.myFunc($http);
+    getdriverinfo.myFunc($http, $scope);
 
     $scope.ordernow = function ($event) {
         var targ = $event.target.previousElementSibling;
@@ -509,7 +503,7 @@ angular.module('starter.controllers', [])
         console.log(data);
     })
 
-    getdriverinfo.myFunc($http);
+    getdriverinfo.myFunc($http, $scope);
 
     $scope.ordernow = function ($event) {
         var targ = $event.target.previousElementSibling;

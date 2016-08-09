@@ -90,7 +90,7 @@
 
 //获取导游信息列表
 .service('getdriverinfo', function () {
-    this.myFunc = function ($http) {
+    this.myFunc = function ($http, $scope) {
         var nghttp = "../../ajax/apihandler.ashx?fn=getdriver_categories";
         //loading层
         var mylayeruiwait = layer.load(1, { shade: [0.5, '#ababab'] });

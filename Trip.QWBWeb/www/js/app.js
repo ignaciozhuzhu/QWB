@@ -24,6 +24,7 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers', '
 }])
 
 .config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  //  $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.backButton.text("");
     $ionicConfigProvider.backButton.previousTitleText(false);
     $stateProvider
@@ -45,6 +46,7 @@ angular.module('starter', ['ionic', 'ionic-datepicker', 'starter.controllers', '
           }
       })
      .state('app.carsearch', {
+        // cache: false,
          url: '/carsearch',
          views: {
              'menuContent': {
